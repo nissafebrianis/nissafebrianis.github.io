@@ -589,6 +589,24 @@ footer a:hover { color: #fff; }
   .loop-explain { grid-template-columns: 1fr 1fr; }
   .cs-meta-row { gap: 1.5rem; }
 }
+
+/* mindful loop refresh */
+.mindful-flow{display:grid;grid-template-columns:auto 26px auto 26px auto 26px auto;align-items:center;gap:.4rem;margin-bottom:1rem}
+.mf-step{padding:.65rem .9rem;border-radius:.7rem;font-size:.92rem;font-weight:700;line-height:1.2;text-align:center}
+.mf-start{background:#c592d1;color:#251734;border-radius:999px}
+.mf-core{background:#5b9bd5;color:#fff}
+.mf-assess{background:#ffc000;color:#2f2500}
+.mf-decision{background:#9dc3e6;color:#12314f;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);padding:.95rem 1rem}
+.mf-arrow{color:var(--muted);font-size:1.1rem;text-align:center}
+.mindful-branch{display:flex;gap:1rem;justify-content:flex-end;margin-bottom:1rem;flex-wrap:wrap}
+.mf-branch-item{display:flex;align-items:center;gap:.45rem}
+.mf-branch-label{font-size:.78rem;color:var(--muted)}
+.mf-branch-box{padding:.5rem .8rem;border-radius:.6rem;color:#fff;font-size:.82rem;font-weight:700}
+.mf-review{background:#ff7070}
+.mf-next{background:#70ad47}
+.loop-explain-item{border-top:3px solid #1a3a5c}
+.lei-num{color:#d2d6de}
+@media (max-width: 980px){.mindful-flow{grid-template-columns:1fr;gap:.55rem}.mf-arrow{display:none}.mf-decision{clip-path:none;border-radius:.7rem}.mindful-branch{justify-content:flex-start}}
 </style>
 </head>
 <body>
@@ -651,43 +669,19 @@ footer a:hover { color: #fff; }
     <h2>The loop that drives the whole module</h2>
     <p class="cs-body-text">Every section of this module follows the same cycle. A learner reads the core theory, completes a micro-assessment, and either moves forward or returns to review depending on how they do. This scaffolded loop means nobody gets pushed ahead before they're ready.</p>
 
-    <div class="loop-diagram">
-      <div style="position:relative;">
-        <div class="loop-flow">
-          <div class="loop-node">
-            <div class="loop-shape shape-circle">Mulai<br>Bagian</div>
-            <div class="loop-node-label">Start each section</div>
-          </div>
-          <div class="loop-arrow"></div>
-          <div class="loop-node">
-            <div class="loop-shape shape-box-blue">Core Theory:<br>Bagian X</div>
-            <div class="loop-node-label">Read core content</div>
-          </div>
-          <div class="loop-arrow"></div>
-          <div class="loop-node">
-            <div class="loop-shape shape-box-yellow">Asesmen Mikro:<br>Scaffolding</div>
-            <div class="loop-node-label">Complete micro-assessment</div>
-          </div>
-          <div class="loop-arrow"></div>
-          <div class="loop-node">
-            <div class="shape-diamond-wrap">
-              <div class="shape-diamond"></div>
-              <div class="shape-diamond-text">Lulus?</div>
-            </div>
-            <div class="loop-node-label">Pass or review?</div>
-          </div>
-          <div style="width:3rem; flex-shrink:0;"></div>
-          <div class="loop-branch">
-            <div class="branch-item">
-              <span class="branch-label">Tidak</span>
-              <div class="shape-box-red">Review Materi</div>
-            </div>
-            <div class="branch-item">
-              <span class="branch-label">Ya</span>
-              <div class="shape-box-green">Lanjut ke Bagian Berikutnya</div>
-            </div>
-          </div>
-        </div>
+        <div class="loop-diagram">
+      <div class="mindful-flow">
+        <div class="mf-step mf-start">Mulai Bagian</div>
+        <div class="mf-arrow">?</div>
+        <div class="mf-step mf-core">Core Theory: Bagian X</div>
+        <div class="mf-arrow">?</div>
+        <div class="mf-step mf-assess">Asesmen Mikro: Scaffolding</div>
+        <div class="mf-arrow">?</div>
+        <div class="mf-step mf-decision">Lulus?</div>
+      </div>
+      <div class="mindful-branch">
+        <div class="mf-branch-item"><span class="mf-branch-label">Tidak</span><span class="mf-branch-box mf-review">Review Materi</span></div>
+        <div class="mf-branch-item"><span class="mf-branch-label">Ya</span><span class="mf-branch-box mf-next">Lanjut ke Bagian Berikutnya</span></div>
       </div>
 
       <div class="loop-explain">
@@ -712,6 +706,7 @@ footer a:hover { color: #fff; }
           <div class="lei-text">If they pass, they advance. If not, they return to the material for another look, not to a penalty.</div>
         </div>
       </div>
+    </div>`r`n  </div>
     </div>
   </div>
 

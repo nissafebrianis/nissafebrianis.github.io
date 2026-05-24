@@ -131,7 +131,7 @@ nav {
   content: '';
   position: absolute; right: 0; top: 10%;
   width: 42vw; height: 80%;
-  background: var(--cream);
+  background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec 44%, #cbd4de 100%);
   border-radius: 40% 0 0 40%;
   z-index: -1;
 }
@@ -211,14 +211,38 @@ h1 em { color: var(--accent); font-style: italic; }
 .hero-photo {
   aspect-ratio: 4/5; max-width: 58%;
   margin-left: auto;
-  background: var(--cream);
+  background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec 44%, #cbd4de 100%);
   border-radius: 2rem 2rem 8rem 2rem;
   overflow: hidden;
   border: 1px solid rgba(0,0,0,.06);
   position: relative;
 }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; }
-.hero-photo-badge {
+.hero-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(26,58,92,.18), rgba(123,31,46,.08)),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,.28) 0 10px, rgba(255,255,255,0) 10px 20px);
+}
+.hero-monogram {
+  position: absolute;
+  top: 1.3rem;
+  left: 1.3rem;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background: rgba(13,27,46,.86);
+  color: #fff;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255,255,255,.2);
+  z-index: 1;
+}.hero-photo-badge {
   position: absolute; bottom: 1.5rem; left: 1.2rem; right: 1.2rem;
   background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
   border-radius: .75rem; padding: .9rem 1.1rem;
@@ -228,7 +252,7 @@ h1 em { color: var(--accent); font-style: italic; }
 
 /* ── SECTION COMMONS ── */
 section { padding: 6rem 5vw; position: relative; }
-section.alt { background: var(--cream); }
+section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec 44%, #cbd4de 100%); }
 
 .section-intro {
   max-width: 680px; margin: 0 auto 4rem;
@@ -728,7 +752,7 @@ h1             { animation-delay: .15s; }
   </div>
   <div class="hero-right">
     <div class="hero-photo">
-      <img src="foto.jpg" alt="Nissa Febriani" onerror="this.parentNode.style.background='var(--cream)'">
+      <div class="hero-monogram" aria-hidden="true">NF</div>
       <div class="hero-photo-badge">
         <strong>Nissa Febriani</strong>
         <span>Psychology · Instructional Design · Facilitation</span>
