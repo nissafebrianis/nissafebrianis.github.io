@@ -394,6 +394,7 @@ section.alt { background: var(--cream); }
   display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.4rem;
 }
+.featured-case { display: none; }
 .project-card {
   background: var(--card-bg);
   border-radius: 1.2rem; overflow: hidden;
@@ -615,6 +616,9 @@ h1             { animation-delay: .15s; }
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
   section { padding: 4rem 1.5rem; }
   #chapter-label { display: none; }
+}
+@media (min-width: 1400px) {
+  .portfolio-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
 /* ── FULL CASE STUDY ── */
 .case-study-full {
@@ -852,6 +856,35 @@ h1             { animation-delay: .15s; }
 
   <!-- GRID OF OTHER PROJECTS -->
   <div class="portfolio-grid">
+    <!-- Card 1: Featured Crypto Curriculum -->
+    <div class="project-card reveal">
+      <div class="card-thumb thumb-1">
+        <div class="card-type">Curriculum Design</div>
+      </div>
+      <div class="card-body">
+        <h3>Blockchain and Cryptocurrency Fundamentals</h3>
+        <p>A full university-level elective course designed for undergraduate learners with no prior crypto background across 16 structured sessions.</p>
+        <div class="card-case-row">
+          <div class="card-case-box">
+            <div class="ccb-label">The problem</div>
+            <div class="ccb-val">Complex fintech topic for first-time learners</div>
+          </div>
+          <div class="card-case-box">
+            <div class="ccb-label">My approach</div>
+            <div class="ccb-val">Progressive curriculum design + applied assessment</div>
+          </div>
+        </div>
+        <div class="card-meta">
+          <span class="meta-pill pill-blue">Curriculum</span>
+          <span class="meta-pill pill-orange">Undergraduate</span>
+          <span class="meta-pill pill-teal">16 Sessions</span>
+        </div>
+        <a href="case-crypto.html" class="btn-view">
+          Read the case study
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H7M13 3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
 
     <!-- Card 2: Dasar-Dasar Blockchain -->
     <div class="project-card reveal">
