@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dasar-Dasar Blockchain — Nissa Febriani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:     #0d1b2e;
+  --paper:   #f0f2f5;
+  --cream:   #e2e6ec;
+  --accent:  #7b1f2e;
+  --accent2: #1a3a5c;
+  --muted:   #5a6578;
+  --card-bg: #ffffff;
+  --serif:   'DM Serif Display', Georgia, serif;
+  --sans:    'DM Sans', sans-serif;
+  --r:       12px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.7; font-size: 16px; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+
+#progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--accent2), var(--accent)); z-index: 200; transition: width .1s linear; }
+
+nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rgba(240,242,245,.94); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,.07); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { font-family: var(--serif); font-size: 1.1rem; letter-spacing: -.01em; }
+.nav-logo span { color: var(--accent); font-style: italic; }
+.nav-back { display: inline-flex; align-items: center; gap: .5rem; font-size: .82rem; font-weight: 500; color: var(--muted); transition: color .2s; }
+.nav-back:hover { color: var(--accent); }
+.nav-back svg { width: 14px; height: 14px; }
+.nav-cta { font-size: .82rem; font-weight: 500; background: var(--ink); color: var(--paper); padding: .5rem 1.25rem; border-radius: 100px; transition: background .2s; }
+.nav-cta:hover { background: var(--accent); }
+
+.cs-hero { background: var(--ink); padding: 9rem 5vw 5rem; position: relative; overflow: hidden; }
+.cs-hero::before { content: 'BLOCKCHAIN'; position: absolute; right: -1rem; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: var(--serif); font-size: 12rem; font-style: italic; color: rgba(255,255,255,.03); white-space: nowrap; pointer-events: none; letter-spacing: -.04em; }
+.cs-hero-inner { max-width: 860px; }
+.cs-breadcrumb { display: flex; align-items: center; gap: .6rem; font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 1.5rem; }
+.cs-breadcrumb a { color: rgba(255,255,255,.4); transition: color .2s; }
+.cs-breadcrumb a:hover { color: rgba(255,255,255,.8); }
+.cs-breadcrumb span { color: rgba(255,255,255,.2); }
+.cs-type { display: inline-block; font-size: .7rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.15); border-radius: 100px; padding: .3rem .9rem; margin-bottom: 1.25rem; }
+.cs-personal-badge { display: inline-block; font-size: .7rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: #c9a4a4; border: 1px solid rgba(201,164,164,.3); border-radius: 100px; padding: .3rem .9rem; margin-bottom: 1.25rem; margin-left: .5rem; }
+.cs-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 1.25rem; }
+.cs-hero h1 em { font-style: italic; color: #c9a4a4; }
+.cs-hero-sub { font-size: 1rem; color: rgba(255,255,255,.6); max-width: 600px; line-height: 1.8; margin-bottom: 2rem; }
+.cs-meta-row { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.08); }
+.cs-meta-label { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .3rem; }
+.cs-meta-val { font-size: .9rem; font-weight: 500; color: #fff; }
+
+.lang-notice { background: var(--accent2); color: rgba(255,255,255,.85); text-align: center; padding: .65rem 5vw; font-size: .82rem; }
+.lang-notice strong { font-weight: 600; color: #fff; }
+
+.cs-content { max-width: 960px; margin: 0 auto; padding: 4rem 5vw; }
+.cs-section { margin-bottom: 4rem; }
+.cs-section-label { font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .75rem; }
+.cs-section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--accent); }
+.cs-section h2 { font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; letter-spacing: -.02em; margin-bottom: 1rem; }
+.cs-body-text { font-size: .95rem; color: var(--muted); line-height: 1.85; max-width: 680px; }
+.cs-body-text + .cs-body-text { margin-top: .85rem; }
+
+.outcome-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.75rem; }
+.outcome-card { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); padding: 1.4rem 1.5rem; display: flex; gap: 1rem; align-items: flex-start; }
+.outcome-num { font-family: var(--serif); font-size: 1.6rem; font-style: italic; color: var(--cream); line-height: 1; flex-shrink: 0; width: 32px; text-align: center; }
+.outcome-card h4 { font-size: .88rem; font-weight: 500; color: var(--ink); margin-bottom: .3rem; }
+.outcome-card p { font-size: .8rem; color: var(--muted); line-height: 1.65; }
+
+.session-arc { margin-top: 1.75rem; }
+.arc-item { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: start; padding: 1.25rem 0; border-bottom: 1px solid rgba(0,0,0,.07); }
+.arc-item:last-child { border-bottom: none; }
+.arc-sessions { font-family: var(--serif); font-size: 1rem; font-style: italic; color: var(--accent2); padding-top: .1rem; }
+.arc-phase { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+.arc-item h4 { font-size: .92rem; font-weight: 500; color: var(--ink); margin-bottom: .4rem; }
+.arc-item p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+.arc-topics { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+.arc-topic { font-size: .7rem; padding: .22rem .65rem; background: var(--paper); border: 1px solid rgba(0,0,0,.08); border-radius: 100px; color: var(--muted); }
+
+.assessment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.75rem; }
+.assess-card { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); padding: 1.4rem 1.5rem; position: relative; overflow: hidden; }
+.assess-card::before { content: attr(data-icon); position: absolute; right: 1rem; top: .6rem; font-size: 3rem; line-height: 1; opacity: .07; }
+.assess-pct { font-family: var(--serif); font-size: 1.4rem; color: var(--accent2); margin-bottom: .5rem; }
+.assess-card h4 { font-size: .9rem; font-weight: 500; margin-bottom: .5rem; }
+.assess-card p { font-size: .82rem; color: var(--muted); line-height: 1.65; }
+.assess-insight { margin-top: 1rem; padding: .75rem 1rem; background: var(--paper); border-radius: .5rem; font-size: .78rem; color: var(--ink); font-weight: 500; }
+
+.compare-table { margin-top: 1.75rem; border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); overflow: hidden; }
+.compare-header { display: grid; grid-template-columns: 150px 1fr 1fr; background: var(--ink); color: #fff; }
+.compare-header div { padding: .9rem 1.25rem; font-size: .78rem; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
+.compare-header div:first-child { color: rgba(255,255,255,.4); }
+.compare-row { display: grid; grid-template-columns: 150px 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,.06); }
+.compare-row:last-child { border-bottom: none; }
+.compare-row:nth-child(even) { background: rgba(0,0,0,.02); }
+.compare-row div { padding: 1rem 1.25rem; font-size: .83rem; line-height: 1.6; }
+.compare-row div:first-child { font-weight: 500; color: var(--ink); }
+.compare-row div:nth-child(2), .compare-row div:nth-child(3) { color: var(--muted); }
+.tag-good { display: inline-block; font-size: .7rem; font-weight: 600; color: #1a5c2e; background: #d4ead9; padding: .15rem .55rem; border-radius: 100px; margin-right: .3rem; }
+.tag-limited { display: inline-block; font-size: .7rem; font-weight: 600; color: #5c3a1a; background: #ead9c4; padding: .15rem .55rem; border-radius: 100px; margin-right: .3rem; }
+
+.reflection-box { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-left: 3px solid var(--accent2); border-radius: 0 var(--r) var(--r) 0; padding: 1.75rem 2rem; margin-top: 1.75rem; }
+.reflection-box p { font-size: .95rem; color: var(--muted); line-height: 1.85; font-style: italic; }
+.reflection-box p + p { margin-top: .85rem; }
+
+.other-projects { padding: 3rem 5vw; max-width: 960px; margin: 0 auto; }
+.other-projects h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 1.25rem; letter-spacing: -.01em; }
+.other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.other-card { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); padding: 1.25rem 1.4rem; transition: transform .2s, box-shadow .2s; }
+.other-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+.other-type { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
+.other-card h4 { font-size: .9rem; font-weight: 500; margin-bottom: .4rem; line-height: 1.3; }
+.other-card p { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+
+footer { background: var(--ink); color: rgba(255,255,255,.4); padding: 1.5rem 5vw; display: flex; align-items: center; justify-content: space-between; font-size: .8rem; }
+footer a { color: rgba(255,255,255,.6); transition: color .2s; }
+footer a:hover { color: #fff; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+
+@media (max-width: 760px) {
+  .outcome-grid, .assessment-grid, .other-grid { grid-template-columns: 1fr; }
+  .arc-item { grid-template-columns: 1fr; gap: .3rem; }
+  .cs-meta-row { gap: 1.5rem; }
+  .compare-header, .compare-row { grid-template-columns: 110px 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Nissa <span>Febriani</span></a>
+  <a href="index.html#portfolio" class="nav-back">
+    <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Kembali ke portofolio
+  </a>
+  <a href="index.html#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<div class="cs-hero">
+  <div class="cs-hero-inner">
+    <div class="cs-breadcrumb">
+      <a href="index.html">Portfolio</a>
+      <span>/</span>
+      E-Learning Design
+    </div>
+    <div class="cs-type">Case Study</div>
+    <div class="cs-personal-badge">Proyek Pribadi</div>
+    <h1>Dasar-Dasar <em>Blockchain</em></h1>
+    <p class="cs-hero-sub">Modul belajar mandiri yang saya rancang untuk membantu masyarakat Indonesia memahami teknologi di balik cryptocurrency — dari konsep ledger sampai bagaimana blockchain bekerja di dunia nyata, dalam bahasa yang mudah dipahami siapa saja.</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Jenis proyek</div>
+        <div class="cs-meta-val">Proyek Pribadi</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Sasaran peserta</div>
+        <div class="cs-meta-val">Pemula, Masyarakat Umum Indonesia</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Format</div>
+        <div class="cs-meta-val">Modul Interaktif, Self-paced</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Bahasa</div>
+        <div class="cs-meta-val">Bahasa Indonesia</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Peran saya</div>
+        <div class="cs-meta-val">Instructional Designer</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="lang-notice">
+  🇮🇩 <strong>Halaman ini ditulis dalam Bahasa Indonesia</strong> karena proyek ini memang dirancang khusus untuk audiens Indonesia.
+</div>
+
+<div class="cs-content">
+
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Latar belakang</div>
+    <h2>Minat masyarakat tinggi, tapi pemahamannya masih tipis</h2>
+    <p class="cs-body-text">Dalam beberapa tahun terakhir, investasi crypto di Indonesia tumbuh pesat. Tapi yang sering saya temui, banyak orang sudah masuk pasar tanpa benar-benar mengerti teknologi di baliknya. Mereka tahu harga Bitcoin naik-turun, tapi tidak tahu apa itu blockchain, bagaimana cara kerjanya, atau kenapa teknologi ini punya nilai.</p>
+    <p class="cs-body-text">Dari situ saya ingin membuat sesuatu yang bisa membantu. Bukan kursus formal, bukan juga artikel teknis yang susah dicerna — tapi modul belajar mandiri yang bisa diakses siapa saja, dengan bahasa yang terasa dekat dan analogi yang relevan dengan keseharian orang Indonesia.</p>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Struktur modul</div>
+    <h2>Lima topik yang urutannya saya pikirkan cukup lama</h2>
+    <p class="cs-body-text">Tujuannya supaya setiap bagian memberi landasan untuk topik berikutnya. Kalau peserta belum paham apa itu ledger, konsep blockchain akan terasa muncul tiba-tiba dari langit. Kalau mereka belum paham desentralisasi, perbandingan dengan sistem tradisional tidak akan terasa bermakna.</p>
+    <div class="outcome-grid">
+      <div class="outcome-card">
+        <div class="outcome-num">01</div>
+        <div>
+          <h4>Konsep Dasar Ledger</h4>
+          <p>Titik awal yang sering dilewatkan. Sebelum bicara blockchain, peserta perlu tahu dulu apa itu buku besar dan kenapa pencatatan transaksi yang akurat itu penting.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">02</div>
+        <div>
+          <h4>Definisi dan Karakteristik Blockchain</h4>
+          <p>Apa itu blockchain, apa yang membuatnya berbeda, dan mengapa sifatnya yang imut itu bukan kelemahan melainkan fitur yang disengaja.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">03</div>
+        <div>
+          <h4>Mekanisme Kerja Blockchain</h4>
+          <p>Bagaimana blok dan rantai bekerja, apa itu node, dan bagaimana jaringan ini menjaga data tetap aman tanpa butuh otoritas pusat.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">04</div>
+        <div>
+          <h4>Perbandingan dengan Sistem Tradisional</h4>
+          <p>Meletakkan blockchain di sebelah sistem konvensional supaya perbedaannya terasa nyata, bukan sekadar teoritis.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">05</div>
+        <div>
+          <h4>Aplikasi di Berbagai Industri</h4>
+          <p>Blockchain jauh melampaui cryptocurrency. Bagian ini membuka wawasan bahwa teknologi ini sudah dipakai di kesehatan, logistik, dan sistem pemungutan suara.</p>
+        </div>
+      </div>
+      <div class="outcome-card" style="background:var(--ink);">
+        <div class="outcome-num" style="color:rgba(255,255,255,.12);">06</div>
+        <div>
+          <h4 style="color:#fff;">Refleksi dan Diskusi</h4>
+          <p style="color:rgba(255,255,255,.55);">Modul ditutup dengan pertanyaan terbuka yang mengajak peserta berpikir tentang potensi blockchain di sektor yang mereka kenal sendiri.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Konsep yang diajarkan</div>
+    <h2>Memilih seberapa dalam masuk ke sisi teknis</h2>
+    <p class="cs-body-text">Salah satu keputusan desain terbesar di proyek ini adalah menentukan kedalaman materi. Terlalu dangkal dan peserta tidak benar-benar paham. Terlalu dalam dan mereka bisa hilang di tengah jalan. Ini konsep-konsep utama yang saya masukkan dan bagaimana saya menyajikannya.</p>
+    <div class="session-arc">
+      <div class="arc-item">
+        <div class="arc-sessions">Ledger</div>
+        <div>
+          <div class="arc-phase">Fondasi</div>
+          <h4>Buku besar sebagai titik awal</h4>
+          <p>Ledger mencatat seluruh riwayat transaksi secara kronologis. Saya mulai dari sini karena blockchain pada dasarnya adalah evolusi dari konsep ini, dan peserta perlu titik pijak yang familiar sebelum masuk ke hal yang baru.</p>
+          <div class="arc-topics">
+            <span class="arc-topic">Pencatatan kronologis</span>
+            <span class="arc-topic">Akurasi finansial</span>
+            <span class="arc-topic">Verifikasi data</span>
+          </div>
+        </div>
+      </div>
+      <div class="arc-item">
+        <div class="arc-sessions">Desentralisasi</div>
+        <div>
+          <div class="arc-phase">Konsep kunci</div>
+          <h4>Dua lapisan yang perlu dibedakan</h4>
+          <p>Desentralisasi punya dua sisi yang sering dicampur aduk: sifat terdistribusi (data tersebar ke banyak node) dan sifat terdesentralisasi (tidak ada otoritas tunggal yang mengambil keputusan). Saya menjelaskan keduanya lewat analogi yang berbeda karena memang konsepnya berbeda.</p>
+          <div class="arc-topics">
+            <span class="arc-topic">Distributed nodes</span>
+            <span class="arc-topic">Algoritma konsensus</span>
+            <span class="arc-topic">No single point of failure</span>
+          </div>
+        </div>
+      </div>
+      <div class="arc-item">
+        <div class="arc-sessions">Blok dan Rantai</div>
+        <div>
+          <div class="arc-phase">Mekanisme</div>
+          <h4>Kenapa data tidak bisa diubah diam-diam</h4>
+          <p>Setiap blok berisi data transaksi, hash kriptografis, dan referensi ke blok sebelumnya. Kalau satu blok diutak-atik, seluruh rantai setelahnya ikut rusak — itulah yang membuat blockchain berbeda dari database biasa.</p>
+          <div class="arc-topics">
+            <span class="arc-topic">Hash kriptografis</span>
+            <span class="arc-topic">Timestamp</span>
+            <span class="arc-topic">Imutabilitas</span>
+          </div>
+        </div>
+      </div>
+      <div class="arc-item">
+        <div class="arc-sessions">Trustless System</div>
+        <div>
+          <div class="arc-phase">Konsep lanjutan</div>
+          <h4>Kepercayaan tanpa pihak ketiga</h4>
+          <p>Kepercayaan dibangun melalui kode dan algoritma konsensus, bukan pada institusi atau individu. Saya meletakkan konsep ini di akhir karena perlu fondasi dari semua konsep sebelumnya supaya bisa dipahami dengan baik.</p>
+          <div class="arc-topics">
+            <span class="arc-topic">Konsensus</span>
+            <span class="arc-topic">Kriptografi</span>
+            <span class="arc-topic">Tanpa otoritas pusat</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Pendekatan desain</div>
+    <h2>Dua analogi untuk menjelaskan sifat blockchain</h2>
+    <p class="cs-body-text">Audiens modul ini bukan orang teknis, jadi saya menggunakan analogi sebagai alat utama. Dua analogi di bawah ini saya pilih karena terasa dekat dengan pengalaman sehari-hari, bukan perbandingan klise yang sudah terlalu sering muncul di artikel crypto.</p>
+    <div class="assessment-grid">
+      <div class="assess-card" data-icon="🌿">
+        <div class="assess-pct">Taman Komunitas</div>
+        <h4>Untuk menjelaskan sifat terdistribusi</h4>
+        <p>Bayangkan taman komunitas yang dikelola bersama tanpa satu pemimpin. Setiap anggota punya salinan catatan yang sama tentang siapa menanam apa dan di mana. Kalau ada yang mencoba mengubah catatan diam-diam, anggota lain langsung tahu karena catatan mereka tidak cocok.</p>
+        <div class="assess-insight">Poin utama: tidak ada server pusat. Setiap node punya salinan lengkap, itulah yang membuatnya susah dimanipulasi.</div>
+      </div>
+      <div class="assess-card" data-icon="🏫">
+        <div class="assess-pct">Sekolah Mandiri</div>
+        <h4>Untuk menjelaskan sifat terdesentralisasi</h4>
+        <p>Sekolah di mana setiap kelas punya guru dan muridnya sendiri, beroperasi secara mandiri. Meski begitu, semua kelas mengikuti aturan dan kurikulum yang sama. Kalau satu kelas bermasalah, kelas lain tetap berjalan normal.</p>
+        <div class="assess-insight">Poin utama: keputusan diambil lewat algoritma konsensus, bukan oleh satu pihak yang berkuasa.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Konten modul</div>
+    <h2>Tabel perbandingan yang saya buat untuk peserta</h2>
+    <p class="cs-body-text">Cara yang efektif untuk membuat konsep baru terasa nyata adalah membandingkannya langsung dengan sesuatu yang sudah dikenal. Tabel ini saya rancang sebagai referensi visual yang bisa dibaca sekilas dan langsung terasa perbedaannya.</p>
+    <div class="compare-table">
+      <div class="compare-header">
+        <div>Fitur</div>
+        <div>Blockchain</div>
+        <div>Ledger Tradisional</div>
+      </div>
+      <div class="compare-row">
+        <div>Struktur</div>
+        <div><span class="tag-good">Terdesentralisasi</span> Tidak ada titik kontrol pusat; kendali tersebar di seluruh jaringan.</div>
+        <div><span class="tag-limited">Terpusat</span> Satu otoritas seperti bank mengendalikan seluruh data.</div>
+      </div>
+      <div class="compare-row">
+        <div>Transparansi</div>
+        <div><span class="tag-good">Tinggi</span> Setiap node punya salinan data yang sama dan bisa memverifikasi transaksi.</div>
+        <div><span class="tag-limited">Terbatas</span> Transparansi hanya sejauh akses yang diberikan otoritas pusat.</div>
+      </div>
+      <div class="compare-row">
+        <div>Imutabilitas</div>
+        <div><span class="tag-good">Permanen</span> Data tidak bisa dihapus atau diubah setelah tercatat dalam rantai.</div>
+        <div><span class="tag-limited">Bisa diubah</span> Data bisa dimodifikasi oleh pihak yang berwenang.</div>
+      </div>
+      <div class="compare-row">
+        <div>Kepercayaan</div>
+        <div><span class="tag-good">Trustless</span> Kepercayaan dibangun melalui kode dan algoritma konsensus.</div>
+        <div><span class="tag-limited">Berbasis otoritas</span> Bergantung sepenuhnya pada integritas pihak ketiga.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Refleksi saya</div>
+    <h2>Yang saya pelajari dari membuat modul ini</h2>
+    <div class="reflection-box">
+      <p>Proyek ini berbeda dari pekerjaan instruksional saya yang lain karena saya punya kendali penuh atas semuanya — dari memilih topik, menentukan urutan, sampai memutuskan analogi mana yang dipakai. Itu menyenangkan sekaligus menantang.</p>
+      <p>Yang paling susah ternyata bukan bagian teknisnya, tapi memutuskan seberapa dalam masuk ke konsep tertentu. Saya beberapa kali menulis ulang bagian tentang desentralisasi karena kata-katanya terlalu teknis atau justru terlalu sederhana sampai kehilangan substansinya.</p>
+      <p>Dua analogi yang ada di modul ini juga tidak datang dalam sekali duduk. Saya mencoba beberapa versi sebelum akhirnya merasa cukup yakin bahwa analogi taman dan sekolah bisa sampai ke orang yang belum pernah dengar blockchain sebelumnya.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="other-projects">
+  <h3>Other projects</h3>
+  <div class="other-grid">
+    <a href="case-crypto.html" class="other-card">
+      <div class="other-type">Curriculum Design</div>
+      <h4>Blockchain and Cryptocurrency for Undergraduates</h4>
+      <p>A full 16-session curriculum I led the design of, built for undergraduate students with no prior knowledge of crypto.</p>
+    </a>
+    <a href="https://drive.google.com/drive/folders/18fUKNeJJhSpKTUCCz4vcymf6E9YKpOLD" target="_blank" class="other-card">
+      <div class="other-type">E-Learning Script</div>
+      <h4>Efficient Budgeting: Script and Assignment</h4>
+      <p>Audio-visual script and assignments for a personal finance e-learning course.</p>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1erweNzoG93nkA7mg2JeE-DH3dyIKlElE" target="_blank" class="other-card">
+      <div class="other-type">Game-Based Learning</div>
+      <h4>Detective Mystery: Collaborative Online Game</h4>
+      <p>A group mystery game for remote team building and collaboration skills.</p>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Nissa Febriani · Bandung, Indonesia</span>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="mailto:nissafebriani@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/nissafebriani" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+const bar = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  bar.style.width = (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+});
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

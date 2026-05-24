@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Detective Mystery: Collaborative Online Game — Nissa Febriani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:     #0d1b2e;
+  --paper:   #f0f2f5;
+  --cream:   #e2e6ec;
+  --accent:  #7b1f2e;
+  --accent2: #1a3a5c;
+  --muted:   #5a6578;
+  --card-bg: #ffffff;
+  --serif:   'DM Serif Display', Georgia, serif;
+  --sans:    'DM Sans', sans-serif;
+  --r:       12px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.7; font-size: 16px; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+
+#progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--accent2), var(--accent)); z-index: 200; transition: width .1s linear; }
+
+nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rgba(240,242,245,.94); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,.07); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { font-family: var(--serif); font-size: 1.1rem; letter-spacing: -.01em; }
+.nav-logo span { color: var(--accent); font-style: italic; }
+.nav-back { display: inline-flex; align-items: center; gap: .5rem; font-size: .82rem; font-weight: 500; color: var(--muted); transition: color .2s; }
+.nav-back:hover { color: var(--accent); }
+.nav-back svg { width: 14px; height: 14px; }
+.nav-cta { font-size: .82rem; font-weight: 500; background: var(--ink); color: var(--paper); padding: .5rem 1.25rem; border-radius: 100px; transition: background .2s; }
+.nav-cta:hover { background: var(--accent); }
+
+/* HERO */
+.cs-hero { background: var(--ink); padding: 9rem 5vw 5rem; position: relative; overflow: hidden; }
+.cs-hero::before { content: 'MYSTERY'; position: absolute; right: -1rem; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: var(--serif); font-size: 12rem; font-style: italic; color: rgba(255,255,255,.03); white-space: nowrap; pointer-events: none; letter-spacing: -.04em; }
+.cs-hero-inner { max-width: 860px; }
+.cs-breadcrumb { display: flex; align-items: center; gap: .6rem; font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 1.5rem; }
+.cs-breadcrumb a { color: rgba(255,255,255,.4); transition: color .2s; }
+.cs-breadcrumb a:hover { color: rgba(255,255,255,.8); }
+.cs-breadcrumb span { color: rgba(255,255,255,.2); }
+.cs-type { display: inline-block; font-size: .7rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.15); border-radius: 100px; padding: .3rem .9rem; margin-bottom: 1.25rem; }
+.cs-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 1.25rem; }
+.cs-hero h1 em { font-style: italic; color: #c9a4a4; }
+.cs-hero-sub { font-size: 1rem; color: rgba(255,255,255,.6); max-width: 600px; line-height: 1.8; margin-bottom: 2rem; }
+.cs-meta-row { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.08); }
+.cs-meta-label { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .3rem; }
+.cs-meta-val { font-size: .9rem; font-weight: 500; color: #fff; }
+
+/* CONTENT */
+.cs-content { max-width: 960px; margin: 0 auto; padding: 4rem 5vw; }
+.cs-section { margin-bottom: 4rem; }
+.cs-section-label { font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .75rem; }
+.cs-section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--accent); }
+.cs-section h2 { font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; letter-spacing: -.02em; margin-bottom: 1rem; }
+.cs-body-text { font-size: .95rem; color: var(--muted); line-height: 1.85; max-width: 680px; }
+.cs-body-text + .cs-body-text { margin-top: .85rem; }
+
+/* CHALLENGE CALLOUT */
+.challenge-box {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 1.5rem 2rem;
+  margin-top: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.challenge-item {}
+.challenge-item .ci-label { font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .4rem; }
+.challenge-item p { font-size: .85rem; color: var(--muted); line-height: 1.7; }
+
+/* CAST GRID */
+.cast-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; margin-top: 1.75rem;
+}
+.cast-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: var(--r);
+  padding: 1.25rem 1.4rem;
+}
+.cast-role {
+  font-size: .65rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  margin-bottom: .35rem;
+}
+.role-victim { color: #7b1f1f; }
+.role-suspect { color: var(--accent2); }
+.role-friend { color: #1a5c2e; }
+.role-witness { color: #5c4a1a; }
+.cast-card h4 { font-size: .9rem; font-weight: 500; color: var(--ink); margin-bottom: .3rem; }
+.cast-card p { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+
+/* SESSION FLOW */
+.session-flow {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.flow-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.07);
+}
+.flow-item:last-child { border-bottom: none; }
+.flow-time {
+  font-family: var(--serif); font-size: .95rem; font-style: italic;
+  color: var(--accent2); padding-top: .1rem;
+}
+.flow-phase { font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
+.flow-item h4 { font-size: .92rem; font-weight: 500; color: var(--ink); margin-bottom: .35rem; }
+.flow-item p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+.flow-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+.flow-tag { font-size: .7rem; padding: .22rem .65rem; background: var(--paper); border: 1px solid rgba(0,0,0,.08); border-radius: 100px; color: var(--muted); }
+
+/* CLUE SYSTEM */
+.clue-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1rem; margin-top: 1.75rem;
+}
+.clue-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.clue-header {
+  background: var(--ink);
+  padding: .9rem 1.25rem;
+  display: flex; align-items: center; gap: .75rem;
+}
+.clue-icon { font-size: 1.2rem; }
+.clue-header h4 { font-size: .88rem; font-weight: 500; color: #fff; }
+.clue-header span { font-size: .72rem; color: rgba(255,255,255,.4); margin-left: auto; }
+.clue-body { padding: 1.1rem 1.25rem; }
+.clue-body p { font-size: .83rem; color: var(--muted); line-height: 1.7; }
+.clue-body p + p { margin-top: .6rem; }
+.clue-insight { margin-top: .85rem; padding: .65rem .9rem; background: var(--paper); border-radius: .5rem; font-size: .78rem; color: var(--ink); font-weight: 500; }
+
+/* DESIGN DECISIONS */
+.decision-list { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 1px; }
+.decision-item {
+  display: grid; grid-template-columns: 200px 1fr;
+  gap: 2rem; align-items: start;
+  padding: 1.4rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.07);
+}
+.decision-item:last-child { border-bottom: none; }
+.decision-principle { font-size: .88rem; font-weight: 500; color: var(--ink); }
+.decision-tag { display: inline-block; font-size: .65rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; padding: .2rem .6rem; border-radius: 100px; background: var(--paper); color: var(--muted); margin-top: .3rem; }
+.decision-desc { font-size: .85rem; color: var(--muted); line-height: 1.75; }
+
+/* OUTCOME STATS */
+.outcome-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; margin-top: 1.75rem;
+}
+.outcome-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: var(--r);
+  padding: 1.4rem 1.5rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.outcome-num { font-family: var(--serif); font-size: 1.6rem; font-style: italic; color: var(--cream); line-height: 1; flex-shrink: 0; width: 32px; text-align: center; }
+.outcome-card h4 { font-size: .88rem; font-weight: 500; color: var(--ink); margin-bottom: .3rem; }
+.outcome-card p { font-size: .8rem; color: var(--muted); line-height: 1.65; }
+
+/* REFLECTION */
+.reflection-box { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-left: 3px solid var(--accent2); border-radius: 0 var(--r) var(--r) 0; padding: 1.75rem 2rem; margin-top: 1.75rem; }
+.reflection-box p { font-size: .95rem; color: var(--muted); line-height: 1.85; font-style: italic; }
+.reflection-box p + p { margin-top: .85rem; }
+
+/* EVIDENCE PEEK */
+.evidence-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1rem; margin-top: 1.75rem;
+}
+.evidence-item {
+  background: var(--ink);
+  border-radius: var(--r);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/3;
+  display: flex; align-items: flex-end;
+}
+.evidence-item::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13,27,46,.85), transparent 60%);
+  z-index: 1;
+}
+.evidence-label {
+  position: relative; z-index: 2;
+  padding: .75rem;
+  font-size: .72rem; font-weight: 500;
+  color: rgba(255,255,255,.75);
+  line-height: 1.3;
+}
+.ev-room { background: linear-gradient(135deg, #2d4a6b 0%, #1a2e42 100%); }
+.ev-chat { background: linear-gradient(135deg, #1a4a2e 0%, #0d2e1a 100%); }
+.ev-sosmed { background: linear-gradient(135deg, #4a2d1a 0%, #2e1a0d 100%); }
+.ev-escape { background: linear-gradient(135deg, #3a1a4a 0%, #2a0d3a 100%); }
+
+/* OTHER PROJECTS */
+.other-projects { padding: 3rem 5vw; max-width: 960px; margin: 0 auto; }
+.other-projects h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 1.25rem; letter-spacing: -.01em; }
+.other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.other-card { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); padding: 1.25rem 1.4rem; transition: transform .2s, box-shadow .2s; }
+.other-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+.other-type { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
+.other-card h4 { font-size: .9rem; font-weight: 500; margin-bottom: .4rem; line-height: 1.3; }
+.other-card p { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+
+footer { background: var(--ink); color: rgba(255,255,255,.4); padding: 1.5rem 5vw; display: flex; align-items: center; justify-content: space-between; font-size: .8rem; }
+footer a { color: rgba(255,255,255,.6); transition: color .2s; }
+footer a:hover { color: #fff; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+
+@media (max-width: 760px) {
+  .cast-grid, .clue-grid, .outcome-grid, .evidence-row, .other-grid { grid-template-columns: 1fr; }
+  .challenge-box, .decision-item { grid-template-columns: 1fr; }
+  .flow-item { grid-template-columns: 1fr; gap: .3rem; }
+  .cs-meta-row { gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Nissa <span>Febriani</span></a>
+  <a href="index.html#portfolio" class="nav-back">
+    <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to portfolio
+  </a>
+  <a href="index.html#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<div class="cs-hero">
+  <div class="cs-hero-inner">
+    <div class="cs-breadcrumb">
+      <a href="index.html">Portfolio</a>
+      <span>/</span>
+      Game-Based Learning
+    </div>
+    <div class="cs-type">Case Study</div>
+    <h1>Detective Mystery: <em>Collaborative Online Game</em></h1>
+    <p class="cs-hero-sub">A mystery game I led the design of to help a newly-formed team, scattered across locations during COVID, learn to actually talk to each other. Not through icebreakers. Through solving a kidnapping case together.</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Format</div>
+        <div class="cs-meta-val">Online, Game-Based</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Participants</div>
+        <div class="cs-meta-val">New team, 4 to 5 per group</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Duration</div>
+        <div class="cs-meta-val">Around 50 minutes</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Tools</div>
+        <div class="cs-meta-val">PowerPoint, Jamboard, Zoom</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">My role</div>
+        <div class="cs-meta-val">Lead Designer and Facilitator</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cs-content">
+
+  <!-- CONTEXT -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">The situation</div>
+    <h2>A new team that had never really worked together</h2>
+    <p class="cs-body-text">This was an engagement training for a team that was brand new. They were working remotely from different locations, it was during COVID, and they had never properly met. The usual team-building formats, the ones where you introduce yourself and list three fun facts, were not going to cut it. People were already tired of those.</p>
+    <p class="cs-body-text">The real problem wasn't that they didn't like each other. It was that they had no reason to talk yet. They hadn't faced a shared problem together. So I designed one for them.</p>
+
+    <div class="challenge-box">
+      <div class="challenge-item">
+        <div class="ci-label">The team</div>
+        <p>Newly formed, spread across locations, working fully remotely during the pandemic.</p>
+      </div>
+      <div class="challenge-item">
+        <div class="ci-label">The problem</div>
+        <p>Too awkward to communicate freely. No shared context. Needed to collaborate under real pressure.</p>
+      </div>
+      <div class="challenge-item">
+        <div class="ci-label">The constraint</div>
+        <p>Had to work entirely online. No physical activities. The game itself had to create the urgency.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE GAME -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">What we built</div>
+    <h2>A missing person case with real clues, real suspects, and no single group that had the full picture</h2>
+    <p class="cs-body-text">The scenario: Adinda Soraya, a member of a friend group on a trip to a villa, has gone missing. Participants are divided into four groups of four to five people. Each group is a team of investigators. Their job is to figure out what happened.</p>
+    <p class="cs-body-text">The twist was the one design decision that made the whole thing work: not every group received the same clues. Each group got five clues, but some were unique to their team. To reach the right conclusion, groups had to talk to each other, compare what they found, and piece the story together from incomplete information.</p>
+
+    <!-- EVIDENCE TYPES -->
+    <div class="evidence-row">
+      <div class="evidence-item ev-room">
+        <div class="evidence-label">Online escape room via PowerPoint</div>
+      </div>
+      <div class="evidence-item ev-chat">
+        <div class="evidence-label">WhatsApp and SMS screenshots</div>
+      </div>
+      <div class="evidence-item ev-sosmed">
+        <div class="evidence-label">Social media posts from the victim</div>
+      </div>
+      <div class="evidence-item ev-escape">
+        <div class="evidence-label">Locked phone with password to crack</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE CAST -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">The cast</div>
+    <h2>Everyone had a role, and not everyone was telling the truth</h2>
+    <p class="cs-body-text">Each character in the case was scripted with a specific function: some were lying, some were telling partial truths, and some held clues that only made sense when combined with another group's information.</p>
+    <div class="cast-grid">
+      <div class="cast-card">
+        <div class="cast-role role-victim">Missing person</div>
+        <h4>Adinda Soraya (Dinda)</h4>
+        <p>The person who disappears. Her social media, notes, and chat history form the backbone of the mystery. Groups need to reconstruct her state of mind from fragments.</p>
+      </div>
+      <div class="cast-card">
+        <div class="cast-role role-suspect">Suspects</div>
+        <h4>Rani Athyana and Ezra Rizky</h4>
+        <p>Both had a motive. Rani and Ezra were secretly involved, and Dinda had found out. Their versions of events in the game contradict each other subtly enough that groups have to catch it.</p>
+      </div>
+      <div class="cast-card">
+        <div class="cast-role role-friend">Friends</div>
+        <h4>Revan, Puspa, and Selly</h4>
+        <p>Each holds a different piece of the truth. Revan and Puspa know Dinda wanted to escape. Selly, who is Ezra's girlfriend, reveals Dinda's less flattering traits without realising it helps the case.</p>
+      </div>
+      <div class="cast-card">
+        <div class="cast-role role-witness">Go-ship crew</div>
+        <h4>Wayan and Suryo</h4>
+        <p>Wayan handles the boat rental and can be interviewed about the logs. Suryo saw a woman in a black shirt boarding a boat heading back to the cave, a key clue that cuts both ways.</p>
+      </div>
+      <div class="cast-card">
+        <div class="cast-role role-witness">Witnesses</div>
+        <h4>Pak Darma and Bu Leni</h4>
+        <p>Pak Darma, the warung owner, saw Rani and Ezra together and also saw Dinda arrive. Bu Leni, the villa keeper, gives the opening context that starts the whole investigation.</p>
+      </div>
+      <div class="cast-card">
+        <div class="cast-role role-friend">Villa neighbours</div>
+        <h4>Nadia and Deva</h4>
+        <p>A couple staying at the same villa. Supporting witnesses who confirm presence and timing details that can corroborate or contradict other testimonies.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION FLOW -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Session structure</div>
+    <h2>Clues released in batches, pressure building as time runs out</h2>
+    <p class="cs-body-text">The session was structured in rounds. Each round, groups received new clues and had a fixed window to discuss before the next batch dropped. This created the urgency that got people talking quickly, even the quiet ones.</p>
+
+    <div class="session-flow">
+      <div class="flow-item">
+        <div class="flow-time">Briefing</div>
+        <div>
+          <div class="flow-phase">Setup</div>
+          <h4>Case brief and group formation</h4>
+          <p>Groups of four to five are formed and placed in separate breakout rooms. The brief is shared: Dinda is missing. The team needs to figure out what happened. Each group receives their first set of clues.</p>
+          <div class="flow-tags">
+            <span class="flow-tag">Breakout rooms</span>
+            <span class="flow-tag">Clue Batch 1</span>
+            <span class="flow-tag">Character map</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-time">Round 1</div>
+        <div>
+          <div class="flow-phase">First discussion</div>
+          <h4>Five minutes with the opening clues</h4>
+          <p>Groups start piecing together what they have. At this stage, everyone is still hesitant. The clues are deliberately incomplete — enough to raise questions but not enough to form conclusions. This is intentional: uncertainty is what makes people reach out to other groups.</p>
+          <div class="flow-tags">
+            <span class="flow-tag">Jamboard</span>
+            <span class="flow-tag">Initial hypotheses</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-time">Round 2</div>
+        <div>
+          <div class="flow-phase">Clue drop and cross-group contact</div>
+          <h4>New clues arrive, inter-group communication opens</h4>
+          <p>The second batch of clues is released. Groups can now start reaching out to other teams to compare what they have. The escape room mechanic is introduced here: groups explore an interactive PowerPoint with clickable rooms, drawers, bags, and notebooks that reveal hidden information.</p>
+          <div class="flow-tags">
+            <span class="flow-tag">Clue Batch 2</span>
+            <span class="flow-tag">Escape room (PowerPoint)</span>
+            <span class="flow-tag">Inter-group messaging</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-time">Round 3</div>
+        <div>
+          <div class="flow-phase">Evidence examination</div>
+          <h4>Dig into digital evidence</h4>
+          <p>Groups work through Dinda's phone (password crackable from clues already found), her social media posts on Twitter and Facebook showing she wanted to escape, chat screenshots between suspects, and the suspicious boat log from go-ship driver Suryo.</p>
+          <div class="flow-tags">
+            <span class="flow-tag">Social media evidence</span>
+            <span class="flow-tag">Phone password</span>
+            <span class="flow-tag">Chat screenshots</span>
+            <span class="flow-tag">Boat log</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-time">Round 4</div>
+        <div>
+          <div class="flow-phase">Final clues</div>
+          <h4>All clues in hand. Time to commit to a theory.</h4>
+          <p>The last batch drops. Groups consolidate everything they've gathered and from other teams. They form their conclusion: what happened to Dinda, who was responsible, and why. Each group documents their theory on Jamboard.</p>
+          <div class="flow-tags">
+            <span class="flow-tag">Clue Batch 4</span>
+            <span class="flow-tag">Group theory</span>
+            <span class="flow-tag">Jamboard final board</span>
+          </div>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-time">Debrief</div>
+        <div>
+          <div class="flow-phase">Reveal and reflection</div>
+          <h4>Groups present their conclusions, then the full story is revealed</h4>
+          <p>Each group shares their reading of the case. This is where it gets interesting: groups who had different clue batches often reached very different conclusions from the same evidence. The debrief then opens into a conversation about how we collaborate when we don't all see the same things.</p>
+          <div class="flow-tags">
+            <span class="flow-tag">Group presentations</span>
+            <span class="flow-tag">Story reveal</span>
+            <span class="flow-tag">Reflection</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE CLUE SYSTEM -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">The clue system</div>
+    <h2>Incomplete information by design</h2>
+    <p class="cs-body-text">The most deliberate design decision was making sure no single group could solve the case alone. Here is how the clue system was structured and what each type of evidence was meant to do.</p>
+    <div class="clue-grid">
+      <div class="clue-card">
+        <div class="clue-header">
+          <div class="clue-icon">🗺</div>
+          <h4>Character map with aliases</h4>
+          <span>All groups</span>
+        </div>
+        <div class="clue-body">
+          <p>Every group received a map of the characters, but with fake names. This meant groups had to confirm with each other whether they were talking about the same person, which forced early cross-group communication even on something simple.</p>
+          <div class="clue-insight">Purpose: creates a reason to talk immediately, even before the real investigation starts.</div>
+        </div>
+      </div>
+      <div class="clue-card">
+        <div class="clue-header">
+          <div class="clue-icon">📱</div>
+          <h4>Dinda's phone and notes</h4>
+          <span>Partial per group</span>
+        </div>
+        <div class="clue-body">
+          <p>One group might find the phone password clue. Another might find the note that only makes sense once the phone is unlocked. Neither could read Dinda's messages without combining what they had. Her notes showed she was planning to leave her marriage, which changed how groups interpreted the "disappearance."</p>
+          <div class="clue-insight">Purpose: one group has the key, another has the lock. They have to find each other.</div>
+        </div>
+      </div>
+      <div class="clue-card">
+        <div class="clue-header">
+          <div class="clue-icon">💬</div>
+          <h4>Suspect testimonies</h4>
+          <span>Split across groups</span>
+        </div>
+        <div class="clue-body">
+          <p>Rani, Ezra, Revan, Puspa, and Selly each gave their version of day three. Some were lying, some were not. Ezra and Rani were deliberately inconsistent, but the inconsistency only becomes visible when groups compare their testimonies. No single group got both versions.</p>
+          <div class="clue-insight">Purpose: contradictions only surface through collaboration.</div>
+        </div>
+      </div>
+      <div class="clue-card">
+        <div class="clue-header">
+          <div class="clue-icon">⛵</div>
+          <h4>Boat rental evidence</h4>
+          <span>Key group only</span>
+        </div>
+        <div class="clue-body">
+          <p>Go-ship driver Suryo saw a woman in a black shirt boarding a boat heading back toward the cave. This is a red herring that also happens to be true, but in a different way than it first appears. Groups that had this clue without the social media evidence often drew the wrong conclusion entirely.</p>
+          <div class="clue-insight">Purpose: shows that context changes meaning. The same clue means different things depending on what else you know.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIGN DECISIONS -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Design decisions</div>
+    <h2>Why it worked when conventional team-building hadn't</h2>
+    <div class="decision-list">
+      <div class="decision-item">
+        <div>
+          <div class="decision-principle">Shared stakes, not shared fun</div>
+          <div class="decision-tag">Core principle</div>
+        </div>
+        <div class="decision-desc">Most team activities ask people to enjoy something together. This asked them to figure something out together. There is a difference. Enjoyment is optional. Solving the case required actual cooperation, and people stepped up because the game created real consequences for not communicating.</div>
+      </div>
+      <div class="decision-item">
+        <div>
+          <div class="decision-principle">Incomplete clue distribution</div>
+          <div class="decision-tag">Structural choice</div>
+        </div>
+        <div class="decision-desc">Each group having five clues, but not the same five, meant that reaching a conclusion required trusting and talking to strangers. You couldn't succeed by staying in your own group. The incompleteness wasn't a bug; it was the mechanism that forced connection.</div>
+      </div>
+      <div class="decision-item">
+        <div>
+          <div class="decision-principle">Timed rounds</div>
+          <div class="decision-tag">Pacing</div>
+        </div>
+        <div class="decision-desc">Each round was five minutes. Short enough to create urgency, long enough to have a real conversation. The ticking clock cut through the awkwardness. When you have five minutes to discuss something with someone you have never met, you stop worrying about what impression you're making.</div>
+      </div>
+      <div class="decision-item">
+        <div>
+          <div class="decision-principle">Non-competitive ending</div>
+          <div class="decision-tag">Deliberate choice</div>
+        </div>
+        <div class="decision-desc">There was no winning group. The debrief brought everyone back together to compare conclusions before the full story was revealed. This reframed the whole session: it was never a competition, it was a shared investigation. That shift changed how people reflected on the experience afterwards.</div>
+      </div>
+      <div class="decision-item">
+        <div>
+          <div class="decision-principle">Rich fictional world</div>
+          <div class="decision-tag">Engagement</div>
+        </div>
+        <div class="decision-desc">The case had real social media posts, real-looking chat screenshots, a coded password notebook, and a clickable escape room. The detail mattered. When the evidence feels real, people treat the investigation seriously. And when they treat it seriously, the collaboration that follows is genuine.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTCOMES -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">What happened</div>
+    <h2>From quiet to arguing about clues within twenty minutes</h2>
+    <p class="cs-body-text">The shift in energy was the most telling result. At the start, people were polite and cautious. By the second round, groups were actively reaching out to each other, debating interpretations, and in a few cases, quite passionately disagreeing about what the evidence meant. That is exactly what we wanted.</p>
+    <div class="outcome-grid">
+      <div class="outcome-card">
+        <div class="outcome-num">01</div>
+        <div>
+          <h4>Cross-group communication started naturally</h4>
+          <p>Groups initiated contact with other teams without being told to. The incomplete clue system made it feel necessary, not forced.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">02</div>
+        <div>
+          <h4>Quieter members engaged</h4>
+          <p>The game gave everyone something concrete to contribute. People who hadn't spoken much in the intro were actively sharing observations by round three.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">03</div>
+        <div>
+          <h4>Debrief conversations ran long</h4>
+          <p>Groups had different theories and wanted to understand how others had read the same evidence differently. The debrief extended because the discussion was genuinely interesting to them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">What I learned from this</div>
+    <h2>Game mechanics as collaboration infrastructure</h2>
+    <div class="reflection-box">
+      <p>The thing I found most interesting about this project was how quickly the game made the awkwardness irrelevant. People who were too shy to introduce themselves properly were thirty minutes later arguing about whether Rani was lying and what the boat log really proved. The fictional context gave them permission to engage fully, because nothing real was at stake.</p>
+      <p>The incomplete clue system was the decision I'm most proud of. It's such a small structural change, giving different groups different information, but it completely transformed what kind of communication happened. People weren't just talking to bond. They were talking because they needed to. That's a different kind of conversation, and it builds different kinds of familiarity.</p>
+      <p>If I ran this again, I'd build in one more debrief question: what did you assume about another group's information that turned out to be wrong? That moment of realising you made an assumption is where a lot of the real learning about collaboration lives.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- OTHER PROJECTS -->
+<div class="other-projects">
+  <h3>Other projects</h3>
+  <div class="other-grid">
+    <a href="case-crypto.html" class="other-card">
+      <div class="other-type">Curriculum Design</div>
+      <h4>Blockchain and Cryptocurrency for Undergraduates</h4>
+      <p>A full 16-session curriculum I led the design of for undergraduate students with no prior knowledge of crypto.</p>
+    </a>
+    <a href="case-budgeting.html" class="other-card">
+      <div class="other-type">E-Learning Design</div>
+      <h4>Efficient Budgeting</h4>
+      <p>An interactive e-learning module with drag-and-drop activities, a live budget calculator, and a scenario-based assessment.</p>
+    </a>
+    <a href="case-blockchain.html" class="other-card">
+      <div class="other-type">E-Learning · Proyek Pribadi</div>
+      <h4>Dasar-Dasar Blockchain</h4>
+      <p>A self-paced module in Bahasa Indonesia on blockchain fundamentals for the general public.</p>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Nissa Febriani · Bandung, Indonesia</span>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="mailto:nissafebriani@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/nissafebriani" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+const bar = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  bar.style.width = (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+});
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

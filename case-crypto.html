@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blockchain Curriculum — Nissa Febriani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:     #0d1b2e;
+  --paper:   #f0f2f5;
+  --cream:   #e2e6ec;
+  --accent:  #7b1f2e;
+  --accent2: #1a3a5c;
+  --muted:   #5a6578;
+  --card-bg: #ffffff;
+  --serif:   'DM Serif Display', Georgia, serif;
+  --sans:    'DM Sans', sans-serif;
+  --r:       12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── PROGRESS BAR ── */
+#progress {
+  position: fixed; top: 0; left: 0;
+  height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--accent2), var(--accent));
+  z-index: 200; transition: width .1s linear;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
+  background: rgba(240,242,245,.94);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(0,0,0,.07);
+  padding: 0 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo { font-family: var(--serif); font-size: 1.1rem; letter-spacing: -.01em; }
+.nav-logo span { color: var(--accent); font-style: italic; }
+.nav-back {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .82rem; font-weight: 500; color: var(--muted);
+  transition: color .2s;
+}
+.nav-back:hover { color: var(--accent); }
+.nav-back svg { width: 14px; height: 14px; }
+.nav-cta {
+  font-size: .82rem; font-weight: 500;
+  background: var(--ink); color: var(--paper);
+  padding: .5rem 1.25rem; border-radius: 100px;
+  transition: background .2s;
+}
+.nav-cta:hover { background: var(--accent); }
+
+/* ── HERO ── */
+.cs-hero {
+  background: var(--ink);
+  padding: 9rem 5vw 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.cs-hero::before {
+  content: 'CRYPTO';
+  position: absolute; right: -1rem; top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: var(--serif); font-size: 12rem; font-style: italic;
+  color: rgba(255,255,255,.03); white-space: nowrap;
+  pointer-events: none; letter-spacing: -.04em;
+}
+
+.cs-hero-inner {
+  max-width: 860px;
+}
+
+.cs-breadcrumb {
+  display: flex; align-items: center; gap: .6rem;
+  font-size: .72rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: 1.5rem;
+}
+.cs-breadcrumb a { color: rgba(255,255,255,.4); transition: color .2s; }
+.cs-breadcrumb a:hover { color: rgba(255,255,255,.8); }
+.cs-breadcrumb span { color: rgba(255,255,255,.2); }
+
+.cs-type {
+  display: inline-block;
+  font-size: .7rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 100px; padding: .3rem .9rem;
+  margin-bottom: 1.25rem;
+}
+
+.cs-hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: #fff; line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: 1.25rem;
+}
+.cs-hero h1 em { font-style: italic; color: #c9a4a4; }
+
+.cs-hero-sub {
+  font-size: 1rem; color: rgba(255,255,255,.6);
+  max-width: 600px; line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.cs-meta-row {
+  display: flex; gap: 2.5rem; flex-wrap: wrap;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+.cs-meta-item {}
+.cs-meta-label {
+  font-size: .65rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.35); margin-bottom: .3rem;
+}
+.cs-meta-val {
+  font-size: .9rem; font-weight: 500; color: #fff;
+}
+
+/* ── CONTENT SECTIONS ── */
+.cs-content { max-width: 960px; margin: 0 auto; padding: 4rem 5vw; }
+
+.cs-section { margin-bottom: 4rem; }
+
+.cs-section-label {
+  font-size: .68rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: .75rem;
+}
+.cs-section-label::before {
+  content: ''; display: block;
+  width: 20px; height: 2px; background: var(--accent);
+}
+
+.cs-section h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  line-height: 1.2; letter-spacing: -.02em;
+  margin-bottom: 1rem;
+}
+
+.cs-body-text {
+  font-size: .95rem; color: var(--muted);
+  line-height: 1.85; max-width: 680px;
+}
+.cs-body-text + .cs-body-text { margin-top: .85rem; }
+
+/* ── OUTCOME CARDS ── */
+.outcome-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1rem; margin-top: 1.75rem;
+}
+.outcome-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: var(--r);
+  padding: 1.4rem 1.5rem;
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.outcome-num {
+  font-family: var(--serif); font-size: 1.6rem; font-style: italic;
+  color: var(--cream); line-height: 1; flex-shrink: 0;
+  width: 32px; text-align: center;
+}
+.outcome-card h4 { font-size: .88rem; font-weight: 500; color: var(--ink); margin-bottom: .3rem; }
+.outcome-card p { font-size: .8rem; color: var(--muted); line-height: 1.65; }
+
+/* ── SESSION ARC ── */
+.session-arc { margin-top: 1.75rem; position: relative; }
+
+.arc-item {
+  display: grid; grid-template-columns: 100px 1fr;
+  gap: 1.5rem; align-items: start;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(0,0,0,.07);
+  position: relative;
+}
+.arc-item:last-child { border-bottom: none; }
+
+.arc-sessions {
+  font-family: var(--serif); font-size: 1rem; font-style: italic;
+  color: var(--accent2); padding-top: .1rem;
+}
+
+.arc-phase {
+  font-size: .65rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .3rem;
+}
+.arc-item h4 { font-size: .92rem; font-weight: 500; color: var(--ink); margin-bottom: .4rem; }
+.arc-item p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+
+.arc-topics {
+  display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem;
+}
+.arc-topic {
+  font-size: .7rem; padding: .22rem .65rem;
+  background: var(--paper); border: 1px solid rgba(0,0,0,.08);
+  border-radius: 100px; color: var(--muted);
+}
+
+/* ── ASSESSMENT BREAKDOWN ── */
+.assessment-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 1rem; margin-top: 1.75rem;
+}
+.assess-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: var(--r);
+  padding: 1.4rem 1.5rem;
+  position: relative; overflow: hidden;
+}
+.assess-card::before {
+  content: attr(data-pct);
+  position: absolute; right: 1rem; top: .6rem;
+  font-family: var(--serif); font-size: 3rem; font-style: italic;
+  color: rgba(0,0,0,.05); line-height: 1;
+}
+.assess-pct {
+  font-family: var(--serif); font-size: 2rem;
+  color: var(--accent); margin-bottom: .3rem;
+}
+.assess-card h4 { font-size: .9rem; font-weight: 500; margin-bottom: .5rem; }
+.assess-card p { font-size: .82rem; color: var(--muted); line-height: 1.65; }
+
+/* ── SAMPLE QUIZ ── */
+.quiz-box {
+  background: var(--ink);
+  border-radius: 1rem; overflow: hidden;
+  margin-top: 1.75rem;
+}
+.quiz-header {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.quiz-header-left {}
+.quiz-session-tag {
+  font-size: .65rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.35); margin-bottom: .2rem;
+}
+.quiz-header h4 { font-size: .95rem; color: #fff; font-weight: 500; }
+.quiz-badge {
+  font-size: .7rem; font-weight: 500; padding: .3rem .8rem;
+  border-radius: 100px; background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.5);
+}
+.quiz-q {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.quiz-q:last-child { border-bottom: none; }
+.quiz-q-num {
+  font-size: .65rem; font-weight: 500; letter-spacing: .08em;
+  color: rgba(255,255,255,.3); margin-bottom: .4rem;
+}
+.quiz-q p {
+  font-size: .85rem; color: rgba(255,255,255,.75);
+  line-height: 1.65; margin-bottom: .85rem;
+}
+.quiz-options {
+  display: flex; flex-direction: column; gap: .4rem;
+}
+.quiz-opt {
+  display: flex; align-items: flex-start; gap: .65rem;
+  font-size: .8rem; color: rgba(255,255,255,.5);
+  line-height: 1.5;
+}
+.quiz-opt-key {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.15);
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  font-size: .68rem; font-weight: 600; color: rgba(255,255,255,.4);
+}
+.quiz-opt.correct .quiz-opt-key {
+  background: rgba(26,58,92,.6); border-color: rgba(100,160,220,.4);
+  color: rgba(160,210,255,.9);
+}
+.quiz-opt.correct { color: rgba(255,255,255,.8); }
+
+/* ── REFLECTION ── */
+.reflection-box {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-left: 3px solid var(--accent2);
+  border-radius: 0 var(--r) var(--r) 0;
+  padding: 1.75rem 2rem;
+  margin-top: 1.75rem;
+}
+.reflection-box p {
+  font-size: .95rem; color: var(--muted);
+  line-height: 1.85; font-style: italic;
+}
+.reflection-box p + p { margin-top: .85rem; }
+
+/* ── CTA FOOTER ── */
+.cs-cta-bar {
+  background: var(--ink);
+  padding: 3rem 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 2rem; flex-wrap: wrap;
+}
+.cs-cta-bar h3 {
+  font-family: var(--serif); font-size: 1.5rem;
+  color: #fff; line-height: 1.2;
+  max-width: 440px;
+}
+.cs-cta-bar p { font-size: .85rem; color: rgba(255,255,255,.5); margin-top: .4rem; }
+.cs-cta-links { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--accent); color: #fff;
+  padding: .8rem 1.6rem; border-radius: 100px;
+  font-size: .875rem; font-weight: 500;
+  transition: opacity .2s;
+}
+.btn-primary:hover { opacity: .85; }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: transparent; color: rgba(255,255,255,.7);
+  border: 1px solid rgba(255,255,255,.2);
+  padding: .8rem 1.6rem; border-radius: 100px;
+  font-size: .875rem; font-weight: 500;
+  transition: border-color .2s, color .2s;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,.5); color: #fff; }
+.btn-primary svg, .btn-outline svg { width: 14px; height: 14px; }
+
+/* ── OTHER PROJECTS ── */
+.other-projects { padding: 3rem 5vw; max-width: 960px; margin: 0 auto; }
+.other-projects h3 {
+  font-family: var(--serif); font-size: 1.2rem;
+  margin-bottom: 1.25rem; letter-spacing: -.01em;
+}
+.other-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.other-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: var(--r);
+  padding: 1.25rem 1.4rem;
+  transition: transform .2s, box-shadow .2s;
+}
+.other-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+.other-type {
+  font-size: .65rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .5rem;
+}
+.other-card h4 { font-size: .9rem; font-weight: 500; margin-bottom: .4rem; line-height: 1.3; }
+.other-card p { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink); color: rgba(255,255,255,.4);
+  padding: 1.5rem 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: .8rem;
+}
+footer a { color: rgba(255,255,255,.6); transition: color .2s; }
+footer a:hover { color: #fff; }
+
+/* ── ANIMATIONS ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+
+@media (max-width: 760px) {
+  .outcome-grid, .assessment-grid, .other-grid { grid-template-columns: 1fr; }
+  .arc-item { grid-template-columns: 1fr; gap: .3rem; }
+  .cs-meta-row { gap: 1.5rem; }
+  .cs-cta-bar { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Nissa <span>Febriani</span></a>
+  <a href="index.html#portfolio" class="nav-back">
+    <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to portfolio
+  </a>
+  <a href="index.html#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<!-- HERO -->
+<div class="cs-hero">
+  <div class="cs-hero-inner">
+    <div class="cs-breadcrumb">
+      <a href="index.html">Portfolio</a>
+      <span>/</span>
+      Curriculum Design
+    </div>
+    <div class="cs-type">Case Study</div>
+    <h1>Blockchain and Cryptocurrency <em>Fundamentals</em></h1>
+    <p class="cs-hero-sub">A full university-level elective course I led the design of, working alongside an expat subject matter expert and a team. Built for undergraduate students with no prior crypto background, covering Bitcoin, Ethereum, DeFi, NFTs, and investment analysis across 16 sessions.</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Learners</div>
+        <div class="cs-meta-val">Undergraduate</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Sessions</div>
+        <div class="cs-meta-val">16 sessions</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Course type</div>
+        <div class="cs-meta-val">Elective, Blended</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Credit weight</div>
+        <div class="cs-meta-val">2 SKS (Theory)</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">My role</div>
+        <div class="cs-meta-val">Lead Instructional Designer</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Collaborators</div>
+        <div class="cs-meta-val">Expat Subject Matter Expert + Team</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="cs-content">
+
+  <!-- 1. CONTEXT -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">The context</div>
+    <h2>Teaching a fast-moving topic to people starting from scratch</h2>
+    <p class="cs-body-text">This was a group project where I led the instructional design process. We collaborated with an expat subject matter expert who brought deep, current knowledge of the crypto space, and my role was to shape that expertise into a learning experience that actually worked for undergraduate students with no background in the subject.</p>
+    <p class="cs-body-text">The topic covers a lot of ground: Bitcoin's mechanics, Ethereum's smart contract ecosystem, DeFi protocols, NFT markets, macroeconomics, and how all of it sits within the Indonesian regulatory context. Getting the sequencing right mattered a lot here. Students needed each session to give them enough to make sense of the next one, and the assessments needed to show real understanding rather than just recall.</p>
+  </div>
+
+  <!-- 2. LEARNING OUTCOMES -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Learning outcomes</div>
+    <h2>Four outcomes that go beyond knowledge</h2>
+    <p class="cs-body-text">I designed four course-level outcomes (CPMK) that build from comprehension through to analysis and application. The idea was that students shouldn't leave just knowing what crypto is. They should be able to evaluate a project, understand the legal questions around it, and make a basic investment case.</p>
+    <div class="outcome-grid">
+      <div class="outcome-card">
+        <div class="outcome-num">1</div>
+        <div>
+          <h4>Foundational understanding</h4>
+          <p>A solid grasp of blockchain, Bitcoin, DeFi, Ethereum, smart contracts, tokenisation, and crypto assets, built to the level where students can support real business decisions.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">2</div>
+        <div>
+          <h4>Use cases and legal context</h4>
+          <p>Knowledge of how cryptocurrency is actually used, including the legal questions around ownership, storage, and digital identity in the Indonesian context.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">3</div>
+        <div>
+          <h4>Practical design and application</h4>
+          <p>The ability to build use cases and concepts for blockchain integration across crypto assets, securities, NFTs, and future financial markets.</p>
+        </div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num">4</div>
+        <div>
+          <h4>Investment analysis</h4>
+          <p>The skills to assess a blockchain project, evaluate whether a crypto asset fits a particular use case, and analyse the fundamentals before making an investment decision.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. SESSION ARC -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Course structure</div>
+    <h2>How the 16 sessions build on each other</h2>
+    <p class="cs-body-text">Sequencing was one of the decisions I spent the most time on. I front-loaded the foundational concepts so that when students reached DeFi and NFTs later in the semester, they already had the vocabulary and mental models to engage with it properly. Throwing everything in at once tends to produce surface-level understanding at best.</p>
+    <div class="session-arc">
+      <div class="arc-item">
+        <div class="arc-sessions">Sessions 1–3</div>
+        <div>
+          <div class="arc-phase">Foundation</div>
+          <h4>Bitcoin, decentralisation, and blockchain basics</h4>
+          <p>The first three sessions start with the question most people actually have: what is Bitcoin and why does it exist? From there we go into how the network works, wallet setup, and what decentralisation actually means in practice, including the legal and privacy side of it.</p>
+          <div class="arc-topics">
+            <span class="arc-topic">Bitcoin history</span>
+            <span class="arc-topic">Satoshi Nakamoto</span>
+            <span class="arc-topic">Decentralisation</span>
+            <span class="arc-topic">Hot and cold wallets</span>
+            <span class="arc-topic">Blockchain mechanics</span>
+            <span class="arc-topic">Smart contract intro</span>
+          </div>
+        </div>
+      </div>
+      <div class="arc-item">
+        <div class="arc-sessions">Sessions 4–5</div>
+        <div>
+          <div class="arc-phase">Context</div>
+          <h4>Macroeconomics and blockchain scalability</h4>
+          <p>Before going deeper into specific platforms, I wanted students to zoom out and understand how blockchain interacts with traditional economics, and why scalability is a real technical problem that shapes every design decision in the space.</p>
+          <div class="arc-topics">
+            <span class="arc-topic">Supply and demand</span>
+            <span class="arc-topic">Blockchain Trilemma</span>
+            <span class="arc-topic">Layer 0/1/2/3</span>
+            <span class="arc-topic">Hard and soft forks</span>
+            <span class="arc-topic">Airdrops</span>
+          </div>
+        </div>
+      </div>
+      <div class="arc-item">
+        <div class="arc-sessions">Sessions 6–7</div>
+        <div>
+          <div class="arc-phase">Platform depth</div>
+          <h4>Ethereum, smart contracts, and on-chain practice</h4>
+          <p>The most hands-on sessions of the first half. Students learn how Ethereum differs from Bitcoin, explore its smart contract capabilities, and then actually use Etherscan to analyse real wallet activity and mint their own token. They write up what they did step by step, which forces them to actually understand the process rather than just follow instructions.</p>
+          <div class="arc-topics">
+            <span class="arc-topic">Ethereum vs Bitcoin</span>
+            <span class="arc-topic">Smart contracts</span>
+            <span class="arc-topic">PoW to PoS transition</span>
+            <span class="arc-topic">Etherscan analysis</span>
+            <span class="arc-topic">Token minting</span>
+          </div>
+        </div>
+      </div>
+      <div class="arc-item">
+        <div class="arc-sessions">Session 8</div>
+        <div>
+          <div class="arc-phase">Midterm</div>
+          <h4>Midterm: knowledge and application check</h4>
+          <p>A formal midterm covering sessions 1 to 7, combining multiple choice and essay questions. Worth 25% of the final grade.</p>
+        </div>
+      </div>
+      <div class="arc-item">
+        <div class="arc-sessions">Sessions 9–15</div>
+        <div>
+          <div class="arc-phase">Advanced topics</div>
+          <h4>Tokenisation, NFTs, DeFi, and investment analysis</h4>
+          <p>The second half moves into more complex and applied territory: how tokens and NFTs work in practice, the DeFi ecosystem, and how to evaluate a crypto project for investment viability in the Indonesian context. These sessions include group work, presentations, and individual analysis tasks.</p>
+          <div class="arc-topics">
+            <span class="arc-topic">Tokenisation</span>
+            <span class="arc-topic">NFTs</span>
+            <span class="arc-topic">DeFi</span>
+            <span class="arc-topic">Indonesia context</span>
+            <span class="arc-topic">Project research</span>
+            <span class="arc-topic">Fundamental analysis</span>
+            <span class="arc-topic">Investment evaluation</span>
+          </div>
+        </div>
+      </div>
+      <div class="arc-item">
+        <div class="arc-sessions">Session 16</div>
+        <div>
+          <div class="arc-phase">Final exam</div>
+          <h4>Final exam: comprehensive written assessment</h4>
+          <p>Covers all material from sessions 9 to 15. Combines multiple choice and essay formats. Worth 30% of the final grade.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. ASSESSMENT -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Assessment design</div>
+    <h2>Checking understanding at every stage, not just the end</h2>
+    <p class="cs-body-text">I used a layered approach: small checks after each session, practical tasks that require students to apply what they know, and formal exams at the midpoint and end. The goal was to build in accountability throughout the semester so that the final exam wasn't the only real moment of reckoning.</p>
+    <div class="assessment-grid">
+      <div class="assess-card" data-pct="30%">
+        <div class="assess-pct">30%</div>
+        <h4>Final exam</h4>
+        <p>Multiple choice and essay questions covering sessions 9 to 15. Tests both recall and the ability to analyse and evaluate projects and concepts.</p>
+      </div>
+      <div class="assess-card" data-pct="25%">
+        <div class="assess-pct">25%</div>
+        <h4>Midterm exam</h4>
+        <p>Covers sessions 1 to 7. A formal checkpoint that confirms foundational knowledge before students move into the more advanced second half.</p>
+      </div>
+      <div class="assess-card" data-pct="~22%">
+        <div class="assess-pct">~22%</div>
+        <h4>Practical tasks and reports</h4>
+        <p>Two major practical sessions: using Etherscan to analyse real blockchain wallet activity, and minting a token on Ethereum. Both require a written report explaining what the student did and what they found.</p>
+      </div>
+      <div class="assess-card" data-pct="~23%">
+        <div class="assess-pct">~23%</div>
+        <h4>Session mini quizzes</h4>
+        <p>Five multiple-choice questions at the end of each foundational session. A deliberate retrieval practice decision — spacing recall across the semester rather than relying on exam cramming.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. SAMPLE QUIZ -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Sample assessment content</div>
+    <h2>A sample of the quiz questions I wrote</h2>
+    <p class="cs-body-text">Each quiz was tied directly to that session's learning objective. Here are a few sample questions from Session 1 and Session 2 to give a sense of the level and style. The correct answer is highlighted.</p>
+    <div class="quiz-box">
+      <div class="quiz-header">
+        <div class="quiz-header-left">
+          <div class="quiz-session-tag">Session 1 · Bitcoin Fundamentals</div>
+          <h4>Mini Quiz: Sample Questions</h4>
+        </div>
+        <span class="quiz-badge">5 questions · 0.5% each</span>
+      </div>
+
+      <div class="quiz-q">
+        <div class="quiz-q-num">Question 1</div>
+        <p>Which of the following statements about the early history of Bitcoin is correct?</p>
+        <div class="quiz-options">
+          <div class="quiz-opt"><div class="quiz-opt-key">A</div><span>WikiLeaks began accepting Bitcoin after it became El Salvador's national currency</span></div>
+          <div class="quiz-opt"><div class="quiz-opt-key">B</div><span>"Bitcoin Pizza Day" started in 2002</span></div>
+          <div class="quiz-opt correct"><div class="quiz-opt-key">E</div><span>Hal Finney, Wei Dai, and Nick Szabo were early Bitcoin adopters</span></div>
+          <div class="quiz-opt"><div class="quiz-opt-key">C</div><span>Nakamoto's whitepaper was posted to a cryptography mailing list in 2001</span></div>
+          <div class="quiz-opt"><div class="quiz-opt-key">D</div><span>Hal Finney received $50 from Nakamoto in the first ever Bitcoin transaction</span></div>
+        </div>
+      </div>
+
+      <div class="quiz-q">
+        <div class="quiz-q-num">Question 2</div>
+        <p>Which of the following is NOT an advantage of cryptocurrency?</p>
+        <div class="quiz-options">
+          <div class="quiz-opt"><div class="quiz-opt-key">A</div><span>Decentralised — no single authority controls it</span></div>
+          <div class="quiz-opt correct"><div class="quiz-opt-key">B</div><span>Backed by a central bank</span></div>
+          <div class="quiz-opt"><div class="quiz-opt-key">C</div><span>Transactions are public and transparent</span></div>
+          <div class="quiz-opt"><div class="quiz-opt-key">D</div><span>Transactions can be confirmed quickly</span></div>
+          <div class="quiz-opt"><div class="quiz-opt-key">E</div><span>Value can appreciate over time</span></div>
+        </div>
+      </div>
+
+      <div class="quiz-q">
+        <div class="quiz-q-num">Question from Session 2 · Decentralisation</div>
+        <p>In blockchain technology, decentralisation refers to...</p>
+        <div class="quiz-options">
+          <div class="quiz-opt"><div class="quiz-opt-key">A</div><span>Reducing government authority in policy-making</span></div>
+          <div class="quiz-opt"><div class="quiz-opt-key">B</div><span>Privatisation of state-owned businesses</span></div>
+          <div class="quiz-opt"><div class="quiz-opt-key">C</div><span>Transferring control of production to the state</span></div>
+          <div class="quiz-opt"><div class="quiz-opt-key">D</div><span>Redistribution of power from city centres to regions</span></div>
+          <div class="quiz-opt correct"><div class="quiz-opt-key">E</div><span>Transferring control from a centralised entity to a distributed network</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 6. REFLECTION -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">What I took away from this</div>
+    <h2>What I took away from designing this</h2>
+    <div class="reflection-box">
+      <p>One of the genuine challenges with crypto as a subject is that it moves faster than you can write a curriculum. A session on "current DeFi protocols" can feel outdated within months. The way I handled this was to design around principles and mechanics rather than specific products, so that even when individual examples become less current, the underlying concepts still hold.</p>
+      <p>Putting macroeconomics in session 4, after blockchain basics but before Ethereum, turned out to be the right call. Students needed that context to understand why decentralised finance matters, not just how it works technically. That kind of sequencing decision is easy to get wrong if you design by topic list rather than by how understanding actually builds.</p>
+      <p>The practicals were the most satisfying part to design. Having students use Etherscan and mint their own token on Ethereum meant the theory wasn't abstract anymore — they could see it running in real time. That connection between concept and action is something I try to build into every course I work on.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA BAR -->
+<div class="cs-cta-bar">
+  <div>
+    <h3>Want to see the full course materials?</h3>
+    <p>The RPS, session plans, quiz questions, lecture slides, and assessment rubrics are all in the Drive folder.</p>
+  </div>
+  <div class="cs-cta-links">
+    <a href="https://drive.google.com/drive/folders/1asfXbHj4SbK6EZTQuDJ9diSA5g2BVGgn" target="_blank" class="btn-primary">
+      View in Google Drive
+      <svg viewBox="0 0 16 16" fill="none"><path d="M3 13L13 3M13 3H7M13 3v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="index.html#contact" class="btn-outline">
+      Get in touch
+      <svg viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</div>
+
+<!-- OTHER PROJECTS -->
+<div class="other-projects">
+  <h3>Other projects</h3>
+  <div class="other-grid">
+    <a href="https://drive.google.com/drive/folders/1GEeBEf1iGTW6HxgdYn7XAT_bNb8IkpBn" target="_blank" class="other-card">
+      <div class="other-type">Instructional Design</div>
+      <h4>Blockchain Engagement Strategy</h4>
+      <p>A learning initiative designed to re-engage and attract new learners to blockchain topics.</p>
+    </a>
+    <a href="https://drive.google.com/drive/folders/18fUKNeJJhSpKTUCCz4vcymf6E9YKpOLD" target="_blank" class="other-card">
+      <div class="other-type">E-Learning Script</div>
+      <h4>Efficient Budgeting: Script and Assignment</h4>
+      <p>Audio-visual script and assignments for a personal finance e-learning course.</p>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1erweNzoG93nkA7mg2JeE-DH3dyIKlElE" target="_blank" class="other-card">
+      <div class="other-type">Game-Based Learning</div>
+      <h4>Detective Mystery: Collaborative Online Game</h4>
+      <p>A group mystery game for remote team building and collaboration skills.</p>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Nissa Febriani · Bandung, Indonesia</span>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="mailto:nissafebriani@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/nissafebriani" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+// Progress bar
+const bar = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  const pct = d.scrollTop / (d.scrollHeight - d.clientHeight) * 100;
+  bar.style.width = pct + '%';
+});
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

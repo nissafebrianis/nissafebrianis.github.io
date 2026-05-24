@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Efficient Budgeting: Nissa Febriani</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:     #0d1b2e;
+  --paper:   #f0f2f5;
+  --cream:   #e2e6ec;
+  --accent:  #7b1f2e;
+  --accent2: #1a3a5c;
+  --muted:   #5a6578;
+  --card-bg: #ffffff;
+  --serif:   'DM Serif Display', Georgia, serif;
+  --sans:    'DM Sans', sans-serif;
+  --r:       12px;
+  --green:   #1a5c2e;
+  --green-bg:#d4ead9;
+  --red-bg:  #ead9d9;
+  --red:     #7b1f1f;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.7; font-size: 16px; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--sans); cursor: pointer; }
+
+#progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--accent2), var(--accent)); z-index: 200; transition: width .1s linear; }
+
+nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rgba(240,242,245,.94); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,.07); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { font-family: var(--serif); font-size: 1.1rem; letter-spacing: -.01em; }
+.nav-logo span { color: var(--accent); font-style: italic; }
+.nav-back { display: inline-flex; align-items: center; gap: .5rem; font-size: .82rem; font-weight: 500; color: var(--muted); transition: color .2s; }
+.nav-back:hover { color: var(--accent); }
+.nav-back svg { width: 14px; height: 14px; }
+.nav-cta { font-size: .82rem; font-weight: 500; background: var(--ink); color: var(--paper); padding: .5rem 1.25rem; border-radius: 100px; transition: background .2s; }
+.nav-cta:hover { background: var(--accent); }
+
+/* HERO */
+.cs-hero { background: var(--ink); padding: 9rem 5vw 5rem; position: relative; overflow: hidden; }
+.cs-hero::before { content: 'BUDGETING'; position: absolute; right: -1rem; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: var(--serif); font-size: 12rem; font-style: italic; color: rgba(255,255,255,.03); white-space: nowrap; pointer-events: none; letter-spacing: -.04em; }
+.cs-hero-inner { max-width: 860px; }
+.cs-breadcrumb { display: flex; align-items: center; gap: .6rem; font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 1.5rem; }
+.cs-breadcrumb a { color: rgba(255,255,255,.4); transition: color .2s; }
+.cs-breadcrumb a:hover { color: rgba(255,255,255,.8); }
+.cs-breadcrumb span { color: rgba(255,255,255,.2); }
+.cs-type { display: inline-block; font-size: .7rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.15); border-radius: 100px; padding: .3rem .9rem; margin-bottom: 1.25rem; }
+.cs-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 1.25rem; }
+.cs-hero h1 em { font-style: italic; color: #c9a4a4; }
+.cs-hero-sub { font-size: 1rem; color: rgba(255,255,255,.6); max-width: 600px; line-height: 1.8; margin-bottom: 2rem; }
+.cs-meta-row { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.08); }
+.cs-meta-label { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .3rem; }
+.cs-meta-val { font-size: .9rem; font-weight: 500; color: #fff; }
+
+/* CONTENT */
+.cs-content { max-width: 960px; margin: 0 auto; padding: 4rem 5vw; }
+.cs-section { margin-bottom: 4.5rem; }
+.cs-section-label { font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .75rem; }
+.cs-section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--accent); }
+.cs-section h2 { font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; letter-spacing: -.02em; margin-bottom: 1rem; }
+.cs-body-text { font-size: .95rem; color: var(--muted); line-height: 1.85; max-width: 680px; }
+.cs-body-text + .cs-body-text { margin-top: .85rem; }
+
+/* LEARNING LOOP DIAGRAM */
+.loop-diagram {
+  margin-top: 2rem;
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 1rem;
+  padding: 3rem 2.5rem 2.5rem;
+  overflow-x: auto;
+}
+.loop-flow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-width: 800px;
+  position: relative;
+  margin-bottom: .5rem;
+}
+.loop-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  flex-shrink: 0;
+}
+.loop-shape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: .78rem;
+  font-weight: 600;
+  line-height: 1.3;
+  padding: .7rem 1rem;
+}
+.shape-circle {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: #d4a0d4;
+  color: #4a1f4a;
+}
+.shape-box-blue {
+  background: #5b9bd5;
+  color: #fff;
+  border-radius: .5rem;
+  width: 130px; min-height: 52px;
+}
+.shape-box-yellow {
+  background: #ffc000;
+  color: #4a3000;
+  border-radius: .5rem;
+  width: 150px; min-height: 52px;
+}
+.shape-diamond-wrap {
+  position: relative;
+  width: 90px; height: 90px;
+  flex-shrink: 0;
+}
+.shape-diamond {
+  position: absolute; inset: 0;
+  background: #9dc3e6;
+  transform: rotate(45deg);
+  border-radius: 6px;
+}
+.shape-diamond-text {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .78rem; font-weight: 600; color: #1a3a5c;
+  text-align: center;
+  z-index: 1;
+}
+.loop-arrow {
+  width: 52px; height: 2px;
+  background: var(--muted);
+  position: relative;
+  flex-shrink: 0;
+}
+.loop-arrow::after {
+  content: '';
+  position: absolute; right: -1px; top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-left: 7px solid var(--muted);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.loop-branch {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  flex-shrink: 0;
+}
+.branch-item {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .72rem;
+  color: var(--muted);
+}
+.branch-label { font-size: .68rem; color: var(--muted); }
+.shape-box-red {
+  background: #ff7070;
+  color: #fff;
+  border-radius: .5rem;
+  padding: .55rem .9rem;
+  font-size: .78rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.shape-box-green {
+  background: #70ad47;
+  color: #fff;
+  border-radius: .5rem;
+  padding: .55rem .9rem;
+  font-size: .78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 2px solid #3a7a1a;
+}
+.loop-curved-arrow {
+  position: absolute;
+  top: -32px; left: 80px; right: 0;
+  height: 32px;
+  border-top: 2px solid var(--muted);
+  border-left: 2px solid var(--muted);
+  border-radius: 8px 0 0 0;
+  pointer-events: none;
+}
+.loop-node-label {
+  font-size: .7rem;
+  color: var(--muted);
+  text-align: center;
+  max-width: 130px;
+  line-height: 1.4;
+}
+.loop-explain {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+.loop-explain-item {
+  background: var(--paper);
+  border-radius: .75rem;
+  padding: 1.25rem 1.4rem;
+}
+.lei-num {
+  font-family: var(--serif);
+  font-size: 1.5rem; font-style: italic;
+  color: var(--cream); line-height: 1; margin-bottom: .4rem;
+}
+.lei-title { font-size: .85rem; font-weight: 600; color: var(--ink); margin-bottom: .3rem; }
+.lei-text { font-size: .78rem; color: var(--muted); line-height: 1.65; }
+
+/* BENEFIT CARDS */
+.benefit-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; margin-top: 1.75rem;
+}
+.benefit-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: var(--r);
+  padding: 1.5rem;
+  border-top: 3px solid var(--accent2);
+}
+.benefit-num { font-family: var(--serif); font-size: 2rem; font-style: italic; color: var(--cream); line-height: 1; margin-bottom: .6rem; }
+.benefit-card h4 { font-size: .9rem; font-weight: 600; color: var(--ink); margin-bottom: .5rem; }
+.benefit-card p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+
+/* ── INTERACTIVE ACTIVITIES ── */
+.activity-block {
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 1rem;
+  overflow: hidden;
+  margin-top: 1.75rem;
+}
+.activity-header {
+  padding: 1.25rem 1.75rem;
+  background: var(--ink);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.activity-header-left {}
+.activity-tag {
+  font-size: .65rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.4); margin-bottom: .2rem;
+}
+.activity-header h3 { font-family: var(--serif); font-size: 1.1rem; color: #fff; }
+.activity-badge {
+  font-size: .72rem; font-weight: 500;
+  padding: .3rem .8rem; border-radius: 100px;
+  background: rgba(255,255,255,.1);
+  color: rgba(255,255,255,.6);
+  white-space: nowrap;
+}
+.activity-body { padding: 1.75rem; }
+
+/* Activity 1: Wants vs Needs Sorter */
+.sorter-intro { font-size: .88rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.7; }
+.sorter-area {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; margin-bottom: 1.25rem;
+}
+.sorter-pool {
+  background: var(--paper);
+  border-radius: .75rem;
+  padding: 1rem;
+  min-height: 80px;
+}
+.sorter-pool-label {
+  font-size: .7rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .75rem;
+}
+.sorter-cols {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-bottom: 1.25rem;
+}
+.sorter-col {
+  border: 2px dashed rgba(0,0,0,.12);
+  border-radius: .75rem;
+  padding: 1rem;
+  min-height: 140px;
+  transition: border-color .2s, background .2s;
+}
+.sorter-col.drag-over { border-color: var(--accent2); background: rgba(26,58,92,.04); }
+.sorter-col-label {
+  font-size: .78rem; font-weight: 600;
+  color: var(--ink); margin-bottom: .6rem;
+  display: flex; align-items: center; gap: .4rem;
+}
+.col-need { border-color: rgba(26,92,46,.3); }
+.col-need .sorter-col-label { color: var(--green); }
+.col-want { border-color: rgba(123,31,46,.3); }
+.col-want .sorter-col-label { color: var(--accent); }
+.sorter-item {
+  display: inline-block;
+  background: var(--card-bg);
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: .5rem;
+  padding: .4rem .75rem;
+  font-size: .8rem; font-weight: 500;
+  margin: .25rem;
+  cursor: grab;
+  user-select: none;
+  transition: box-shadow .15s, transform .15s;
+}
+.sorter-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,.1); transform: translateY(-1px); }
+.sorter-item:active { cursor: grabbing; }
+.sorter-item.correct { background: var(--green-bg); border-color: rgba(26,92,46,.3); color: var(--green); }
+.sorter-item.incorrect { background: var(--red-bg); border-color: rgba(123,31,46,.3); color: var(--red); }
+.sorter-feedback { font-size: .83rem; color: var(--muted); display: none; }
+.sorter-feedback.show { display: block; }
+.btn-check {
+  background: var(--ink); color: #fff;
+  border: none; border-radius: 100px;
+  padding: .65rem 1.5rem; font-size: .85rem; font-weight: 500;
+  transition: background .2s;
+  margin-top: .5rem;
+}
+.btn-check:hover { background: var(--accent); }
+.btn-reset {
+  background: transparent; color: var(--muted);
+  border: 1px solid rgba(0,0,0,.12); border-radius: 100px;
+  padding: .65rem 1.5rem; font-size: .85rem; font-weight: 500;
+  transition: all .2s; margin-top: .5rem; margin-left: .5rem;
+}
+.btn-reset:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Activity 2: Budget Calculator */
+.budget-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+.budget-left {}
+.budget-label { font-size: .78rem; font-weight: 600; color: var(--ink); margin-bottom: .35rem; display: block; }
+.budget-input {
+  width: 100%; padding: .7rem 1rem;
+  background: var(--paper);
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: .6rem;
+  font-family: var(--sans);
+  font-size: .9rem; color: var(--ink);
+  outline: none; transition: border-color .2s;
+  margin-bottom: .85rem;
+}
+.budget-input:focus { border-color: var(--accent2); }
+.budget-category { margin-bottom: 1rem; }
+.budget-cat-label {
+  font-size: .7rem; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: .5rem; display: block;
+}
+.budget-row {
+  display: flex; align-items: center; gap: .6rem;
+  margin-bottom: .5rem;
+}
+.budget-row label { font-size: .83rem; color: var(--ink); flex: 1; }
+.budget-row input {
+  width: 110px; padding: .5rem .75rem;
+  background: var(--paper); border: 1px solid rgba(0,0,0,.1);
+  border-radius: .5rem; font-family: var(--sans);
+  font-size: .85rem; color: var(--ink); outline: none;
+  transition: border-color .2s;
+}
+.budget-row input:focus { border-color: var(--accent2); }
+.budget-right {}
+.budget-summary {
+  background: var(--ink); border-radius: 1rem;
+  padding: 1.5rem; position: sticky; top: 80px;
+}
+.bs-title { font-family: var(--serif); font-size: 1.1rem; color: #fff; margin-bottom: 1.25rem; }
+.bs-row {
+  display: flex; justify-content: space-between;
+  align-items: center; padding: .6rem 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  font-size: .85rem;
+}
+.bs-row:last-of-type { border-bottom: none; }
+.bs-row-label { color: rgba(255,255,255,.55); }
+.bs-row-val { color: #fff; font-weight: 500; }
+.bs-total {
+  margin-top: 1rem; padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,.15);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.bs-total-label { font-size: .85rem; color: rgba(255,255,255,.7); font-weight: 500; }
+.bs-balance {
+  font-family: var(--serif); font-size: 1.8rem;
+  color: #fff; line-height: 1;
+  transition: color .3s;
+}
+.bs-balance.positive { color: #70d47e; }
+.bs-balance.negative { color: #d47070; }
+.bs-status {
+  margin-top: .75rem;
+  font-size: .78rem; color: rgba(255,255,255,.45);
+  text-align: right;
+  min-height: 1.2em;
+  transition: color .3s;
+}
+.bs-status.positive { color: #70d47e; }
+.bs-status.negative { color: #d47070; }
+
+/* Activity 3: Zero-Based Budget */
+.zbb-intro { font-size: .88rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.7; }
+.zbb-table {
+  width: 100%; border-collapse: collapse;
+  font-size: .85rem; margin-bottom: 1rem;
+}
+.zbb-table th {
+  background: var(--ink); color: rgba(255,255,255,.7);
+  padding: .75rem 1rem; text-align: left;
+  font-size: .72rem; font-weight: 500;
+  letter-spacing: .06em; text-transform: uppercase;
+}
+.zbb-table td {
+  padding: .65rem 1rem;
+  border-bottom: 1px solid rgba(0,0,0,.06);
+  color: var(--ink);
+}
+.zbb-table tr:last-child td { border-bottom: none; }
+.zbb-table tr:nth-child(even) td { background: rgba(0,0,0,.02); }
+.zbb-input {
+  width: 100%; padding: .4rem .65rem;
+  background: var(--paper); border: 1px solid rgba(0,0,0,.1);
+  border-radius: .4rem; font-family: var(--sans);
+  font-size: .85rem; color: var(--ink); outline: none;
+}
+.zbb-input:focus { border-color: var(--accent2); }
+.zbb-total-row td { font-weight: 600; background: var(--cream) !important; }
+.zbb-remaining {
+  background: var(--ink); color: #fff;
+  border-radius: .75rem; padding: 1rem 1.25rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.zbb-remaining-label { font-size: .85rem; color: rgba(255,255,255,.6); }
+.zbb-remaining-val {
+  font-family: var(--serif); font-size: 1.6rem; color: #fff;
+  transition: color .3s;
+}
+.zbb-remaining-val.zero { color: #70d47e; }
+.zbb-remaining-val.positive { color: #ffd47e; }
+.zbb-remaining-val.negative { color: #d47070; }
+.zbb-tip {
+  margin-top: .75rem;
+  font-size: .78rem; color: rgba(255,255,255,.4);
+  text-align: right; min-height: 1em;
+}
+
+/* ASSESSMENT */
+.quiz-wrap {
+  background: var(--ink);
+  border-radius: 1rem; overflow: hidden;
+  margin-top: 1.75rem;
+}
+.quiz-progress-bar-wrap {
+  height: 3px; background: rgba(255,255,255,.08);
+}
+.quiz-progress-bar {
+  height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent));
+  transition: width .4s ease;
+}
+.quiz-header {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.quiz-q-counter {
+  font-size: .72rem; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+}
+.quiz-topic {
+  font-size: .72rem; font-weight: 500;
+  color: rgba(255,255,255,.35);
+  background: rgba(255,255,255,.07);
+  padding: .25rem .7rem; border-radius: 100px;
+}
+.quiz-body { padding: 1.75rem; }
+.quiz-question {
+  font-size: .95rem; color: #fff;
+  line-height: 1.7; margin-bottom: 1.5rem;
+  min-height: 3.5em;
+}
+.quiz-options { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.5rem; }
+.quiz-option {
+  display: flex; align-items: flex-start; gap: .75rem;
+  padding: .85rem 1rem;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: .65rem;
+  cursor: pointer;
+  transition: background .15s, border-color .15s;
+  text-align: left;
+  width: 100%;
+  color: rgba(255,255,255,.75);
+  font-size: .875rem;
+  line-height: 1.55;
+}
+.quiz-option:hover:not(:disabled) { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); }
+.quiz-option:disabled { cursor: default; }
+.quiz-option.selected { background: rgba(26,58,92,.5); border-color: rgba(100,160,220,.5); color: #fff; }
+.quiz-option.correct { background: rgba(26,92,46,.35); border-color: rgba(70,180,100,.4); color: #fff; }
+.quiz-option.incorrect { background: rgba(123,31,31,.35); border-color: rgba(200,80,80,.4); color: #fff; }
+.quiz-opt-key {
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.2);
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  font-size: .72rem; font-weight: 600; color: rgba(255,255,255,.5);
+  margin-top: .05rem;
+  transition: all .15s;
+}
+.quiz-option.selected .quiz-opt-key { border-color: rgba(100,160,220,.6); color: rgba(160,210,255,.9); }
+.quiz-option.correct .quiz-opt-key { background: rgba(70,180,100,.3); border-color: rgba(70,180,100,.5); color: #a0eab0; }
+.quiz-option.incorrect .quiz-opt-key { background: rgba(200,80,80,.3); border-color: rgba(200,80,80,.5); color: #eaa0a0; }
+
+.quiz-feedback {
+  padding: .85rem 1.1rem;
+  border-radius: .65rem;
+  font-size: .83rem; line-height: 1.65;
+  margin-bottom: 1.25rem;
+  display: none;
+}
+.quiz-feedback.show { display: block; }
+.quiz-feedback.correct { background: rgba(26,92,46,.25); color: #a0eab0; border: 1px solid rgba(70,180,100,.3); }
+.quiz-feedback.incorrect { background: rgba(123,31,31,.25); color: #eaa0a0; border: 1px solid rgba(200,80,80,.3); }
+
+.quiz-actions { display: flex; gap: .75rem; align-items: center; }
+.btn-quiz {
+  background: rgba(255,255,255,.1); color: #fff;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 100px; padding: .65rem 1.5rem;
+  font-size: .85rem; font-weight: 500;
+  transition: background .2s, border-color .2s;
+}
+.btn-quiz:hover { background: rgba(255,255,255,.16); }
+.btn-quiz.primary { background: var(--accent); border-color: transparent; }
+.btn-quiz.primary:hover { opacity: .85; }
+.btn-quiz:disabled { opacity: .3; cursor: default; }
+
+.quiz-result {
+  text-align: center; padding: 2.5rem 1.75rem;
+  display: none;
+}
+.quiz-result.show { display: block; }
+.quiz-result-score {
+  font-family: var(--serif); font-size: 4rem;
+  color: #fff; line-height: 1; margin-bottom: .5rem;
+}
+.quiz-result-label { font-size: .9rem; color: rgba(255,255,255,.5); margin-bottom: 1.5rem; }
+.quiz-result-msg { font-size: .95rem; color: rgba(255,255,255,.75); line-height: 1.7; max-width: 480px; margin: 0 auto 1.5rem; }
+
+/* REFLECTION */
+.reflection-box { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-left: 3px solid var(--accent2); border-radius: 0 var(--r) var(--r) 0; padding: 1.75rem 2rem; margin-top: 1.75rem; }
+.reflection-box p { font-size: .95rem; color: var(--muted); line-height: 1.85; font-style: italic; }
+.reflection-box p + p { margin-top: .85rem; }
+
+/* OTHER PROJECTS */
+.other-projects { padding: 3rem 5vw; max-width: 960px; margin: 0 auto; }
+.other-projects h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 1.25rem; }
+.other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.other-card { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); padding: 1.25rem 1.4rem; transition: transform .2s, box-shadow .2s; }
+.other-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+.other-type { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
+.other-card h4 { font-size: .9rem; font-weight: 500; margin-bottom: .4rem; line-height: 1.3; }
+.other-card p { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+
+footer { background: var(--ink); color: rgba(255,255,255,.4); padding: 1.5rem 5vw; display: flex; align-items: center; justify-content: space-between; font-size: .8rem; }
+footer a { color: rgba(255,255,255,.6); transition: color .2s; }
+footer a:hover { color: #fff; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 760px) {
+  .benefit-grid, .other-grid { grid-template-columns: 1fr; }
+  .sorter-area, .budget-grid, .sorter-cols { grid-template-columns: 1fr; }
+  .loop-explain { grid-template-columns: 1fr 1fr; }
+  .cs-meta-row { gap: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">Nissa <span>Febriani</span></a>
+  <a href="index.html#portfolio" class="nav-back">
+    <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to portfolio
+  </a>
+  <a href="index.html#contact" class="nav-cta">Get in touch</a>
+</nav>
+
+<div class="cs-hero">
+  <div class="cs-hero-inner">
+    <div class="cs-breadcrumb">
+      <a href="index.html">Portfolio</a>
+      <span>/</span>
+      E-Learning Design
+    </div>
+    <div class="cs-type">Case Study</div>
+    <h1>Efficient <em>Budgeting</em></h1>
+    <p class="cs-hero-sub">An interactive e-learning module I designed to help people actually change how they manage money and build habits that hold up in daily life.</p>
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Format</div>
+        <div class="cs-meta-val">E-Learning Module</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Learners</div>
+        <div class="cs-meta-val">General adult audience</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">Includes</div>
+        <div class="cs-meta-val">Theory, Activities, Assessment</div>
+      </div>
+      <div class="cs-meta-item">
+        <div class="cs-meta-label">My role</div>
+        <div class="cs-meta-val">Instructional Designer</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cs-content">
+
+  <!-- CONTEXT -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">The context</div>
+    <h2>Most people know they should budget. Few actually stick to it.</h2>
+    <p class="cs-body-text">The brief for this module wasn't just to explain what budgeting is. Plenty of articles already do that. The goal was to design a learning experience where people walked away with a method they could actually use, and the confidence to apply it when their spending got messy.</p>
+    <p class="cs-body-text">I built this around three things: understanding why budgeting matters, practising the skill through interactive activities, and checking comprehension through scenario-based questions. The learning loop structure below is what holds it all together.</p>
+  </div>
+
+  <!-- LEARNING LOOP -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Learning design</div>
+    <h2>The loop that drives the whole module</h2>
+    <p class="cs-body-text">Every section of this module follows the same cycle. A learner reads the core theory, completes a micro-assessment, and either moves forward or returns to review depending on how they do. This scaffolded loop means nobody gets pushed ahead before they're ready.</p>
+
+    <div class="loop-diagram">
+      <div style="position:relative;">
+        <div class="loop-flow">
+          <div class="loop-node">
+            <div class="loop-shape shape-circle">Mulai<br>Bagian</div>
+            <div class="loop-node-label">Start each section</div>
+          </div>
+          <div class="loop-arrow"></div>
+          <div class="loop-node">
+            <div class="loop-shape shape-box-blue">Core Theory:<br>Bagian X</div>
+            <div class="loop-node-label">Read core content</div>
+          </div>
+          <div class="loop-arrow"></div>
+          <div class="loop-node">
+            <div class="loop-shape shape-box-yellow">Asesmen Mikro:<br>Scaffolding</div>
+            <div class="loop-node-label">Complete micro-assessment</div>
+          </div>
+          <div class="loop-arrow"></div>
+          <div class="loop-node">
+            <div class="shape-diamond-wrap">
+              <div class="shape-diamond"></div>
+              <div class="shape-diamond-text">Lulus?</div>
+            </div>
+            <div class="loop-node-label">Pass or review?</div>
+          </div>
+          <div style="width:3rem; flex-shrink:0;"></div>
+          <div class="loop-branch">
+            <div class="branch-item">
+              <span class="branch-label">Tidak</span>
+              <div class="shape-box-red">Review Materi</div>
+            </div>
+            <div class="branch-item">
+              <span class="branch-label">Ya</span>
+              <div class="shape-box-green">Lanjut ke Bagian Berikutnya</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="loop-explain">
+        <div class="loop-explain-item">
+          <div class="lei-num">01</div>
+          <div class="lei-title">Start each section</div>
+          <div class="lei-text">Every topic begins fresh with a clear entry point, so learners always know where they are.</div>
+        </div>
+        <div class="loop-explain-item">
+          <div class="lei-num">02</div>
+          <div class="lei-title">Core theory first</div>
+          <div class="lei-text">The concept is introduced with examples and real-life scenarios before anything is tested.</div>
+        </div>
+        <div class="loop-explain-item">
+          <div class="lei-num">03</div>
+          <div class="lei-title">Micro-assessment</div>
+          <div class="lei-text">A short scaffolded check confirms understanding before the learner moves on.</div>
+        </div>
+        <div class="loop-explain-item">
+          <div class="lei-num">04</div>
+          <div class="lei-title">Pass or review</div>
+          <div class="lei-text">If they pass, they advance. If not, they return to the material for another look, not to a penalty.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THEORY: BENEFITS -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Core theory</div>
+    <h2>Three reasons budgeting actually changes behaviour</h2>
+    <p class="cs-body-text">The first module covers the why, because learners who understand the value of budgeting are far more likely to follow through. These three benefits came directly from the e-learning script and are the foundation of the whole course.</p>
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <div class="benefit-num">01</div>
+        <h4>It shows you where your money actually goes</h4>
+        <p>Writing everything down, whether in a notebook, app, or tracker, creates a visual record that makes spending patterns visible. Categories that feel small in the moment start to look different when you see them monthly.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-num">02</div>
+        <h4>It surfaces habits you didn't know you had</h4>
+        <p>When spending is laid out by category, the patterns become hard to ignore. Budgeting gives you the evidence to make real adjustments, rather than just guessing where the money went.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-num">03</div>
+        <h4>It makes the difference between wants and needs concrete</h4>
+        <p>A budget forces a real question: given my current situation, do I actually need this? That question, asked consistently, changes how people make financial decisions.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY 1: WANTS VS NEEDS -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Interactive activity 1</div>
+    <h2>Try it: sort your wants from your needs</h2>
+    <p class="cs-body-text">One of the activities I designed asks learners to physically sort a set of expenses by dragging each one into either "Need" or "Want." It's a simple mechanic, but the act of deciding forces a real thought process that reading a definition never quite does.</p>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <div class="activity-header-left">
+          <div class="activity-tag">Activity 1 · Sorting</div>
+          <h3>Wants vs Needs Sorter</h3>
+        </div>
+        <span class="activity-badge">Drag and drop</span>
+      </div>
+      <div class="activity-body">
+        <p class="sorter-intro">Drag each item into the correct column. A <strong>Need</strong> is something essential for basic living. A <strong>Want</strong> is something you'd like but could live without.</p>
+
+        <div class="sorter-pool">
+          <div class="sorter-pool-label">Items to sort</div>
+          <div id="sorter-pool">
+            <span class="sorter-item" draggable="true" data-item="rent" data-answer="need">Monthly Rent</span>
+            <span class="sorter-item" draggable="true" data-item="netflix" data-answer="want">Netflix subscription</span>
+            <span class="sorter-item" draggable="true" data-item="groceries" data-answer="need">Groceries</span>
+            <span class="sorter-item" draggable="true" data-item="coffee" data-answer="want">Daily café coffee</span>
+            <span class="sorter-item" draggable="true" data-item="electricity" data-answer="need">Electricity bill</span>
+            <span class="sorter-item" draggable="true" data-item="shoes" data-answer="want">New trainers</span>
+            <span class="sorter-item" draggable="true" data-item="medicine" data-answer="need">Medicine / health</span>
+            <span class="sorter-item" draggable="true" data-item="dining" data-answer="want">Dining out weekly</span>
+          </div>
+        </div>
+
+        <div class="sorter-cols">
+          <div class="sorter-col col-need" id="col-need" data-col="need">
+            <div class="sorter-col-label">✓ Needs</div>
+          </div>
+          <div class="sorter-col col-want" id="col-want" data-col="want">
+            <div class="sorter-col-label">✦ Wants</div>
+          </div>
+        </div>
+
+        <div class="quiz-feedback sorter-feedback" id="sorter-feedback"></div>
+        <button class="btn-check" onclick="checkSorter()">Check my answers</button>
+        <button class="btn-reset" onclick="resetSorter()">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY 2: BUDGET CALCULATOR -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Interactive activity 2</div>
+    <h2>Try it: build your own monthly budget</h2>
+    <p class="cs-body-text">Rather than showing a completed budget as an example, I designed this activity so learners fill one in themselves. Entering real numbers, or close approximations, makes the exercise feel personal rather than theoretical. The summary updates live as you type.</p>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <div class="activity-header-left">
+          <div class="activity-tag">Activity 2 · Calculator</div>
+          <h3>Monthly Budget Builder</h3>
+        </div>
+        <span class="activity-badge">Live calculator</span>
+      </div>
+      <div class="activity-body">
+        <div class="budget-grid">
+          <div class="budget-left">
+            <label class="budget-label">Monthly income (after tax)</label>
+            <input class="budget-input" type="number" id="income" placeholder="e.g. 5000000" oninput="updateBudget()">
+
+            <div class="budget-category">
+              <span class="budget-cat-label">Essential expenses</span>
+              <div class="budget-row"><label>Rent / mortgage</label><input type="number" id="rent" placeholder="0" oninput="updateBudget()"></div>
+              <div class="budget-row"><label>Groceries</label><input type="number" id="grocery" placeholder="0" oninput="updateBudget()"></div>
+              <div class="budget-row"><label>Utilities</label><input type="number" id="utilities" placeholder="0" oninput="updateBudget()"></div>
+              <div class="budget-row"><label>Transport</label><input type="number" id="transport" placeholder="0" oninput="updateBudget()"></div>
+            </div>
+
+            <div class="budget-category">
+              <span class="budget-cat-label">Savings</span>
+              <div class="budget-row"><label>Emergency fund</label><input type="number" id="emergency" placeholder="0" oninput="updateBudget()"></div>
+              <div class="budget-row"><label>Goal savings</label><input type="number" id="savings" placeholder="0" oninput="updateBudget()"></div>
+            </div>
+
+            <div class="budget-category">
+              <span class="budget-cat-label">Discretionary</span>
+              <div class="budget-row"><label>Dining out</label><input type="number" id="dining" placeholder="0" oninput="updateBudget()"></div>
+              <div class="budget-row"><label>Entertainment</label><input type="number" id="entertainment" placeholder="0" oninput="updateBudget()"></div>
+              <div class="budget-row"><label>Other</label><input type="number" id="other" placeholder="0" oninput="updateBudget()"></div>
+            </div>
+          </div>
+
+          <div class="budget-right">
+            <div class="budget-summary">
+              <div class="bs-title">Your budget summary</div>
+              <div class="bs-row"><span class="bs-row-label">Income</span><span class="bs-row-val" id="bs-income">Rp 0</span></div>
+              <div class="bs-row"><span class="bs-row-label">Essential expenses</span><span class="bs-row-val" id="bs-essential">Rp 0</span></div>
+              <div class="bs-row"><span class="bs-row-label">Savings</span><span class="bs-row-val" id="bs-savings">Rp 0</span></div>
+              <div class="bs-row"><span class="bs-row-label">Discretionary</span><span class="bs-row-val" id="bs-disc">Rp 0</span></div>
+              <div class="bs-total">
+                <span class="bs-total-label">Balance</span>
+                <span class="bs-balance" id="bs-balance">Rp 0</span>
+              </div>
+              <div class="bs-status" id="bs-status">Enter your income to get started.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY 3: ZERO-BASED BUDGETING -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Interactive activity 3</div>
+    <h2>Try it: zero-based budgeting</h2>
+    <p class="cs-body-text">Zero-based budgeting means every rupiah of income gets assigned a job: spending, saving, or investing. The goal is a balance of exactly zero at the end: not because you've spent everything, but because nothing is unaccounted for. This activity walks learners through the method.</p>
+
+    <div class="activity-block">
+      <div class="activity-header">
+        <div class="activity-header-left">
+          <div class="activity-tag">Activity 3 · Zero-Based Budgeting</div>
+          <h3>Make every rupiah count</h3>
+        </div>
+        <span class="activity-badge">Fill in the table</span>
+      </div>
+      <div class="activity-body">
+        <p class="zbb-intro">Enter your income at the top, then assign amounts to each category. The goal is to bring the "remaining" amount to zero, meaning every part of your income has a purpose.</p>
+
+        <table class="zbb-table" id="zbb-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Planned amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Monthly Income</td><td><input class="zbb-input" type="number" id="zbb-income" placeholder="Enter income" oninput="updateZBB()"></td></tr>
+            <tr><td>Housing (rent/mortgage)</td><td><input class="zbb-input" type="number" placeholder="0" oninput="updateZBB()"></td></tr>
+            <tr><td>Food and groceries</td><td><input class="zbb-input" type="number" placeholder="0" oninput="updateZBB()"></td></tr>
+            <tr><td>Transportation</td><td><input class="zbb-input" type="number" placeholder="0" oninput="updateZBB()"></td></tr>
+            <tr><td>Utilities and bills</td><td><input class="zbb-input" type="number" placeholder="0" oninput="updateZBB()"></td></tr>
+            <tr><td>Health and personal care</td><td><input class="zbb-input" type="number" placeholder="0" oninput="updateZBB()"></td></tr>
+            <tr><td>Savings and emergency fund</td><td><input class="zbb-input" type="number" placeholder="0" oninput="updateZBB()"></td></tr>
+            <tr><td>Entertainment and dining</td><td><input class="zbb-input" type="number" placeholder="0" oninput="updateZBB()"></td></tr>
+            <tr><td>Other / miscellaneous</td><td><input class="zbb-input" type="number" placeholder="0" oninput="updateZBB()"></td></tr>
+            <tr class="zbb-total-row"><td>Total assigned</td><td id="zbb-total">0</td></tr>
+          </tbody>
+        </table>
+
+        <div class="zbb-remaining">
+          <span class="zbb-remaining-label">Remaining (target: 0)</span>
+          <div>
+            <span class="zbb-remaining-val" id="zbb-remaining">—</span>
+            <div class="zbb-tip" id="zbb-tip">Enter your income to begin.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGE ASSESSMENT -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">Knowledge assessment</div>
+    <h2>Check your understanding</h2>
+    <p class="cs-body-text">The module closes with a scenario-based assessment. Each question puts the learner in a real-life situation and asks them to apply what they've learned. This is the same format I used in the actual module: scenario-based application, not recall.</p>
+
+    <div class="quiz-wrap" id="quiz">
+      <div class="quiz-progress-bar-wrap">
+        <div class="quiz-progress-bar" id="quiz-progress-bar" style="width:0%"></div>
+      </div>
+      <div class="quiz-header">
+        <span class="quiz-q-counter" id="quiz-counter">Question 1 of 5</span>
+        <span class="quiz-topic" id="quiz-topic">Before Budgeting</span>
+      </div>
+      <div class="quiz-body" id="quiz-body">
+        <div class="quiz-question" id="quiz-question"></div>
+        <div class="quiz-options" id="quiz-options"></div>
+        <div class="quiz-feedback" id="quiz-feedback"></div>
+        <div class="quiz-actions">
+          <button class="btn-quiz primary" id="quiz-btn-check" onclick="checkAnswer()" disabled>Check answer</button>
+          <button class="btn-quiz" id="quiz-btn-next" onclick="nextQuestion()" style="display:none">Next question</button>
+        </div>
+      </div>
+      <div class="quiz-result" id="quiz-result">
+        <div class="quiz-result-score" id="quiz-result-score"></div>
+        <div class="quiz-result-label">questions answered correctly</div>
+        <div class="quiz-result-msg" id="quiz-result-msg"></div>
+        <button class="btn-quiz primary" onclick="restartQuiz()">Try again</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- REFLECTION -->
+  <div class="cs-section reveal">
+    <div class="cs-section-label">What I took away from this</div>
+    <h2>Designing for behaviour change, not just comprehension</h2>
+    <div class="reflection-box">
+      <p>The most interesting design decision in this module was the learning loop. It was tempting to just sequence content linearly: read this, then that, then answer questions. But the scaffolded loop, where learners can return to content before moving on, changes the relationship with failure. Getting something wrong stops being a dead end and becomes a reason to look again.</p>
+      <p>The wants vs needs activity also taught me something. The first version was a multiple-choice question asking "which of the following is a want?" It worked fine. The drag-and-drop version, same items and same categories, produced noticeably better conversations when I tested it. The act of physically moving the item made people pause and actually decide, rather than just scanning for the obvious answer.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- OTHER PROJECTS -->
+<div class="other-projects">
+  <h3>Other projects</h3>
+  <div class="other-grid">
+    <a href="case-crypto.html" class="other-card">
+      <div class="other-type">Curriculum Design</div>
+      <h4>Blockchain and Cryptocurrency for Undergraduates</h4>
+      <p>A full 16-session curriculum I led the design of for undergraduate students.</p>
+    </a>
+    <a href="case-blockchain.html" class="other-card">
+      <div class="other-type">E-Learning · Proyek Pribadi</div>
+      <h4>Dasar-Dasar Blockchain</h4>
+      <p>A self-paced module in Bahasa Indonesia on blockchain fundamentals for the general public.</p>
+    </a>
+    <a href="https://drive.google.com/drive/folders/1erweNzoG93nkA7mg2JeE-DH3dyIKlElE" target="_blank" class="other-card">
+      <div class="other-type">Game-Based Learning</div>
+      <h4>Detective Mystery: Collaborative Online Game</h4>
+      <p>A group mystery game for remote team building and collaboration skills.</p>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span>© 2025 Nissa Febriani · Bandung, Indonesia</span>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="mailto:nissafebriani@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/nissafebriani" target="_blank">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+// ── PROGRESS BAR ──
+const bar = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+  const d = document.documentElement;
+  bar.style.width = (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
+});
+
+// ── SCROLL REVEAL ──
+const revealEls = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+revealEls.forEach(el => obs.observe(el));
+
+// ── ACTIVITY 1: WANTS VS NEEDS DRAG AND DROP ──
+let dragItem = null;
+
+document.querySelectorAll('.sorter-item').forEach(item => {
+  item.addEventListener('dragstart', e => { dragItem = item; setTimeout(() => item.style.opacity = '.4', 0); });
+  item.addEventListener('dragend', () => { dragItem = null; item.style.opacity = '1'; });
+});
+
+document.querySelectorAll('.sorter-col, #sorter-pool').forEach(zone => {
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault(); zone.classList.remove('drag-over');
+    if (dragItem) { zone.appendChild(dragItem); dragItem.classList.remove('correct','incorrect'); }
+  });
+});
+
+function checkSorter() {
+  const items = document.querySelectorAll('.sorter-item');
+  let correct = 0;
+  items.forEach(item => {
+    const parent = item.parentElement;
+    const col = parent.dataset.col;
+    if (col) {
+      if (col === item.dataset.answer) { item.classList.add('correct'); item.classList.remove('incorrect'); correct++; }
+      else { item.classList.add('incorrect'); item.classList.remove('correct'); }
+    }
+  });
+  const total = document.querySelectorAll('#col-need .sorter-item, #col-want .sorter-item').length;
+  const fb = document.getElementById('sorter-feedback');
+  fb.className = 'quiz-feedback sorter-feedback show';
+  if (correct === total && total === 8) {
+    fb.className += ' correct'; fb.textContent = `All ${total} correct! You have a solid grasp of wants vs needs.`;
+  } else {
+    fb.className += ' incorrect'; fb.textContent = `${correct} out of ${total} sorted correctly. Items highlighted in red are in the wrong column. Have another look.`;
+  }
+}
+
+function resetSorter() {
+  const pool = document.getElementById('sorter-pool');
+  document.querySelectorAll('.sorter-item').forEach(item => { pool.appendChild(item); item.classList.remove('correct','incorrect'); });
+  const fb = document.getElementById('sorter-feedback');
+  fb.className = 'quiz-feedback sorter-feedback';
+  fb.textContent = '';
+}
+
+// ── ACTIVITY 2: BUDGET CALCULATOR ──
+function fmt(n) { return 'Rp ' + Math.round(n).toLocaleString('id-ID'); }
+
+function updateBudget() {
+  const income = +document.getElementById('income').value || 0;
+  const essential = (+document.getElementById('rent').value||0) + (+document.getElementById('grocery').value||0) + (+document.getElementById('utilities').value||0) + (+document.getElementById('transport').value||0);
+  const sav = (+document.getElementById('emergency').value||0) + (+document.getElementById('savings').value||0);
+  const disc = (+document.getElementById('dining').value||0) + (+document.getElementById('entertainment').value||0) + (+document.getElementById('other').value||0);
+  const balance = income - essential - sav - disc;
+
+  document.getElementById('bs-income').textContent = fmt(income);
+  document.getElementById('bs-essential').textContent = fmt(essential);
+  document.getElementById('bs-savings').textContent = fmt(sav);
+  document.getElementById('bs-disc').textContent = fmt(disc);
+  document.getElementById('bs-balance').textContent = fmt(balance);
+
+  const balEl = document.getElementById('bs-balance');
+  const stEl = document.getElementById('bs-status');
+  balEl.classList.remove('positive','negative');
+  stEl.classList.remove('positive','negative');
+  if (income === 0) { stEl.textContent = 'Enter your income to get started.'; return; }
+  if (balance > 0) { balEl.classList.add('positive'); stEl.classList.add('positive'); stEl.textContent = 'You have unallocated income. Consider adding it to savings.'; }
+  else if (balance < 0) { balEl.classList.add('negative'); stEl.classList.add('negative'); stEl.textContent = 'Your expenses exceed your income. Review your discretionary spending.'; }
+  else { balEl.classList.add('positive'); stEl.classList.add('positive'); stEl.textContent = 'Perfectly balanced. Every rupiah has a purpose.'; }
+}
+
+// ── ACTIVITY 3: ZERO-BASED BUDGETING ──
+function updateZBB() {
+  const income = +document.getElementById('zbb-income').value || 0;
+  const inputs = document.querySelectorAll('#zbb-table tbody input:not(#zbb-income)');
+  let total = 0;
+  inputs.forEach(i => { total += +i.value || 0; });
+  const remaining = income - total;
+
+  document.getElementById('zbb-total').textContent = 'Rp ' + Math.round(total).toLocaleString('id-ID');
+  const remEl = document.getElementById('zbb-remaining');
+  const tipEl = document.getElementById('zbb-tip');
+  remEl.classList.remove('zero','positive','negative');
+
+  if (income === 0) { remEl.textContent = '—'; tipEl.textContent = 'Enter your income to begin.'; return; }
+  remEl.textContent = 'Rp ' + Math.round(remaining).toLocaleString('id-ID');
+  if (remaining === 0) { remEl.classList.add('zero'); tipEl.textContent = 'Every rupiah has a job. '; }
+  else if (remaining > 0) { remEl.classList.add('positive'); tipEl.textContent = remaining.toLocaleString('id-ID') + ' left to assign. Consider adding it to savings or a goal.'; }
+  else { remEl.classList.add('negative'); tipEl.textContent = 'You\'re over budget. Review your categories and reduce where possible.'; }
+}
+
+// ── ASSESSMENT ──
+const questions = [
+  {
+    topic: 'Before Budgeting',
+    q: 'What is the first step you should take before creating a budget to ensure efficiency in managing your finances?',
+    options: ['Assess your current financial spending habits.','Categorize all monthly expenses into major areas.','Calculate how much money is left after paying essential bills.','Allocate percentages of your income to essential, savings, and discretionary expenses.'],
+    answer: 0,
+    feedback: 'The first step is examining your financial spending by reviewing statements and identifying all necessary and discretionary transactions. This lays the foundation for an accurate budget.'
+  },
+  {
+    topic: 'Before Budgeting',
+    q: 'Basil has fluctuating income and seasonal expenses like higher heating bills in winter and vacation costs in summer. What is the best approach for him to build an effective budget?',
+    options: ['Make a daily budget to track expenses consistently.','Set a yearly budget but skip including irregular expenses.','Focus only on budgeting for months with higher expenses.','Create a monthly budget and account for seasonal expenses.'],
+    answer: 3,
+    feedback: 'A monthly budget provides a practical time frame for tracking income and expenses while accounting for fluctuations and seasonal costs.'
+  },
+  {
+    topic: 'Before Budgeting',
+    q: 'Beth wants to save for a new laptop while still enjoying regular meals out with friends. With a limited monthly budget, what should she prioritise?',
+    options: ['Allocate equal amounts to saving and leisure activities to maintain balance.','Prioritise saving for the laptop and limit meals out.','Eliminate dining expenses entirely to save for her laptop.','Focus only on saving for her laptop.'],
+    answer: 1,
+    feedback: 'Prioritising saving for the laptop while limiting dining out (not eliminating it) balances essential and discretionary spending, making the budget sustainable long-term.'
+  },
+  {
+    topic: 'During Budgeting',
+    q: 'Javier\'s monthly expenses exceed his income. He spends Rp 20,000 a week on coffee from his favourite café. What action would be most effective in helping him stay on budget?',
+    options: ['Stop buying coffee altogether and put the money into savings.','Move to a smaller apartment to cut rent costs.','Brew coffee at home to save money.','Use coupons for coffee purchases to reduce the expense.'],
+    answer: 2,
+    feedback: 'Brewing coffee at home is a practical and sustainable way to reduce discretionary spending without sacrificing the habit entirely, which makes it far more likely to stick.'
+  },
+  {
+    topic: 'Budget Review',
+    q: 'What is the most effective approach when preparing a budget for an upcoming month?',
+    options: ['Transfer the previous month\'s budget and adjust for upcoming changes.','Allocate funds for unexpected expenses first, then budget for planned expenses.','Prioritise savings goals above all other monthly expenses.','Create a budget based only on the current month\'s financial situation.'],
+    answer: 0,
+    feedback: 'Carrying over the previous budget and adjusting for changes is the most efficient approach. It ensures continuity and accounts for seasonal or irregular expenses without starting from scratch.'
+  }
+];
+
+let currentQ = 0;
+let selectedOption = null;
+let answered = false;
+let score = 0;
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('quiz-counter').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+  document.getElementById('quiz-topic').textContent = q.topic;
+  document.getElementById('quiz-progress-bar').style.width = (currentQ / questions.length * 100) + '%';
+  document.getElementById('quiz-question').textContent = q.q;
+  const opts = document.getElementById('quiz-options');
+  opts.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-option';
+    btn.innerHTML = `<span class="quiz-opt-key">${String.fromCharCode(65+i)}</span>${opt}`;
+    btn.onclick = () => selectOption(i, btn);
+    opts.appendChild(btn);
+  });
+  const fb = document.getElementById('quiz-feedback');
+  fb.className = 'quiz-feedback'; fb.textContent = '';
+  document.getElementById('quiz-btn-check').disabled = true;
+  document.getElementById('quiz-btn-next').style.display = 'none';
+  document.getElementById('quiz-btn-check').style.display = 'block';
+  selectedOption = null; answered = false;
+}
+
+function selectOption(idx, btn) {
+  if (answered) return;
+  document.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedOption = idx;
+  document.getElementById('quiz-btn-check').disabled = false;
+}
+
+function checkAnswer() {
+  if (selectedOption === null || answered) return;
+  answered = true;
+  const q = questions[currentQ];
+  const opts = document.querySelectorAll('.quiz-option');
+  opts.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === q.answer) btn.classList.add('correct');
+    else if (i === selectedOption) btn.classList.add('incorrect');
+  });
+  if (selectedOption === q.answer) score++;
+  const fb = document.getElementById('quiz-feedback');
+  fb.textContent = q.feedback;
+  fb.className = 'quiz-feedback show ' + (selectedOption === q.answer ? 'correct' : 'incorrect');
+  document.getElementById('quiz-btn-check').style.display = 'none';
+  document.getElementById('quiz-btn-next').style.display = 'block';
+  document.getElementById('quiz-btn-next').textContent = currentQ < questions.length - 1 ? 'Next question' : 'See results';
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ < questions.length) { renderQuestion(); }
+  else { showResult(); }
+}
+
+function showResult() {
+  document.getElementById('quiz-progress-bar').style.width = '100%';
+  document.getElementById('quiz-body').style.display = 'none';
+  const res = document.getElementById('quiz-result');
+  res.className = 'quiz-result show';
+  document.getElementById('quiz-result-score').textContent = `${score}/${questions.length}`;
+  const pct = score / questions.length;
+  let msg = '';
+  if (pct === 1) msg = 'A perfect score. You have a strong grasp of budgeting concepts and how to apply them in real situations.';
+  else if (pct >= 0.6) msg = `Good work. You got ${score} out of ${questions.length} right. Review the questions you missed and the feedback for each one.`;
+  else msg = `You got ${score} out of ${questions.length}. It might be worth going back through the core theory and trying again. The feedback on each question explains where the reasoning went.`;
+  document.getElementById('quiz-result-msg').textContent = msg;
+}
+
+function restartQuiz() {
+  currentQ = 0; score = 0; selectedOption = null; answered = false;
+  document.getElementById('quiz-body').style.display = 'block';
+  document.getElementById('quiz-result').className = 'quiz-result';
+  renderQuestion();
+}
+
+renderQuestion();
+</script>
+</body>
+</html>
