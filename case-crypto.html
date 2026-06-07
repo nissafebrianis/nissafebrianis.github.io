@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Blockchain Curriculum — Nissa Febriani</title>
+<title>Blockchain Curriculum - Nissa Febriani</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2,family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink:     #0d1b2e;
@@ -144,27 +144,30 @@ nav {
 
 .cs-section { margin-bottom: 4rem; }
 
+.cs-section { margin-bottom: 4.5rem; }
 .cs-section-label {
-  font-size: .68rem; font-weight: 500;
-  letter-spacing: .14em; text-transform: uppercase;
+  font-size: .64rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase;
   color: var(--accent); margin-bottom: 1rem;
-  display: flex; align-items: center; gap: .75rem;
+  display: flex; align-items: center; gap: .6rem;
 }
 .cs-section-label::before {
   content: ''; display: block;
-  width: 20px; height: 2px; background: var(--accent);
+  width: 18px; height: 2px; background: var(--accent);
+  opacity: .8;
 }
 
 .cs-section h2 {
   font-family: var(--serif);
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  line-height: 1.2; letter-spacing: -.02em;
+  font-size: clamp(1.55rem, 2.4vw, 2.05rem);
+  line-height: 1.18; letter-spacing: -.02em;
   margin-bottom: 1rem;
+  max-width: 14ch;
 }
 
 .cs-body-text {
-  font-size: .95rem; color: var(--muted);
-  line-height: 1.85; max-width: 680px;
+  font-size: .95rem; color: rgba(13,27,46,.76);
+  line-height: 1.8; max-width: 72ch;
 }
 .cs-body-text + .cs-body-text { margin-top: .85rem; }
 
@@ -174,19 +177,20 @@ nav {
   gap: 1rem; margin-top: 1.75rem;
 }
 .outcome-card {
-  background: var(--card-bg);
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: var(--r);
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9));
+  border: 1px solid rgba(13,27,46,.07);
+  border-radius: 1rem;
   padding: 1.4rem 1.5rem;
   display: flex; gap: 1rem; align-items: flex-start;
+  box-shadow: 0 8px 24px rgba(12,18,28,.04);
 }
 .outcome-num {
   font-family: var(--serif); font-size: 1.6rem; font-style: italic;
-  color: var(--cream); line-height: 1; flex-shrink: 0;
+  color: rgba(13,27,46,.22); line-height: 1; flex-shrink: 0;
   width: 32px; text-align: center;
 }
-.outcome-card h4 { font-size: .88rem; font-weight: 500; color: var(--ink); margin-bottom: .3rem; }
-.outcome-card p { font-size: .8rem; color: var(--muted); line-height: 1.65; }
+.outcome-card h4 { font-size: .9rem; font-weight: 600; color: var(--ink); margin-bottom: .3rem; line-height: 1.35; }
+.outcome-card p { font-size: .8rem; color: rgba(13,27,46,.72); line-height: 1.7; }
 
 /* ── SESSION ARC ── */
 .session-arc { margin-top: 1.75rem; position: relative; }
@@ -228,11 +232,12 @@ nav {
   gap: 1rem; margin-top: 1.75rem;
 }
 .assess-card {
-  background: var(--card-bg);
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: var(--r);
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9));
+  border: 1px solid rgba(13,27,46,.07);
+  border-radius: 1rem;
   padding: 1.4rem 1.5rem;
   position: relative; overflow: hidden;
+  box-shadow: 0 8px 24px rgba(12,18,28,.04);
 }
 .assess-card::before {
   content: attr(data-pct);
@@ -244,14 +249,15 @@ nav {
   font-family: var(--serif); font-size: 2rem;
   color: var(--accent); margin-bottom: .3rem;
 }
-.assess-card h4 { font-size: .9rem; font-weight: 500; margin-bottom: .5rem; }
-.assess-card p { font-size: .82rem; color: var(--muted); line-height: 1.65; }
+.assess-card h4 { font-size: .92rem; font-weight: 600; margin-bottom: .45rem; line-height: 1.35; color: var(--ink); }
+.assess-card p { font-size: .82rem; color: rgba(13,27,46,.72); line-height: 1.7; }
 
 /* ── SAMPLE QUIZ ── */
 .quiz-box {
   background: var(--ink);
   border-radius: 1rem; overflow: hidden;
   margin-top: 1.75rem;
+  box-shadow: 0 16px 40px rgba(12,18,28,.08);
 }
 .quiz-header {
   padding: 1.25rem 1.75rem;
@@ -359,23 +365,24 @@ nav {
 }
 .other-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 1.1rem;
 }
 .other-card {
-  background: var(--card-bg);
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: var(--r);
-  padding: 1.25rem 1.4rem;
-  transition: transform .2s, box-shadow .2s;
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9));
+  border: 1px solid rgba(13,27,46,.07);
+  border-radius: 1rem;
+  padding: 1.3rem 1.45rem 1.35rem;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  box-shadow: 0 8px 24px rgba(12,18,28,.04);
 }
-.other-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+.other-card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(12,18,28,.07); border-color: rgba(13,27,46,.12); }
 .other-type {
-  font-size: .65rem; font-weight: 500;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--accent); margin-bottom: .5rem;
+  font-size: .62rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent2); margin-bottom: .55rem;
 }
-.other-card h4 { font-size: .9rem; font-weight: 500; margin-bottom: .4rem; line-height: 1.3; }
-.other-card p { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+.other-card h4 { font-size: .92rem; font-weight: 600; margin-bottom: .4rem; line-height: 1.35; color: var(--ink); }
+.other-card p { font-size: .79rem; color: rgba(13,27,46,.72); line-height: 1.7; }
 
 /* ── FOOTER ── */
 footer {
@@ -462,16 +469,16 @@ footer a:hover { color: #fff; }
   <!-- 1. CONTEXT -->
   <div class="cs-section reveal">
     <div class="cs-section-label">The context</div>
-    <h2>Teaching a fast-moving topic to people starting from scratch</h2>
-    <p class="cs-body-text">This was a group project where I led the instructional design process. We collaborated with an expat subject matter expert who brought deep, current knowledge of the crypto space, and my role was to shape that expertise into a learning experience that actually worked for undergraduate students with no background in the subject.</p>
-    <p class="cs-body-text">The topic covers a lot of ground: Bitcoin's mechanics, Ethereum's smart contract ecosystem, DeFi protocols, NFT markets, macroeconomics, and how all of it sits within the Indonesian regulatory context. Getting the sequencing right mattered a lot here. Students needed each session to give them enough to make sense of the next one, and the assessments needed to show real understanding rather than just recall.</p>
+    <h2>Teaching a fast-moving topic to complete beginners</h2>
+    <p class="cs-body-text">This was a group project where I led the instructional design process. We worked with an expat subject matter expert who brought current crypto knowledge, and my job was to turn that expertise into a structure undergraduate students could follow without getting lost.</p>
+    <p class="cs-body-text">The topic covers a lot of ground: Bitcoin's mechanics, Ethereum's smart contract ecosystem, DeFi protocols, NFT markets, macroeconomics, and the Indonesian regulatory context. Sequencing mattered a lot here. Each session had to prepare students for the next one, and the assessments had to show understanding rather than just recall.</p>
   </div>
 
   <!-- 2. LEARNING OUTCOMES -->
   <div class="cs-section reveal">
     <div class="cs-section-label">Learning outcomes</div>
-    <h2>Four outcomes that go beyond knowledge</h2>
-    <p class="cs-body-text">I designed four course-level outcomes (CPMK) that build from comprehension through to analysis and application. The idea was that students shouldn't leave just knowing what crypto is. They should be able to evaluate a project, understand the legal questions around it, and make a basic investment case.</p>
+    <h2>Four outcomes that build toward application</h2>
+    <p class="cs-body-text">I designed four course-level outcomes (CPMK) that move from comprehension to analysis and application. The goal was not just for students to know what crypto is, but to evaluate a project, understand the legal questions around it, and make a basic investment case.</p>
     <div class="outcome-grid">
       <div class="outcome-card">
         <div class="outcome-num">1</div>
@@ -484,7 +491,7 @@ footer a:hover { color: #fff; }
         <div class="outcome-num">2</div>
         <div>
           <h4>Use cases and legal context</h4>
-          <p>Knowledge of how cryptocurrency is actually used, including the legal questions around ownership, storage, and digital identity in the Indonesian context.</p>
+          <p>Knowledge of how cryptocurrency is used in practice, including the legal questions around ownership, storage, and digital identity in the Indonesian context.</p>
         </div>
       </div>
       <div class="outcome-card">
@@ -508,14 +515,14 @@ footer a:hover { color: #fff; }
   <div class="cs-section reveal">
     <div class="cs-section-label">Course structure</div>
     <h2>How the 16 sessions build on each other</h2>
-    <p class="cs-body-text">Sequencing was one of the decisions I spent the most time on. I front-loaded the foundational concepts so that when students reached DeFi and NFTs later in the semester, they already had the vocabulary and mental models to engage with it properly. Throwing everything in at once tends to produce surface-level understanding at best.</p>
+    <p class="cs-body-text">Sequencing was one of the decisions I spent the most time on. I front-loaded the foundational concepts so that when students reached DeFi and NFTs later in the semester, they already had the vocabulary and mental models to engage with it properly. Putting everything on the table at once tends to produce surface-level understanding at best.</p>
     <div class="session-arc">
       <div class="arc-item">
-        <div class="arc-sessions">Sessions 1–3</div>
+          <div class="arc-sessions">Sessions 1-3</div>
         <div>
           <div class="arc-phase">Foundation</div>
           <h4>Bitcoin, decentralisation, and blockchain basics</h4>
-          <p>The first three sessions start with the question most people actually have: what is Bitcoin and why does it exist? From there we go into how the network works, wallet setup, and what decentralisation actually means in practice, including the legal and privacy side of it.</p>
+          <p>The first three sessions start with the question most students ask first: what is Bitcoin and why does it exist, From there we move into how the network works, wallet setup, and what decentralisation means in practice, including the legal and privacy side.</p>
           <div class="arc-topics">
             <span class="arc-topic">Bitcoin history</span>
             <span class="arc-topic">Satoshi Nakamoto</span>
@@ -527,7 +534,7 @@ footer a:hover { color: #fff; }
         </div>
       </div>
       <div class="arc-item">
-        <div class="arc-sessions">Sessions 4–5</div>
+          <div class="arc-sessions">Sessions 4-5</div>
         <div>
           <div class="arc-phase">Context</div>
           <h4>Macroeconomics and blockchain scalability</h4>
@@ -542,11 +549,11 @@ footer a:hover { color: #fff; }
         </div>
       </div>
       <div class="arc-item">
-        <div class="arc-sessions">Sessions 6–7</div>
+          <div class="arc-sessions">Sessions 6-7</div>
         <div>
           <div class="arc-phase">Platform depth</div>
           <h4>Ethereum, smart contracts, and on-chain practice</h4>
-          <p>The most hands-on sessions of the first half. Students learn how Ethereum differs from Bitcoin, explore its smart contract capabilities, and then actually use Etherscan to analyse real wallet activity and mint their own token. They write up what they did step by step, which forces them to actually understand the process rather than just follow instructions.</p>
+          <p>The most hands-on sessions in the first half. Students compare Ethereum with Bitcoin, explore smart contracts, and use Etherscan to analyse real wallet activity and mint their own token. Writing up the process forces them to explain what they did, not just follow instructions.</p>
           <div class="arc-topics">
             <span class="arc-topic">Ethereum vs Bitcoin</span>
             <span class="arc-topic">Smart contracts</span>
@@ -565,7 +572,7 @@ footer a:hover { color: #fff; }
         </div>
       </div>
       <div class="arc-item">
-        <div class="arc-sessions">Sessions 9–15</div>
+          <div class="arc-sessions">Sessions 9-15</div>
         <div>
           <div class="arc-phase">Advanced topics</div>
           <h4>Tokenisation, NFTs, DeFi, and investment analysis</h4>
@@ -596,7 +603,7 @@ footer a:hover { color: #fff; }
   <div class="cs-section reveal">
     <div class="cs-section-label">Assessment design</div>
     <h2>Checking understanding at every stage, not just the end</h2>
-    <p class="cs-body-text">I used a layered approach: small checks after each session, practical tasks that require students to apply what they know, and formal exams at the midpoint and end. The goal was to build in accountability throughout the semester so that the final exam wasn't the only real moment of reckoning.</p>
+    <p class="cs-body-text">I used a layered approach: small checks after each session, practical tasks that require students to apply what they know, and formal exams at the midpoint and end. The goal was to make accountability part of the semester, not just something that showed up in the final exam.</p>
     <div class="assessment-grid">
       <div class="assess-card" data-pct="30%">
         <div class="assess-pct">30%</div>
@@ -616,7 +623,7 @@ footer a:hover { color: #fff; }
       <div class="assess-card" data-pct="~23%">
         <div class="assess-pct">~23%</div>
         <h4>Session mini quizzes</h4>
-        <p>Five multiple-choice questions at the end of each foundational session. A deliberate retrieval practice decision — spacing recall across the semester rather than relying on exam cramming.</p>
+        <p>Five multiple-choice questions at the end of each foundational session. A deliberate retrieval practice decision, spacing recall across the semester rather than relying on exam cramming.</p>
       </div>
     </div>
   </div>
@@ -625,7 +632,7 @@ footer a:hover { color: #fff; }
   <div class="cs-section reveal">
     <div class="cs-section-label">Sample assessment content</div>
     <h2>A sample of the quiz questions I wrote</h2>
-    <p class="cs-body-text">Each quiz was tied directly to that session's learning objective. Here are a few sample questions from Session 1 and Session 2 to give a sense of the level and style. The correct answer is highlighted.</p>
+    <p class="cs-body-text">Each quiz was tied directly to that session's learning objective. Here are a few sample questions from Session 1 and Session 2 to show the level and style. The correct answer is highlighted.</p>
     <div class="quiz-box">
       <div class="quiz-header">
         <div class="quiz-header-left">
@@ -637,7 +644,7 @@ footer a:hover { color: #fff; }
 
       <div class="quiz-q">
         <div class="quiz-q-num">Question 1</div>
-        <p>Which of the following statements about the early history of Bitcoin is correct?</p>
+        <p>Which of the following statements about the early history of Bitcoin is correct,</p>
         <div class="quiz-options">
           <div class="quiz-opt"><div class="quiz-opt-key">A</div><span>WikiLeaks began accepting Bitcoin after it became El Salvador's national currency</span></div>
           <div class="quiz-opt"><div class="quiz-opt-key">B</div><span>"Bitcoin Pizza Day" started in 2002</span></div>
@@ -649,9 +656,9 @@ footer a:hover { color: #fff; }
 
       <div class="quiz-q">
         <div class="quiz-q-num">Question 2</div>
-        <p>Which of the following is NOT an advantage of cryptocurrency?</p>
+        <p>Which of the following is NOT an advantage of cryptocurrency,</p>
         <div class="quiz-options">
-          <div class="quiz-opt"><div class="quiz-opt-key">A</div><span>Decentralised — no single authority controls it</span></div>
+          <div class="quiz-opt"><div class="quiz-opt-key">A</div><span>Decentralised, no single authority controls it</span></div>
           <div class="quiz-opt correct"><div class="quiz-opt-key">B</div><span>Backed by a central bank</span></div>
           <div class="quiz-opt"><div class="quiz-opt-key">C</div><span>Transactions are public and transparent</span></div>
           <div class="quiz-opt"><div class="quiz-opt-key">D</div><span>Transactions can be confirmed quickly</span></div>
@@ -680,8 +687,8 @@ footer a:hover { color: #fff; }
     <h2>What I took away from designing this</h2>
     <div class="reflection-box">
       <p>One of the genuine challenges with crypto as a subject is that it moves faster than you can write a curriculum. A session on "current DeFi protocols" can feel outdated within months. The way I handled this was to design around principles and mechanics rather than specific products, so that even when individual examples become less current, the underlying concepts still hold.</p>
-      <p>Putting macroeconomics in session 4, after blockchain basics but before Ethereum, turned out to be the right call. Students needed that context to understand why decentralised finance matters, not just how it works technically. That kind of sequencing decision is easy to get wrong if you design by topic list rather than by how understanding actually builds.</p>
-      <p>The practicals were the most satisfying part to design. Having students use Etherscan and mint their own token on Ethereum meant the theory wasn't abstract anymore — they could see it running in real time. That connection between concept and action is something I try to build into every course I work on.</p>
+      <p>Putting macroeconomics in session 4, after blockchain basics but before Ethereum, turned out to be the right call. Students needed that context to understand why decentralised finance matters, not just how it works technically. That kind of sequencing decision is easy to get wrong if you design by topic list rather than by how understanding builds.</p>
+      <p>The practicals were the most satisfying part to design. Having students use Etherscan and mint their own token on Ethereum meant the theory was no longer abstract. They could see it running in real time. That connection between concept and action is something I try to build into every course I work on.</p>
     </div>
   </div>
 
@@ -690,7 +697,7 @@ footer a:hover { color: #fff; }
 <!-- CTA BAR -->
 <div class="cs-cta-bar">
   <div>
-    <h3>Want to see the full course materials?</h3>
+    <h3>Want to see the full course materials,</h3>
     <p>The RPS, session plans, quiz questions, lecture slides, and assessment rubrics are all in the Drive folder.</p>
   </div>
   <div class="cs-cta-links">

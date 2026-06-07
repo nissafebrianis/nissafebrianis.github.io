@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sleep Productivity — Nissa Febriani</title>
+<title>Sleep Productivity - Nissa Febriani</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2,family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink:     #0d1b2e;
@@ -59,37 +59,37 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
 
 /* CONTENT */
 .cs-content { max-width: 960px; margin: 0 auto; padding: 4rem 5vw; }
-.cs-section { margin-bottom: 4rem; }
-.cs-section-label { font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .75rem; }
-.cs-section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--accent); }
-.cs-section h2 { font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; letter-spacing: -.02em; margin-bottom: 1rem; }
-.cs-body-text { font-size: .95rem; color: var(--muted); line-height: 1.85; max-width: 680px; }
+.cs-section { margin-bottom: 4.5rem; }
+.cs-section-label { font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem; }
+.cs-section-label::before { content: ''; display: block; width: 18px; height: 2px; background: var(--accent); opacity: .8; }
+.cs-section h2 { font-family: var(--serif); font-size: clamp(1.55rem, 2.4vw, 2.05rem); line-height: 1.18; letter-spacing: -.02em; margin-bottom: 1rem; max-width: 14ch; }
+.cs-body-text { font-size: .95rem; color: rgba(13,27,46,.76); line-height: 1.8; max-width: 72ch; }
 .cs-body-text + .cs-body-text { margin-top: .85rem; }
 
 /* CHALLENGE CARDS */
 .challenge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.75rem; }
-.challenge-card { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); overflow: hidden; }
+.challenge-card { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
 .challenge-top { padding: 1.5rem; border-bottom: 1px solid rgba(0,0,0,.06); }
-.challenge-num { font-family: var(--serif); font-size: 2rem; font-style: italic; color: var(--cream); line-height: 1; margin-bottom: .5rem; }
-.challenge-card h4 { font-size: .92rem; font-weight: 500; color: var(--ink); margin-bottom: .4rem; }
-.challenge-card p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+.challenge-num { font-family: var(--serif); font-size: 2rem; font-style: italic; color: rgba(13,27,46,.22); line-height: 1; margin-bottom: .5rem; }
+.challenge-card h4 { font-size: .92rem; font-weight: 600; color: var(--ink); margin-bottom: .4rem; line-height: 1.35; }
+.challenge-card p { font-size: .82rem; color: rgba(13,27,46,.72); line-height: 1.7; }
 .challenge-tip { padding: 1rem 1.5rem; background: var(--paper); }
 .challenge-tip-label { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent2); margin-bottom: .3rem; }
 .challenge-tip p { font-size: .8rem; color: var(--muted); line-height: 1.65; }
 
 /* HABIT LOOP */
 .habit-loop { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0; }
-.habit-item { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: start; padding: 1.25rem 0; border-bottom: 1px solid rgba(0,0,0,.07); }
+.habit-item { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: start; padding: 1.25rem 0; border-bottom: 1px solid rgba(13,27,46,.07); }
 .habit-item:last-child { border-bottom: none; }
 .habit-area { font-family: var(--serif); font-size: .95rem; font-style: italic; color: var(--accent2); padding-top: .1rem; }
 .habit-phase { font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
-.habit-item h4 { font-size: .92rem; font-weight: 500; color: var(--ink); margin-bottom: .35rem; }
-.habit-item p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
+.habit-item h4 { font-size: .92rem; font-weight: 600; color: var(--ink); margin-bottom: .35rem; }
+.habit-item p { font-size: .82rem; color: rgba(13,27,46,.72); line-height: 1.7; }
 .habit-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
 .habit-tag { font-size: .7rem; padding: .22rem .65rem; background: var(--paper); border: 1px solid rgba(0,0,0,.08); border-radius: 100px; color: var(--muted); }
 
 /* LEARNING LOOP */
-.loop-diagram { margin-top: 2rem; background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: 1rem; padding: 2.25rem 1.75rem 2rem; overflow-x: auto; }
+.loop-diagram { margin-top: 2rem; background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; padding: 2.25rem 1.75rem 2rem; overflow-x: auto; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
 .loop-flow { display: flex; align-items: center; min-width: 720px; position: relative; margin-bottom: .5rem; }
 .loop-node { display: flex; flex-direction: column; align-items: center; gap: .75rem; flex-shrink: 0; }
 .loop-shape { display: flex; align-items: center; justify-content: center; text-align: center; font-size: .78rem; font-weight: 600; line-height: 1.3; padding: .7rem 1rem; }
@@ -108,25 +108,25 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
 .shape-box-green { background: #70ad47; color: #fff; border-radius: .5rem; padding: .5rem .75rem; font-size: .78rem; font-weight: 600; white-space: nowrap; border: 2px solid #3a7a1a; }
 .loop-node-label { font-size: .68rem; color: var(--muted); text-align: center; max-width: 118px; line-height: 1.4; }
 .loop-explain { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 2rem; }
-.loop-explain-item { background: var(--paper); border-radius: .75rem; padding: 1.25rem 1.4rem; }
-.lei-num { font-family: var(--serif); font-size: 1.5rem; font-style: italic; color: var(--cream); line-height: 1; margin-bottom: .4rem; }
+.loop-explain-item { background: var(--paper); border-radius: .85rem; padding: 1.25rem 1.4rem; border: 1px solid rgba(13,27,46,.06); }
+.lei-num { font-family: var(--serif); font-size: 1.5rem; font-style: italic; color: rgba(26,58,92,.18); line-height: 1; margin-bottom: .4rem; }
 .lei-title { font-size: .85rem; font-weight: 600; color: var(--ink); margin-bottom: .3rem; }
 .lei-text { font-size: .78rem; color: var(--muted); line-height: 1.65; }
 
 /* SCRIPT PREVIEW */
 .script-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.75rem; }
-.script-card { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); overflow: hidden; }
+.script-card { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
 .script-card-header { background: var(--ink); padding: .9rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
-.script-card-header h4 { font-size: .88rem; font-weight: 500; color: #fff; }
+.script-card-header h4 { font-size: .88rem; font-weight: 600; color: #fff; }
 .script-card-header span { font-size: .7rem; color: rgba(255,255,255,.4); }
 .script-card-body { padding: 1.1rem 1.25rem; }
-.script-vo { font-size: .8rem; color: var(--muted); line-height: 1.7; font-style: italic; margin-bottom: .85rem; padding-bottom: .85rem; border-bottom: 1px solid rgba(0,0,0,.07); }
+.script-vo { font-size: .8rem; color: rgba(13,27,46,.72); line-height: 1.7; font-style: italic; margin-bottom: .85rem; padding-bottom: .85rem; border-bottom: 1px solid rgba(13,27,46,.07); }
 .script-vo-label { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent2); margin-bottom: .3rem; }
 .script-slide-label { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: .3rem; }
 .script-slide { font-size: .8rem; color: var(--ink); line-height: 1.65; }
 
 /* INTERACTIVE: SLEEP HABITS CHECKER */
-.habit-checker { margin-top: 1.75rem; background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: 1rem; overflow: hidden; }
+.habit-checker { margin-top: 1.75rem; background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
 .hc-header { background: var(--ink); padding: 1.25rem 1.75rem; display: flex; align-items: center; justify-content: space-between; }
 .hc-header-left .hc-tag { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: .2rem; }
 .hc-header h3 { font-family: var(--serif); font-size: 1.1rem; color: #fff; }
@@ -156,7 +156,7 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
 .btn-hc.primary { background: var(--accent2); border-color: transparent; }
 
 /* SLEEP SCHEDULE BUILDER */
-.schedule-block { margin-top: 1.75rem; background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: 1rem; overflow: hidden; }
+.schedule-block { margin-top: 1.75rem; background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
 .sb-header { background: var(--ink); padding: 1.25rem 1.75rem; display: flex; align-items: center; justify-content: space-between; }
 .sb-header-left .sb-tag { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: .2rem; }
 .sb-header h3 { font-family: var(--serif); font-size: 1.1rem; color: #fff; }
@@ -220,19 +220,19 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
 .quiz-result-msg { font-size: .95rem; color: rgba(255,255,255,.75); line-height: 1.7; max-width: 480px; margin: 0 auto 1.5rem; }
 
 /* REFLECTION */
-.reflection-box { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-left: 3px solid var(--accent2); border-radius: 0 var(--r) var(--r) 0; padding: 1.75rem 2rem; margin-top: 1.75rem; }
-.reflection-box p { font-size: .95rem; color: var(--muted); line-height: 1.85; font-style: italic; }
+.reflection-box { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-left: 3px solid var(--accent2); border-radius: 0 1rem 1rem 0; padding: 1.75rem 2rem; margin-top: 1.75rem; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
+.reflection-box p { font-size: .95rem; color: rgba(13,27,46,.72); line-height: 1.85; font-style: italic; }
 .reflection-box p + p { margin-top: .85rem; }
 
 /* OTHER */
 .other-projects { padding: 3rem 5vw; max-width: 960px; margin: 0 auto; }
 .other-projects h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 1.25rem; letter-spacing: -.01em; }
-.other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-.other-card { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); padding: 1.25rem 1.4rem; transition: transform .2s, box-shadow .2s; }
-.other-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.08); }
-.other-type { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
-.other-card h4 { font-size: .9rem; font-weight: 500; margin-bottom: .4rem; line-height: 1.3; }
-.other-card p { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+.other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+.other-card { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; padding: 1.3rem 1.45rem 1.35rem; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
+.other-card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(12,18,28,.07); border-color: rgba(13,27,46,.12); }
+.other-type { font-size: .62rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent2); margin-bottom: .55rem; }
+.other-card h4 { font-size: .92rem; font-weight: 600; margin-bottom: .4rem; line-height: 1.35; color: var(--ink); }
+.other-card p { font-size: .79rem; color: rgba(13,27,46,.72); line-height: 1.7; }
 
 footer { background: var(--ink); color: rgba(255,255,255,.4); padding: 1.5rem 5vw; display: flex; align-items: center; justify-content: space-between; font-size: .8rem; }
 footer a { color: rgba(255,255,255,.6); transition: color .2s; }
@@ -248,23 +248,104 @@ footer a:hover { color: #fff; }
   .cs-meta-row { gap: 1.5rem; }
 }
 
-/* mindful loop refresh */
-.mindful-flow{display:grid;grid-template-columns:auto 26px auto 26px auto 26px auto;align-items:center;gap:.4rem;margin-bottom:1rem}
-.mf-step{padding:.65rem .9rem;border-radius:.7rem;font-size:.92rem;font-weight:700;line-height:1.2;text-align:center}
-.mf-start{background:#c592d1;color:#251734;border-radius:999px}
-.mf-core{background:#5b9bd5;color:#fff}
-.mf-assess{background:#ffc000;color:#2f2500}
-.mf-decision{background:#9dc3e6;color:#12314f;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);padding:.95rem 1rem}
-.mf-arrow{color:var(--muted);font-size:1.1rem;text-align:center}
-.mindful-branch{display:flex;gap:1rem;justify-content:flex-end;margin-bottom:1rem;flex-wrap:wrap}
-.mf-branch-item{display:flex;align-items:center;gap:.45rem}
-.mf-branch-label{font-size:.78rem;color:var(--muted)}
-.mf-branch-box{padding:.5rem .8rem;border-radius:.6rem;color:#fff;font-size:.82rem;font-weight:700}
-.mf-review{background:#ff7070}
-.mf-next{background:#70ad47}
-.loop-explain-item{border-top:3px solid #1a3a5c}
-.lei-num{color:#d2d6de}
-@media (max-width: 980px){.mindful-flow{grid-template-columns:1fr;gap:.55rem}.mf-arrow{display:none}.mf-decision{clip-path:none;border-radius:.7rem}.mindful-branch{justify-content:flex-start}}
+/* refined learning loop */
+.loop-stepper {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.loop-stepper::before {
+  content: '';
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 2.95rem;
+  height: 1px;
+  background: rgba(26,58,92,.16);
+}
+.loop-step {
+  position: relative;
+  z-index: 1;
+  background: var(--paper);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: .95rem;
+  padding: 1rem 1rem 1.1rem;
+  box-shadow: 0 8px 22px rgba(12,18,28,.04);
+}
+.loop-step-num {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1;
+  color: rgba(26,58,92,.24);
+  margin-bottom: .45rem;
+}
+.loop-step-title {
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+  margin-bottom: .25rem;
+}
+.loop-step-copy {
+  font-size: .78rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.loop-branch {
+  display: flex;
+  justify-content: flex-start;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin: .2rem 0 1rem;
+}
+.loop-branch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .58rem .85rem;
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--ink);
+  background: rgba(255,255,255,.9);
+  border: 1px solid rgba(26,58,92,.12);
+}
+.loop-branch-pill.primary {
+  background: #70ad47;
+  color: #fff;
+  border-color: #3a7a1a;
+}
+.loop-branch-pill.secondary {
+  background: #ff7070;
+  color: #fff;
+  border-color: transparent;
+}
+.loop-explain-item {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: .85rem;
+  padding: 1.15rem 1.25rem 1.3rem;
+}
+.lei-num {
+  color: rgba(26,58,92,.18);
+}
+.loop-note {
+  margin-top: .35rem;
+  font-size: .92rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 72ch;
+}
+@media (max-width: 980px){
+  .loop-stepper { grid-template-columns: 1fr; }
+  .loop-stepper::before { display: none; }
+  .loop-branch { justify-content: flex-start; }
+}
 </style>
 </head>
 <body>
@@ -289,7 +370,7 @@ footer a:hover { color: #fff; }
     </div>
     <div class="cs-type">Case Study</div>
     <h1>Sleep <em>Productivity</em></h1>
-    <p class="cs-hero-sub">An e-learning module designed to help people build healthier sleep habits — not by lecturing them about sleep, but by walking them through the real obstacles that get in the way and giving them practical tools to address each one.</p>
+    <p class="cs-hero-sub">An e-learning module designed to help people build healthier sleep habits by working through the real obstacles that get in the way and giving them practical steps for each one.</p>
     <div class="cs-meta-row">
       <div class="cs-meta-item">
         <div class="cs-meta-label">Format</div>
@@ -320,66 +401,57 @@ footer a:hover { color: #fff; }
   <!-- CONTEXT -->
   <div class="cs-section reveal">
     <div class="cs-section-label">The context</div>
-    <h2>Most people know they should sleep better. Very few actually change how they do it.</h2>
-    <p class="cs-body-text">The brief for this module wasn't to explain what sleep is, or even why it matters. People already know sleep is important. What they don't know, or haven't figured out, is how to actually protect it when everything else in their life is competing for the same hours.</p>
-    <p class="cs-body-text">So I designed the module around the three barriers that most consistently get in the way: screen time, stress, and lifestyle choices. For each one, the content moves from explaining the problem to giving learners something they can actually try. The learning loop structure kept every section accountable to that goal.</p>
+    <h2>Most people know they should sleep better. Very few change how they do it.</h2>
+    <p class="cs-body-text">The brief was not to explain what sleep is. People already know that. The harder part is protecting sleep when work, screens, stress, and daily routines keep pulling in the other direction.</p>
+    <p class="cs-body-text">I designed the module around three barriers that show up again and again: screen time, stress, and lifestyle choices. Each section moves from problem to practice. The loop keeps the module honest.</p>
   </div>
 
   <!-- LEARNING LOOP -->
   <div class="cs-section reveal">
     <div class="cs-section-label">Learning design</div>
-    <h2>The same loop runs through every section of the module</h2>
-    <p class="cs-body-text">Each challenge follows a scaffolded cycle: learners read the theory, complete a micro-assessment, and either move forward or return to review. Nobody advances until they've shown they've understood. It sounds simple, but this structure changes the relationship between learning and testing entirely.</p>
-        <div class="loop-diagram">
-      <div class="mindful-flow">
-        <div class="mf-step mf-start">Mulai Bagian</div>
-        <div class="mf-arrow">&rarr;</div>
-        <div class="mf-step mf-core">Core Theory: Bagian X</div>
-        <div class="mf-arrow">&rarr;</div>
-        <div class="mf-step mf-assess">Asesmen Mikro: Scaffolding</div>
-        <div class="mf-arrow">&rarr;</div>
-        <div class="mf-step mf-decision">Lulus?</div>
-      </div>
-      <div class="mindful-branch">
-        <div class="mf-branch-item"><span class="mf-branch-label">Tidak</span><span class="mf-branch-box mf-review">Review Materi</span></div>
-        <div class="mf-branch-item"><span class="mf-branch-label">Ya</span><span class="mf-branch-box mf-next">Lanjut ke Bagian Berikutnya</span></div>
-      </div>
-      <div class="loop-explain">
-        <div class="loop-explain-item">
-          <div class="lei-num">01</div>
-          <div class="lei-title">Start each section</div>
-          <div class="lei-text">Every challenge begins fresh. Learners always know where they are and what they're working on.</div>
+    <h2>How the learning loop works</h2>
+    <p class="cs-body-text">Each challenge follows the same pattern: learn the core idea, complete a short check, and either move forward or review the material. Nobody advances until the understanding is there.</p>
+    <div class="loop-diagram">
+      <div class="loop-stepper">
+        <div class="loop-step">
+          <span class="loop-step-num">01</span>
+          <div class="loop-step-title">Start the section</div>
+          <div class="loop-step-copy">Every challenge begins with a clear starting point.</div>
         </div>
-        <div class="loop-explain-item">
-          <div class="lei-num">02</div>
-          <div class="lei-title">Core theory first</div>
-          <div class="lei-text">The science and the practical tips come before any testing. Learners understand before they're asked to apply.</div>
+        <div class="loop-step">
+          <span class="loop-step-num">02</span>
+          <div class="loop-step-title">Read the core theory</div>
+          <div class="loop-step-copy">The science and practical advice come first.</div>
         </div>
-        <div class="loop-explain-item">
-          <div class="lei-num">03</div>
-          <div class="lei-title">Micro-assessment</div>
-          <div class="lei-text">A short scaffolded check tied directly to that section's content confirms comprehension before moving on.</div>
+        <div class="loop-step">
+          <span class="loop-step-num">03</span>
+          <div class="loop-step-title">Complete the micro-check</div>
+          <div class="loop-step-copy">A short check confirms comprehension.</div>
         </div>
-        <div class="loop-explain-item">
-          <div class="lei-num">04</div>
-          <div class="lei-title">Pass or review</div>
-          <div class="lei-text">Pass and you advance. If not, you return to the material for another look. No penalty, just another chance.</div>
+        <div class="loop-step">
+          <span class="loop-step-num">04</span>
+          <div class="loop-step-title">Pass or review</div>
+          <div class="loop-step-copy">Advance if ready, or review the material again.</div>
         </div>
       </div>
+      <div class="loop-branch">
+        <div class="loop-branch-pill secondary">If not yet clear, review the material</div>
+        <div class="loop-branch-pill primary">If clear, continue to the next section</div>
+      </div>
+      <p class="loop-note">Read it left to right: the lesson introduces the idea, the check confirms understanding, and the branch decides whether the learner moves forward or revisits the material.</p>
     </div>
-  </div>
 
   <!-- THREE CHALLENGES -->
   <div class="cs-section reveal">
     <div class="cs-section-label">Core content</div>
     <h2>Three challenges, each with a practical path forward</h2>
-    <p class="cs-body-text">The module is built around three real barriers to healthy sleep. Each one is grounded in research, explained through the audio-visual script, and followed by specific actions learners can take. Below is a summary of each challenge and the design approach for the content.</p>
+    <p class="cs-body-text">The module is built around three real barriers to healthy sleep. Each one is grounded in research, explained through the audio-visual script, and followed by actions learners can try. Below is a summary of each challenge and the design approach behind it.</p>
     <div class="challenge-grid">
       <div class="challenge-card">
         <div class="challenge-top">
           <div class="challenge-num">01</div>
           <h4>Screen time before bed</h4>
-          <p>Blue light from phones and laptops mimics morning sunlight, signalling the brain to stay awake. Binge-watching is linked to lower sleep quality and more symptoms of insomnia. Smartphone apps are designed to keep people coming back — which is what makes this challenge genuinely hard to resist.</p>
+          <p>Blue light from phones and laptops mimics morning sunlight, signalling the brain to stay awake. Binge-watching is linked to lower sleep quality and more symptoms of insomnia. App design also makes it easy to keep scrolling, which is what makes this habit hard to break.</p>
         </div>
         <div class="challenge-tip">
           <div class="challenge-tip-label">Practical guidance in the module</div>
@@ -390,18 +462,18 @@ footer a:hover { color: #fff; }
         <div class="challenge-top">
           <div class="challenge-num">02</div>
           <h4>Stress and a busy lifestyle</h4>
-          <p>When the body is under stress, it enters a state of alertness that actively reduces deep sleep. Nighttime work and social commitments compound this. The research shows that stress does not just delay sleep — it can create new sleep disruptions and worsen existing ones.</p>
+          <p>When the body stays alert, deep sleep gets reduced. Night work and social commitments add to the strain, and stress can interrupt sleep rather than just delay it.</p>
         </div>
         <div class="challenge-tip">
           <div class="challenge-tip-label">Practical guidance in the module</div>
-          <p>The content walks learners through setting boundaries with work, avoiding overthinking by focusing on what's within their control, and building consistency in eating, sleeping, and physical activity patterns.</p>
+          <p>The content walks learners through setting boundaries with work, focusing on what is within their control, and building consistency in eating, sleeping, and physical activity patterns.</p>
         </div>
       </div>
       <div class="challenge-card">
         <div class="challenge-top">
           <div class="challenge-num">03</div>
           <h4>Unhealthy lifestyle choices</h4>
-          <p>Junk food disrupts sleep through refined sugars and excess calories. The brain's dopamine response to these foods makes sudden elimination unsustainable. The module acknowledges this directly rather than pretending willpower alone is enough.</p>
+          <p>Junk food can disrupt sleep through refined sugars and excess calories. The brain's dopamine response to these foods makes sudden elimination unsustainable, so the module addresses the habit directly instead of pretending willpower alone is enough.</p>
         </div>
         <div class="challenge-tip">
           <div class="challenge-tip-label">Practical guidance in the module</div>
@@ -415,7 +487,7 @@ footer a:hover { color: #fff; }
   <div class="cs-section reveal">
     <div class="cs-section-label">Script sample</div>
     <h2>How the audio-visual script was written</h2>
-    <p class="cs-body-text">Each slide in the module has a voice-over script and a corresponding on-screen text element. The two don't repeat each other — the VO carries the explanation while the slide text anchors the key point. Here are two samples from the actual script.</p>
+    <p class="cs-body-text">Each slide in the module has a voice-over script and a corresponding on-screen text element. The two do different jobs: the voice-over carries the explanation while the slide text keeps the key point visible. Here are two samples from the script.</p>
     <div class="script-grid">
       <div class="script-card">
         <div class="script-card-header">
@@ -436,9 +508,9 @@ footer a:hover { color: #fff; }
         </div>
         <div class="script-card-body">
           <div class="script-vo-label">Voice-over</div>
-          <div class="script-vo">"Stress and sleep cannot harmoniously coexist. When we are stressed, the body is in a state of constant alertness and alarm. It resembles a situation of feeling under threat, and so the process of deep sleep is reduced to accommodate accordingly — to be vigilant during this threatening period."</div>
+          <div class="script-vo">"When stress stays high, the body stays alert. Deep sleep becomes harder to reach because the brain is still treating the situation like a threat."</div>
           <div class="script-slide-label">On-screen text</div>
-          <div class="script-slide">Stress and sleep cannot harmoniously coexist. When we are stressed, the body is in a state of constant alertness and alarm.</div>
+          <div class="script-slide">When stress stays high, the body stays alert, which makes deep sleep harder to reach.</div>
         </div>
       </div>
     </div>
@@ -448,7 +520,7 @@ footer a:hover { color: #fff; }
   <div class="cs-section reveal">
     <div class="cs-section-label">Interactive activity 1</div>
     <h2>Try it: how healthy are your sleep habits right now?</h2>
-    <p class="cs-body-text">One of the activities I included in the module asks learners to honestly assess their current habits before receiving any recommendations. Knowing where you actually stand is step one. Select the habits you currently practice.</p>
+    <p class="cs-body-text">One of the activities asks learners to assess their current habits before receiving any recommendations. The point is to start with an honest baseline. Select the habits you currently practice.</p>
     <div class="habit-checker">
       <div class="hc-header">
         <div class="hc-header-left">
@@ -462,11 +534,11 @@ footer a:hover { color: #fff; }
         <div class="hc-items" id="hc-items">
           <div class="hc-item" onclick="toggleHC(this)">
             <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
-            <div class="hc-item-text"><h5>I stop using screens at least one hour before bed</h5><p>Phone, laptop, TV — all off or away one hour before you plan to sleep.</p></div>
+            <div class="hc-item-text"><h5>I stop using screens at least one hour before bed</h5><p>Phone, laptop, and TV are off or away one hour before you plan to sleep.</p></div>
           </div>
           <div class="hc-item" onclick="toggleHC(this)">
             <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
-            <div class="hc-item-text"><h5>I go to bed and wake up at roughly the same time every day</h5><p>Including weekends — consistency is what trains your body clock.</p></div>
+            <div class="hc-item-text"><h5>I go to bed and wake up at roughly the same time every day</h5><p>Including weekends, because consistency is what trains your body clock.</p></div>
           </div>
           <div class="hc-item" onclick="toggleHC(this)">
             <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
@@ -478,7 +550,7 @@ footer a:hover { color: #fff; }
           </div>
           <div class="hc-item" onclick="toggleHC(this)">
             <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
-            <div class="hc-item-text"><h5>I have a wind-down routine before bed</h5><p>Something consistent — reading, light stretching, herbal tea — that signals sleep is coming.</p></div>
+            <div class="hc-item-text"><h5>I have a wind-down routine before bed</h5><p>Something consistent such as reading, light stretching, or herbal tea that signals sleep is coming.</p></div>
           </div>
           <div class="hc-item" onclick="toggleHC(this)">
             <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
@@ -511,7 +583,7 @@ footer a:hover { color: #fff; }
   <div class="cs-section reveal">
     <div class="cs-section-label">Interactive activity 2</div>
     <h2>Try it: build your sleep schedule</h2>
-    <p class="cs-body-text">One of the most evidence-backed habits for sleep quality is consistency. This activity helps learners work out a sleep schedule that fits their life, and shows them exactly what time they need to be in bed to get enough sleep for their wake-up time.</p>
+    <p class="cs-body-text">One of the most evidence-backed habits for sleep quality is consistency. This activity helps learners build a sleep schedule that fits their life and shows them the bedtime they need to hit to get enough sleep for their wake-up time.</p>
     <div class="schedule-block">
       <div class="sb-header">
         <div class="sb-header-left">
@@ -522,11 +594,11 @@ footer a:hover { color: #fff; }
       </div>
       <div class="sb-body">
         <div class="sb-left">
-          <label class="sb-label">What time do you need to wake up?</label>
+          <label class="sb-label">What time do you need to wake up,</label>
           <span class="sb-sublabel">Set a consistent wake time, even on weekends.</span>
           <input class="sb-input" type="time" id="wake-time" value="07:00" oninput="updateSchedule()">
 
-          <label class="sb-label">How much sleep do you want to aim for?</label>
+          <label class="sb-label">How much sleep do you want to aim for,</label>
           <span class="sb-sublabel">Most adults need 7 to 9 hours. Pick a realistic target.</span>
           <div class="sb-options" id="sb-options">
             <div class="sb-option selected" onclick="selectHours(this, 7)" data-hours="7">
@@ -551,7 +623,7 @@ footer a:hover { color: #fff; }
           </div>
           <div class="sb-tip" id="sb-tip">
             <strong>Why this matters</strong>
-            A consistent bed and wake time trains your circadian rhythm so falling asleep and waking up become easier over time — even without an alarm.
+            A consistent bed and wake time trains your circadian rhythm so falling asleep and waking up become easier over time, even without an alarm.
           </div>
         </div>
       </div>
@@ -562,7 +634,7 @@ footer a:hover { color: #fff; }
   <div class="cs-section reveal">
     <div class="cs-section-label">Knowledge assessment</div>
     <h2>Check your understanding</h2>
-    <p class="cs-body-text">The module closes with scenario-based questions drawn from the actual knowledge evaluation I designed. Each question puts learners in a real situation and asks them to apply what they've learned, not just recall definitions.</p>
+    <p class="cs-body-text">The module closes with scenario-based questions drawn from the knowledge evaluation I designed. Each question puts learners in a real situation and asks them to apply what they've learned, not just recall definitions.</p>
     <div class="quiz-wrap" id="quiz">
       <div class="quiz-progress-bar-wrap">
         <div class="quiz-progress-bar" id="quiz-progress-bar" style="width:0%"></div>
@@ -594,9 +666,9 @@ footer a:hover { color: #fff; }
     <div class="cs-section-label">What I took away from this</div>
     <h2>Writing about habits without being preachy</h2>
     <div class="reflection-box">
-      <p>The hardest part of scripting this module wasn't finding the research. It was figuring out how to present it in a way that didn't make people feel lectured. Sleep advice tends to read like a list of things you're doing wrong. I worked hard to make the script feel more like a conversation with someone who understands that life is busy, screens are addictive by design, and junk food tastes good for biological reasons.</p>
-      <p>The decision to address the science behind each challenge first — why blue light is similar to sunlight, why junk food targets pleasure receptors, why stress triggers alertness — was intentional. People are more likely to change a behaviour when they understand why it works the way it does, rather than just being told what to stop doing.</p>
-      <p>The scaffolded loop structure also pushed me to be precise about what each section was actually testing. You can't write a meaningful micro-assessment unless you know exactly what the learning objective was. That accountability improved the content itself, not just the assessment.</p>
+      <p>The hardest part was not the research. It was writing it in a way that did not feel lecturing. Sleep advice can sound like a list of things people are doing wrong, so I wanted the script to feel more like a guide than a lecture.</p>
+      <p>The decision to address the science behind each challenge first was intentional. People are more likely to change a behaviour when they understand why it works the way it does, rather than just being told what to stop doing.</p>
+      <p>The scaffolded loop also pushed me to be precise about what each section was testing. You cannot write a meaningful micro-assessment unless you know exactly what the learning objective is. That clarity improved the content itself, not just the assessment.</p>
     </div>
   </div>
 
@@ -619,7 +691,7 @@ footer a:hover { color: #fff; }
     <a href="case-detective.html" class="other-card">
       <div class="other-type">Game-Based Learning</div>
       <h4>Detective Mystery: Collaborative Online Game</h4>
-      <p>A mystery game designed to help a new remote team learn to actually communicate under pressure.</p>
+      <p>A mystery game designed to help a new remote team communicate under pressure.</p>
     </a>
   </div>
 </div>
@@ -659,8 +731,8 @@ function checkHabits() {
   document.getElementById('hc-score').textContent = checked + ' / ' + total;
   document.getElementById('hc-bar').style.width = pct + '%';
   let msg = '';
-  if (checked <= 2) msg = 'You have a few good habits in place, but there is real room to build on them. The module covers each of these areas in detail — start with whichever feels most achievable to add first.';
-  else if (checked <= 5) msg = 'You are doing reasonably well with some habits. The ones you are not yet practicing consistently are worth focusing on — small changes in sleep consistency and screen time tend to have the biggest impact.';
+  if (checked <= 2) msg = 'You have a few good habits in place, but there is real room to build on them. The module covers each of these areas in detail, so start with whichever feels most achievable to add first.';
+  else if (checked <= 5) msg = 'You are doing reasonably well with some habits. The ones you are not yet practicing consistently are worth focusing on, because small changes in sleep consistency and screen time tend to have the biggest impact.';
   else msg = 'You already have most of the key habits in place. The module will help you understand why they work and fill in any remaining gaps. Keep going.';
   document.getElementById('hc-msg').textContent = msg;
   result.classList.add('show');
@@ -704,35 +776,35 @@ updateSchedule();
 const questions = [
   {
     topic: 'Adequate Sleep',
-    q: 'How many hours of sleep should an adult aim for to support optimal productivity?',
+    q: 'How many hours of sleep should an adult aim for to support optimal productivity,',
     options: ['6 to 7 hours per night', '7 to 9 hours per night', '8 to 10 hours per night', '9 to 11 hours per night'],
     answer: 1,
     feedback: 'Most adults need around 7 to 9 hours per night to achieve sufficient sleep and support optimal productivity. Going below or above this range is associated with reduced performance and health risks.'
   },
   {
     topic: 'Sleep Environment',
-    q: 'You are redesigning your bedroom to improve sleep quality. Which approach gives you the best results?',
+    q: 'You are redesigning your bedroom to improve sleep quality. Which approach gives you the best results,',
     options: ['Ensuring your mattress, pillows, and bedding are comfortable and supportive.', 'Painting the walls in bright, stimulating colours to enhance your mood.', 'Leaving your TV and phone on to help you fall asleep faster.', 'Keeping the room well-lit to avoid feeling sleepy before bedtime.'],
     answer: 0,
     feedback: 'Comfortable and supportive bedding is one of the most consistent factors in sleep quality. Bright colours, screens, and lights all work against the relaxation your body needs to transition into sleep.'
   },
   {
     topic: 'Excessive Sleepiness',
-    q: 'You are often excessively sleepy during the day despite getting enough sleep at night. This is affecting your work and concentration. What should you do?',
+    q: 'You are often excessively sleepy during the day despite getting enough sleep at night. This is affecting your work and concentration. What should you do,',
     options: ['Ignore the symptoms and continue with your daily routine', 'Increase your caffeine intake to stay awake', 'Consult with a healthcare professional to determine the underlying cause', 'Start taking over-the-counter sleep aids to regulate your sleep patterns'],
     answer: 2,
     feedback: 'Excessive daytime sleepiness despite adequate night sleep is a signal that something else may be going on. A healthcare professional can identify the underlying cause and recommend appropriate treatment. Caffeine and sleep aids mask the symptom without addressing what is causing it.'
   },
   {
     topic: 'Evening Routine',
-    q: 'Which strategy can you incorporate into an evening routine to improve sleep quality?',
+    q: 'Which strategy can you incorporate into an evening routine to improve sleep quality,',
     options: ['Drink a cup of warm relaxing herbal tea', 'Engage in mentally intensive activities until you feel tired', 'Go to bed and wake up at different times each day to vary the routine', 'Nap during the day to make sure you get enough sleep'],
     answer: 0,
     feedback: 'A warm herbal tea is a simple, evidence-backed part of a wind-down routine. Mentally intensive activities stimulate the brain, inconsistent schedules disrupt your body clock, and daytime napping can interfere with your ability to fall asleep at night.'
   },
   {
     topic: 'Sleep Disorders',
-    q: 'Which sleep disorder is characterised by difficulty breathing comfortably, loud snoring, and frequent coughing during sleep?',
+    q: 'Which sleep disorder is characterised by difficulty breathing comfortably, loud snoring, and frequent coughing during sleep,',
     options: ['Insomnia', 'Narcolepsy', 'Restless Legs Syndrome', 'Sleep apnea'],
     answer: 3,
     feedback: 'Sleep apnea involves interrupted breathing during sleep, which causes the airway to become blocked or narrowed. This leads to loud snoring, coughing, and frequent micro-awakenings that significantly reduce sleep quality even when the person does not remember waking.'

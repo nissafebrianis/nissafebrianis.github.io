@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Nissa Febriani — Learning Designer & Training Facilitator</title>
+  <title>Nissa Febriani | Learning Designer & Training Facilitator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2,family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink:     #0d1b2e;
@@ -34,7 +34,7 @@ body {
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 
-/* ── PROGRESS BAR (learning journey tracker) ── */
+/* â”€â”€ PROGRESS BAR (learning journey tracker) â”€â”€ */
 #journey-progress {
   position: fixed;
   top: 0; left: 0;
@@ -45,7 +45,7 @@ img { max-width: 100%; display: block; }
   transition: width 0.1s linear;
 }
 
-/* ── NAV ── */
+/* â”€â”€ NAV â”€â”€ */
 nav {
   position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
   background: rgba(240,242,245,.94);
@@ -84,7 +84,7 @@ nav {
 }
 .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
 
-/* ── CHAPTER LABEL (floats left on scroll) ── */
+/* â”€â”€ CHAPTER LABEL (floats left on scroll) â”€â”€ */
 #chapter-label {
   position: fixed;
   left: 2rem; top: 50%;
@@ -103,7 +103,7 @@ nav {
 }
 #chapter-label.visible { opacity: 1; }
 
-/* ── HERO (Module 0: Introduction) ── */
+/* â”€â”€ HERO (Module 0: Introduction) â”€â”€ */
 .hero {
   min-height: 100vh;
   display: grid;
@@ -208,6 +208,135 @@ h1 em { color: var(--accent); font-style: italic; }
 }
 .stat-label { font-size: .75rem; color: var(--muted); font-weight: 500; }
 
+
+.hero-profile {
+  aspect-ratio: 4/5; max-width: 58%;
+  margin-left: auto;
+  padding: 1.2rem;
+  border-radius: 2rem 2rem 6.5rem 2rem;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.06);
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,.92) 0%, rgba(255,255,255,.42) 16%, rgba(255,255,255,0) 34%),
+    linear-gradient(180deg, #dfe6ef 0%, #cfd8e3 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+.hero-profile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(13,27,46,.04) 25%, rgba(13,27,46,0) 25% 50%, rgba(13,27,46,.04) 50% 75%, rgba(13,27,46,0) 75%),
+    linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,0));
+  background-size: 22px 22px, 100% 100%;
+  opacity: .55;
+  pointer-events: none;
+}
+.hero-profile-top,
+.hero-profile-note {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(13,27,46,.06);
+  box-shadow: 0 10px 24px rgba(12,18,28,.04);
+}
+.hero-profile-top { border-radius: 1rem; padding: 1rem 1.05rem .95rem; }
+.hero-profile-kicker {
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .45rem;
+}
+.hero-profile-top h3 { font-size: 1.1rem; font-weight: 600; line-height: 1.2; color: var(--ink); margin-bottom: .25rem; }
+.hero-profile-top p { font-size: .82rem; color: var(--muted); line-height: 1.55; }
+.hero-profile-statement {
+  position: relative;
+  z-index: 1;
+  padding: 1rem 1.05rem;
+  border-radius: 1rem;
+  background: rgba(13,27,46,.94);
+  color: #fff;
+  font-size: .88rem;
+  line-height: 1.7;
+  box-shadow: 0 12px 28px rgba(13,27,46,.16);
+}
+.hero-profile-notes { position: relative; z-index: 1; margin-top: auto; display: grid; gap: .6rem; }
+.hero-profile-note { border-radius: .85rem; padding: .85rem .95rem; }
+.hero-profile-note span {
+  display: block;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .25rem;
+}
+.hero-profile-note strong { display: block; font-size: .84rem; line-height: 1.55; color: var(--ink); font-weight: 500; }
+
+
+.hero-profile {
+  aspect-ratio: 4/5; max-width: 58%;
+  margin-left: auto;
+  padding: 1.2rem;
+  border-radius: 2rem 2rem 6.5rem 2rem;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,.06);
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255,255,255,.92) 0%, rgba(255,255,255,.42) 16%, rgba(255,255,255,0) 34%),
+    linear-gradient(180deg, #dfe6ef 0%, #cfd8e3 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+.hero-profile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(13,27,46,.04) 25%, rgba(13,27,46,0) 25% 50%, rgba(13,27,46,.04) 50% 75%, rgba(13,27,46,0) 75%),
+    linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,0));
+  background-size: 22px 22px, 100% 100%;
+  opacity: .55;
+  pointer-events: none;
+}
+.hero-profile-top,
+.hero-profile-note {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(13,27,46,.06);
+  box-shadow: 0 10px 24px rgba(12,18,28,.04);
+}
+.hero-profile-top { border-radius: 1rem; padding: 1rem 1.05rem .95rem; }
+.hero-profile-kicker {
+  font-size: .65rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .45rem;
+}
+.hero-profile-top h3 { font-size: 1.1rem; font-weight: 600; line-height: 1.2; color: var(--ink); margin-bottom: .25rem; }
+.hero-profile-top p { font-size: .82rem; color: var(--muted); line-height: 1.55; }
+.hero-profile-notes { position: relative; z-index: 1; margin-top: auto; display: grid; gap: .6rem; }
+.hero-profile-note { border-radius: .85rem; padding: .85rem .95rem; }
+.hero-profile-note span {
+  display: block;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .25rem;
+}
+.hero-profile-note strong { display: block; font-size: .84rem; line-height: 1.55; color: var(--ink); font-weight: 500; }
+
 .hero-photo {
   aspect-ratio: 4/5; max-width: 58%;
   margin-left: auto;
@@ -242,15 +371,47 @@ h1 em { color: var(--accent); font-style: italic; }
   justify-content: center;
   border: 1px solid rgba(255,255,255,.2);
   z-index: 1;
-}.hero-photo-badge {
-  position: absolute; bottom: 1.5rem; left: 1.2rem; right: 1.2rem;
+}
+.hero-photo-badge {
+  position: absolute; top: 1.2rem; left: 1.2rem; right: 1.2rem;
   background: rgba(255,255,255,.92); backdrop-filter: blur(8px);
   border-radius: .75rem; padding: .9rem 1.1rem;
 }
 .hero-photo-badge strong { display: block; font-size: .88rem; font-weight: 500; }
 .hero-photo-badge span { font-size: .75rem; color: var(--muted); }
+.hero-photo-facts {
+  position: absolute;
+  left: 1.2rem;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  display: grid;
+  gap: .6rem;
+}
+.hero-fact {
+  padding: .7rem .85rem;
+  border-radius: .7rem;
+  background: rgba(255,255,255,.84);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(13,27,46,.08);
+}
+.hero-fact span {
+  display: block;
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .25rem;
+}
+.hero-fact strong {
+  display: block;
+  font-size: .82rem;
+  line-height: 1.5;
+  color: var(--ink);
+  font-weight: 500;
+}
 
-/* ── SECTION COMMONS ── */
+/* â”€â”€ SECTION COMMONS â”€â”€ */
 section { padding: 6rem 5vw; position: relative; }
 section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec 44%, #cbd4de 100%); }
 
@@ -273,7 +434,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 .section-intro h2 em { color: var(--accent); font-style: italic; }
 .section-intro p { color: var(--muted); font-size: .95rem; line-height: 1.8; }
 
-/* ── CHAPTER DIVIDERS (the learning journey feel) ── */
+/* â”€â”€ CHAPTER DIVIDERS (the learning journey feel) â”€â”€ */
 .chapter-divider {
   display: flex; align-items: center; gap: 1.5rem;
   padding: 1.25rem 5vw;
@@ -295,7 +456,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
   display: flex; align-items: center; justify-content: center;
 }
 
-/* ── ABOUT / MY PROCESS (Module 1) ── */
+/* â”€â”€ ABOUT / MY PROCESS (Module 1) â”€â”€ */
 .about-grid {
   display: grid; grid-template-columns: 1.2fr 1fr;
   gap: 5rem; align-items: start;
@@ -304,16 +465,63 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 .about-text h2 { font-family: var(--serif); font-size: clamp(1.8rem,3vw,2.5rem); line-height: 1.2; letter-spacing: -.02em; margin-bottom: 1.5rem; }
 .about-text h2 em { font-style: italic; color: var(--accent2); }
 
-.skills-list { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.8rem; }
-.skill-tag {
-  padding: .35rem .9rem;
-  background: var(--card-bg);
-  border: 1px solid rgba(0,0,0,.1);
-  border-radius: 100px;
-  font-size: .78rem; font-weight: 500; color: var(--ink);
-  transition: border-color .2s, color .2s, background .2s;
+.skills-section {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(0,0,0,.08);
 }
-.skill-tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(123,31,46,.05); }
+.skills-kicker {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-size: .68rem; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .65rem;
+}
+.skills-kicker::before {
+  content: '';
+  width: 22px; height: 2px;
+  background: var(--accent);
+}
+.skills-section p {
+  color: var(--muted);
+  font-size: .9rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  max-width: 52ch;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.skill-group {
+  padding-top: .4rem;
+  border-top: 1px solid rgba(0,0,0,.06);
+}
+.skill-group-label {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: .6rem;
+}
+.skills-list { display: flex; flex-wrap: wrap; gap: .45rem; }
+.skill-tag {
+  padding: .31rem .7rem;
+  background: rgba(255,255,255,.9);
+  border: 1px solid rgba(13,27,46,.08);
+  border-radius: 999px;
+  font-size: .74rem;
+  font-weight: 500;
+  color: var(--ink);
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+.skill-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(123,31,46,.05);
+}
 
 /* Process timeline (replaces static approach cards) */
 .process-timeline { display: flex; flex-direction: column; gap: 0; }
@@ -349,8 +557,8 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
   color: var(--accent); margin-bottom: .3rem;
 }
 
-/* ── PORTFOLIO (Module 2) ── */
-/* Featured case study — hero card */
+/* â”€â”€ PORTFOLIO (Module 2) â”€â”€ */
+/* Featured case study  -  hero card */
 .featured-case {
   background: var(--ink);
   border-radius: 1.5rem;
@@ -367,7 +575,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 .featured-case-img::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(to right, transparent, var(--ink));
+  background: linear-gradient(to right, rgba(13,27,46,.18), rgba(13,27,46,.9));
 }
 .featured-case-body {
   padding: 3rem 2.5rem;
@@ -380,15 +588,19 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
   display: flex; align-items: center; gap: .6rem;
 }
 .featured-label::before {
-  content: '★';
-  color: #c9a84c;
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #c9a84c;
+  flex-shrink: 0;
 }
 .featured-case-body h3 {
   font-family: var(--serif);
   font-size: 1.5rem; line-height: 1.2;
   color: #fff; margin-bottom: 1rem;
 }
-.featured-case-body p { font-size: .875rem; color: rgba(255,255,255,.65); line-height: 1.75; margin-bottom: 1.5rem; }
+.featured-case-body p { font-size: .875rem; color: rgba(255,255,255,.7); line-height: 1.75; margin-bottom: 1.5rem; }
 
 /* Case study insight tags */
 .insight-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
@@ -420,13 +632,14 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 }
 .featured-case { display: none; }
 .project-card {
-  background: var(--card-bg);
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9));
   border-radius: 1.2rem; overflow: hidden;
-  border: 1px solid rgba(0,0,0,.07);
-  transition: transform .25s, box-shadow .25s;
+  border: 1px solid rgba(13,27,46,.07);
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
   cursor: pointer; display: flex; flex-direction: column;
+  box-shadow: 0 8px 24px rgba(12,18,28,.04);
 }
-.project-card:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0,0,0,.1); }
+.project-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(12,18,28,.08); border-color: rgba(13,27,46,.12); }
 
 .card-thumb {
   height: 160px;
@@ -437,7 +650,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 .card-thumb::before { content: ''; position: absolute; inset: 0; z-index: 1; }
 .card-thumb::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, transparent 30%, rgba(13,27,46,.55));
+  background: linear-gradient(to bottom, transparent 35%, rgba(13,27,46,.5));
   z-index: 2;
 }
 
@@ -453,8 +666,8 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 .card-type {
   position: absolute; top: 1rem; left: 1rem;
   background: rgba(255,255,255,.9); backdrop-filter: blur(6px);
-  font-size: .68rem; font-weight: 500;
-  letter-spacing: .06em; text-transform: uppercase;
+  font-size: .65rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
   padding: .28rem .7rem; border-radius: 100px;
   color: var(--ink); z-index: 3;
 }
@@ -463,9 +676,9 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
   font-family: var(--serif); font-size: 1.1rem;
   margin-bottom: .45rem; letter-spacing: -.01em;
 }
-.card-body p { font-size: .83rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.7; flex: 1; }
+.card-body p { font-size: .83rem; color: rgba(13,27,46,.72); margin-bottom: 1rem; line-height: 1.7; flex: 1; }
 
-/* What I did / What I learned — mini case inside card */
+/* What I did / What I learned  -  mini case inside card */
 .card-case-row {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: .75rem; margin-bottom: 1.1rem;
@@ -503,7 +716,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 .btn-view:hover { background: var(--accent); }
 .btn-view svg { width: 13px; height: 13px; }
 
-/* ── REFLECTION / PHILOSOPHY (Module 3) ── */
+/* â”€â”€ REFLECTION / PHILOSOPHY (Module 3) â”€â”€ */
 .philosophy-section {
   background: var(--ink); color: #fff;
 }
@@ -536,7 +749,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 .principle-card h4 { font-family: var(--serif); font-size: 1.05rem; color: #ffffff; margin-bottom: .5rem; font-weight: 400; }
 .principle-card p { font-size: .83rem; color: rgba(255,255,255,.58); line-height: 1.7; }
 
-/* ── CONTACT (Module 4 — Final assessment 😄) ── */
+/* â”€â”€ CONTACT (Module 4  -  Final assessment ðŸ˜„) â”€â”€ */
 .contact-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 5rem; align-items: start;
@@ -583,7 +796,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 }
 .contact-submit:hover { background: var(--accent); transform: translateY(-2px); }
 
-/* ── FOOTER ── */
+/* â”€â”€ FOOTER â”€â”€ */
 footer {
   background: var(--ink); color: rgba(255,255,255,.4);
   padding: 2rem 5vw;
@@ -593,7 +806,7 @@ footer {
 footer a { color: rgba(255,255,255,.6); transition: color .2s; }
 footer a:hover { color: #fff; }
 
-/* ── SCROLL ANIMATIONS ── */
+/* â”€â”€ SCROLL ANIMATIONS â”€â”€ */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -607,7 +820,7 @@ footer a:hover { color: #fff; }
 .reveal-delay-3 { transition-delay: .3s; }
 .reveal-delay-4 { transition-delay: .4s; }
 
-/* ── HERO ENTRANCE ANIMATION ── */
+/* â”€â”€ HERO ENTRANCE ANIMATION â”€â”€ */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -623,7 +836,7 @@ h1             { animation-delay: .15s; }
 .hero-stats    { animation-delay: .44s; }
 .hero-right    { animation: fadeUp .9s .2s ease both; }
 
-/* ── RESPONSIVE ── */
+/* â”€â”€ RESPONSIVE â”€â”€ */
 @media (max-width: 900px) {
   nav { padding: 0 1.5rem; }
   .nav-links { display: none; }
@@ -633,6 +846,7 @@ h1             { animation-delay: .15s; }
   .hero-right { order: -1; }
   .hero-photo { max-width: 65%; margin: 0 auto; }
   .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .skills-grid { grid-template-columns: 1fr; }
   .featured-case { grid-template-columns: 1fr; }
   .featured-case-img { height: 220px; }
   .featured-case-img::after { background: linear-gradient(to bottom, transparent, var(--ink)); }
@@ -644,7 +858,7 @@ h1             { animation-delay: .15s; }
 @media (min-width: 1400px) {
   .portfolio-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
-/* ── FULL CASE STUDY ── */
+/* â”€â”€ FULL CASE STUDY â”€â”€ */
 .case-study-full {
   background: var(--card-bg);
   border: 1px solid rgba(0,0,0,.08);
@@ -716,19 +930,19 @@ h1             { animation-delay: .15s; }
   <a href="mailto:nissafebriani@gmail.com" class="nav-cta">Get in touch</a>
 </nav>
 
-<!-- ════════════════════════════════════════════
-     MODULE 0 — INTRODUCTION
-════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     MODULE 0  -  INTRODUCTION
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <section class="hero" id="home" data-chapter="Introduction">
   <div class="hero-left">
-    <div class="module-num">Module 00 · Welcome</div>
-    <div class="module-tag">Training Facilitator & Instructional Designer</div>
-    <h1>I design learning that <em>actually</em> changes what people do</h1>
-    <p class="hero-sub">Six years of designing and facilitating learning across corporate, education, and community settings. I focus on personal finance, productivity, and professional development.</p>
+<div class="module-num">Module 00 / Welcome</div>
+<div class="module-tag">Training Facilitator and Instructional Designer</div>
+    <h1>I design learning that changes what people do</h1>
+    <p class="hero-sub">For the past six years, I've designed and facilitated learning for corporate teams, students, and community groups. I focus on work that changes what people do, not just what they know.</p>
 
     <div class="obj-box">
-      <div class="obj-label">📌 What you'll find here</div>
-      <p>My design process, the thinking behind each project, and how I approach learning as a tool for real behavioural change.</p>
+      <div class="obj-label">What you'll find here</div>
+      <p>My design process, the thinking behind each project, and how I use learning to support real behavioural change.</p>
     </div>
 
     <a href="#about" class="hero-cta">
@@ -751,22 +965,39 @@ h1             { animation-delay: .15s; }
     </div>
   </div>
   <div class="hero-right">
-    <div class="hero-photo">
-      <div class="hero-monogram" aria-hidden="true">NF</div>
-      <div class="hero-photo-badge">
-        <strong>Nissa Febriani</strong>
-        <span>Psychology · Instructional Design · Facilitation</span>
+    <div class="hero-profile">
+      <div class="hero-profile-top">
+        <div class="hero-profile-kicker">Profile</div>
+        <h3>Nissa Febriani</h3>
+        <p>Psychology, instructional design, and facilitation</p>
+      </div>
+      <div class="hero-profile-statement">
+        I design learning that is clear enough to follow, practical enough to use, and structured enough to stick.
+      </div>
+      <div class="hero-profile-notes">
+        <div class="hero-profile-note">
+          <span>Based in</span>
+          <strong>Bandung, Indonesia</strong>
+        </div>
+        <div class="hero-profile-note">
+          <span>Focus</span>
+          <strong>Learning design, facilitation, and e-learning</strong>
+        </div>
+        <div class="hero-profile-note">
+          <span>Approach</span>
+          <strong>Clear structure, practical exercises, and plain language</strong>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════
-     MODULE 1 — ABOUT & PROCESS
-════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     MODULE 1  -  ABOUT & PROCESS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="chapter-divider reveal">
   <div class="ch-line"></div>
-  <div class="ch-label"><div class="ch-num">01</div> Module 01 · About Me & My Process</div>
+  <div class="ch-label"><div class="ch-num">01</div> Module 01 / About Me and My Process</div>
   <div class="ch-line"></div>
 </div>
 
@@ -775,9 +1006,9 @@ h1             { animation-delay: .15s; }
     <div class="about-text">
       <div class="module-tag reveal">About me</div>
       <h2 class="reveal">Making complex things <em>click</em> for people</h2>
-      <p class="reveal">I'm a training facilitator and instructional designer from Bandung, Indonesia. For the past six years I've been designing and facilitating learning for corporate teams, students, and community groups. The kind that actually changes what people do, not just what they know.</p>
-      <p class="reveal">The topics I spend most of my time on are <strong>personal finance</strong> (budgeting, saving, managing money well), <strong>personal productivity</strong> (well-being, habits, sustainable performance), and <strong>professional development</strong> (leadership, communication, career growth). I find them genuinely interesting, which I think shows in the work.</p>
-      <p class="reveal">My background is in Psychology from Universitas Indonesia (GPA 3.77), so how I design is grounded in how people actually learn, not how we assume they do. Across my work I've built 50+ behavioural assessments, written 20 e-learning scripts, and designed 50+ interactive learning activities.</p>
+      <p class="reveal">I'm a training facilitator and instructional designer from Bandung, Indonesia. Over the past six years, I've worked with corporate teams, students, and community groups on learning that changes behaviour rather than just adding information.</p>
+      <p class="reveal">My work tends to sit around <strong>personal finance</strong>, <strong>personal productivity</strong>, and <strong>professional development</strong>. Those topics matter to me because they sit close to everyday decisions, habits, and performance.</p>
+      <p class="reveal">My background in Psychology from Universitas Indonesia (GPA 3.77) shapes how I design. I pay attention to how people learn, where they get stuck, and what helps the material feel usable. Across my work I've built 50+ behavioural assessments, written 20 e-learning scripts, and designed 50+ interactive learning activities.</p>
       <div class="skills-list reveal">
         <span class="skill-tag">Instructional Design</span>
         <span class="skill-tag">Training Facilitation</span>
@@ -804,7 +1035,7 @@ h1             { animation-delay: .15s; }
           <div class="step-content">
             <div class="step-phase">Discover</div>
             <h4>Needs Analysis</h4>
-            <p>Before anything else, I spend time understanding who the learners are, what gaps actually exist, and what success looks like in practice. It sounds obvious, but skipping this step is where most training goes wrong.</p>
+            <p>Before anything else, I spend time understanding who the learners are, what gaps exist, and what success looks like in practice. It sounds obvious, but skipping this step is where most training goes wrong.</p>
           </div>
         </div>
         <div class="process-step reveal reveal-delay-2">
@@ -824,7 +1055,7 @@ h1             { animation-delay: .15s; }
           <div class="step-content">
             <div class="step-phase">Develop</div>
             <h4>Build & Script</h4>
-            <p>Scripts, assessments, activities, and materials, all designed with psychology principles in mind to drive engagement and real behaviour change, not just completion rates.</p>
+            <p>Scripts, assessments, activities, and materials, all designed with psychology principles in mind to drive engagement and behaviour change, not just completion rates.</p>
           </div>
         </div>
         <div class="process-step reveal reveal-delay-4">
@@ -842,29 +1073,29 @@ h1             { animation-delay: .15s; }
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════
-     MODULE 2 — PORTFOLIO
-════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     MODULE 2  -  PORTFOLIO
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="chapter-divider reveal">
   <div class="ch-line"></div>
-  <div class="ch-label"><div class="ch-num">02</div> Module 02 · Selected Work</div>
+  <div class="ch-label"><div class="ch-num">02</div> Module 02 / Selected Work</div>
   <div class="ch-line"></div>
 </div>
 
 <section id="portfolio" data-chapter="Portfolio">
   <div class="section-intro reveal">
-    <div class="chapter-eyebrow">📂 Portfolio</div>
+    <div class="chapter-eyebrow">Portfolio</div>
     <h2>Work I've done and <em>what I learned</em> from it</h2>
-    <p>Each project has its own case study page with the full context, design decisions, and interactive samples. Click through any card to read more.</p>
+    <p>Each project has its own case study page with the full context, design decisions, and interactive samples. Open any card to read the full story.</p>
   </div>
 
-  <!-- FEATURED CASE STUDY — CRYPTO CURRICULUM -->
+  <!-- FEATURED CASE STUDY  -  CRYPTO CURRICULUM -->
   <div class="featured-case reveal" style="margin-bottom:1.5rem;">
     <div class="featured-case-img thumb-1" style="background-image:url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80')"></div>
     <div class="featured-case-body">
-      <div class="featured-label">Featured Case Study</div>
+      <div class="featured-label">Featured case study</div>
       <h3>Blockchain and Cryptocurrency Fundamentals</h3>
-      <p>A full university-level elective course I led the design of, built in collaboration with an expat subject matter expert. Sixteen sessions covering Bitcoin, Ethereum, DeFi, and NFTs for undergraduate learners with no prior knowledge of crypto.</p>
+      <p>A university elective I led for undergraduates with no prior crypto background. The sixteen sessions move from the basics into applied discussion without assuming prior knowledge.</p>
       <div class="insight-tags">
         <span class="insight-tag">Curriculum Design</span>
         <span class="insight-tag">Undergraduate</span>
@@ -887,15 +1118,15 @@ h1             { animation-delay: .15s; }
       </div>
       <div class="card-body">
         <h3>Blockchain and Cryptocurrency Fundamentals</h3>
-        <p>A full university-level elective course designed for undergraduate learners with no prior crypto background across 16 structured sessions.</p>
+        <p>A university elective I led for undergraduate learners with no prior crypto background across 16 structured sessions.</p>
         <div class="card-case-row">
           <div class="card-case-box">
             <div class="ccb-label">The problem</div>
-            <div class="ccb-val">Complex fintech topic for first-time learners</div>
+            <div class="ccb-val">A fintech topic many learners met for the first time</div>
           </div>
           <div class="card-case-box">
             <div class="ccb-label">My approach</div>
-            <div class="ccb-val">Progressive curriculum design + applied assessment</div>
+            <div class="ccb-val">A sequence that builds from basics to applied discussion</div>
           </div>
         </div>
         <div class="card-meta">
@@ -913,19 +1144,19 @@ h1             { animation-delay: .15s; }
     <!-- Card 2: Dasar-Dasar Blockchain -->
     <div class="project-card reveal">
       <div class="card-thumb thumb-2">
-        <div class="card-type">E-Learning · Proyek Pribadi</div>
+        <div class="card-type">E-Learning / Proyek Pribadi</div>
       </div>
       <div class="card-body">
         <h3>Dasar-Dasar Blockchain</h3>
-        <p>A self-paced module I designed for the general Indonesian public to understand the technology behind cryptocurrency, from ledger basics to decentralisation, in plain language.</p>
+        <p>A self-paced module I designed for the general Indonesian public to understand blockchain in plain language, starting with ledger basics and moving into everyday use.</p>
         <div class="card-case-row">
           <div class="card-case-box">
             <div class="ccb-label">The problem</div>
-            <div class="ccb-val">High crypto interest, low foundational understanding among Indonesian learners</div>
+            <div class="ccb-val">High interest, but little shared background knowledge</div>
           </div>
           <div class="card-case-box">
             <div class="ccb-label">My approach</div>
-            <div class="ccb-val">Analogy-driven module in Bahasa Indonesia with a comparison table and real-world use cases</div>
+            <div class="ccb-val">Analogies, comparison tables, and local examples in Bahasa Indonesia</div>
           </div>
         </div>
         <div class="card-meta">
@@ -947,15 +1178,15 @@ h1             { animation-delay: .15s; }
       </div>
       <div class="card-body">
         <h3>Efficient Budgeting</h3>
-        <p>An interactive e-learning module built around the three real reasons people struggle to manage money well. Includes a wants vs needs sorter, a live budget calculator, and a zero-based budgeting activity.</p>
+        <p>An interactive e-learning module built around why budgeting breaks down in practice. It includes a wants vs needs sorter, a live budget calculator, and a zero-based budgeting activity.</p>
         <div class="card-case-row">
           <div class="card-case-box">
             <div class="ccb-label">The problem</div>
-            <div class="ccb-val">People understand budgeting in theory but don't change how they actually spend</div>
+            <div class="ccb-val">People understand budgeting in theory, but their spending habits stay the same</div>
           </div>
           <div class="card-case-box">
             <div class="ccb-label">My approach</div>
-            <div class="ccb-val">Scaffolded learning loop with interactive activities and scenario-based assessment</div>
+            <div class="ccb-val">A scaffolded loop with practice activities and scenario-based checks</div>
           </div>
         </div>
         <div class="card-meta">
@@ -978,15 +1209,15 @@ h1             { animation-delay: .15s; }
       </div>
       <div class="card-body">
         <h3>Detective Mystery: Collaborative Online Game</h3>
-        <p>A mystery game I led the design of to help a newly-formed remote team learn to communicate. Groups investigate a missing person case with deliberately incomplete clues, so they have to talk to each other to reach a conclusion.</p>
+        <p>A mystery game I led the design of for a newly formed remote team. The case uses incomplete clues on purpose, so people have to talk to each other to reach a conclusion.</p>
         <div class="card-case-row">
           <div class="card-case-box">
             <div class="ccb-label">The problem</div>
-            <div class="ccb-val">New remote team, too awkward to communicate freely during COVID</div>
+            <div class="ccb-val">A new remote team that needed a reason to talk</div>
           </div>
           <div class="card-case-box">
             <div class="ccb-label">My approach</div>
-            <div class="ccb-val">Incomplete clue distribution that forced cross-group collaboration to solve the case</div>
+            <div class="ccb-val">Incomplete clues that pushed cross-group collaboration</div>
           </div>
         </div>
         <div class="card-meta">
@@ -1008,15 +1239,15 @@ h1             { animation-delay: .15s; }
       </div>
       <div class="card-body">
         <h3>Sleep Productivity</h3>
-        <p>An e-learning module on building healthier sleep habits for better daily performance. Covers three real barriers — screen time, stress, and lifestyle choices — each with science-backed explanations and practical tools.</p>
+        <p>An e-learning module on building healthier sleep habits for better daily performance. It focuses on three barriers: screen time, stress, and lifestyle choices, each paired with practical tools.</p>
         <div class="card-case-row">
           <div class="card-case-box">
             <div class="ccb-label">The problem</div>
-            <div class="ccb-val">People know sleep matters but don't know how to protect it against competing demands</div>
+            <div class="ccb-val">People know sleep matters, but daily demands make it hard to protect</div>
           </div>
           <div class="card-case-box">
             <div class="ccb-label">My approach</div>
-            <div class="ccb-val">Challenge-by-challenge structure with a sleep habits checker and personal schedule builder</div>
+            <div class="ccb-val">A challenge-by-challenge structure with practical tools for reflection and planning</div>
           </div>
         </div>
         <div class="card-meta">
@@ -1034,12 +1265,12 @@ h1             { animation-delay: .15s; }
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════
-     MODULE 3 — PHILOSOPHY
-════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     MODULE 3  -  PHILOSOPHY
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="chapter-divider reveal">
   <div class="ch-line"></div>
-  <div class="ch-label"><div class="ch-num">03</div> Module 03 · Design Philosophy</div>
+  <div class="ch-label"><div class="ch-num">03</div> Module 03 / Design Philosophy</div>
   <div class="ch-line"></div>
 </div>
 
@@ -1052,44 +1283,44 @@ h1             { animation-delay: .15s; }
 
   <div class="principles-grid">
     <div class="principle-card reveal" data-num="01">
-      <div class="principle-icon">🎯</div>
+      <div class="principle-icon">01</div>
       <h4>Behaviour over knowledge</h4>
       <p>Knowing something and doing something are completely different things. I design with the second one as the goal, and work backwards from there.</p>
     </div>
     <div class="principle-card reveal reveal-delay-1" data-num="02">
-      <div class="principle-icon">🧪</div>
+      <div class="principle-icon">02</div>
       <h4>Psychology first</h4>
-      <p>Motivation, cognitive load, retrieval practice, spacing effects. I use what we actually know about how people learn, not what feels intuitive.</p>
+      <p>Motivation, cognitive load, retrieval practice, spacing effects. I use what we know about how people learn, not what feels intuitive.</p>
     </div>
     <div class="principle-card reveal reveal-delay-2" data-num="03">
-      <div class="principle-icon">📐</div>
+      <div class="principle-icon">03</div>
       <h4>Structure creates freedom</h4>
       <p>A clear learning architecture gives people room to explore and make connections. Without it, even good content tends to get lost.</p>
     </div>
     <div class="principle-card reveal reveal-delay-3" data-num="04">
-      <div class="principle-icon">🔄</div>
+      <div class="principle-icon">04</div>
       <h4>Ship, learn, improve</h4>
       <p>A tested first version beats a perfect one sitting in a folder. I'd rather get something in front of real learners and refine it from there.</p>
     </div>
     <div class="principle-card reveal reveal-delay-4" data-num="05">
-      <div class="principle-icon">🤝</div>
+      <div class="principle-icon">05</div>
       <h4>Involve learners early</h4>
-      <p>The people who will use the learning know things I don't about their context, their language, and what actually gets in the way. I try to bring them in before the design is locked.</p>
+      <p>The people who will use the learning know things I don't about their context, their language, and what gets in the way. I try to bring them in before the design is locked.</p>
     </div>
     <div class="principle-card reveal reveal-delay-4" data-num="06">
-      <div class="principle-icon">📊</div>
+      <div class="principle-icon">06</div>
       <h4>Measure what matters</h4>
-      <p>Completion rates don't tell you much. I look at whether people can actually apply what they learned and use that to keep improving the design.</p>
+      <p>Completion rates don't tell you much. I look at whether people can apply what they learned and use that to keep improving the design.</p>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════════
-     MODULE 4 — CONTACT (Final Assignment 😄)
-════════════════════════════════════════════ -->
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+     MODULE 4  -  CONTACT (Final Assignment ðŸ˜„)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div class="chapter-divider reveal">
   <div class="ch-line"></div>
-  <div class="ch-label"><div class="ch-num">04</div> Module 04 · Let's Work Together</div>
+  <div class="ch-label"><div class="ch-num">04</div> Module 04 / Let's Work Together</div>
   <div class="ch-line"></div>
 </div>
 
@@ -1117,15 +1348,15 @@ h1             { animation-delay: .15s; }
     <form class="contact-form reveal" onsubmit="handleSubmit(event)">
       <input type="text" placeholder="Your name" required/>
       <input type="email" placeholder="Your email" required/>
-      <textarea placeholder="Tell me about your project…"></textarea>
-      <button type="submit" class="contact-submit">Send message →</button>
+      <textarea placeholder="Tell me about your project"></textarea>
+      <button type="submit" class="contact-submit">Send message</button>
     </form>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2025 Nissa Febriani · Bandung, Indonesia</span>
+  <span>Copyright 2025 Nissa Febriani, Bandung, Indonesia</span>
   <div style="display:flex;gap:1.5rem;">
     <a href="mailto:nissafebriani@gmail.com">Email</a>
     <a href="https://linkedin.com/in/nissafebriani" target="_blank">LinkedIn</a>
@@ -1134,7 +1365,7 @@ h1             { animation-delay: .15s; }
 </footer>
 
 <script>
-// ── SCROLL PROGRESS BAR ──
+// â”€â”€ SCROLL PROGRESS BAR â”€â”€
 const progressBar = document.getElementById('journey-progress');
 window.addEventListener('scroll', () => {
   const doc = document.documentElement;
@@ -1143,7 +1374,7 @@ window.addEventListener('scroll', () => {
   progressBar.style.width = (scrolled / total * 100) + '%';
 });
 
-// ── CHAPTER LABEL ──
+// â”€â”€ CHAPTER LABEL â”€â”€
 const chapterLabel = document.getElementById('chapter-label');
 const sections = document.querySelectorAll('section[data-chapter]');
 const observer = new IntersectionObserver((entries) => {
@@ -1156,7 +1387,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 sections.forEach(s => observer.observe(s));
 
-// ── SCROLL REVEAL ──
+// â”€â”€ SCROLL REVEAL â”€â”€
 const revealEls = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -1168,14 +1399,14 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObserver.observe(el));
 
-// ── CONTACT FORM ──
+// â”€â”€ CONTACT FORM â”€â”€
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('.contact-submit');
-  btn.textContent = 'Message sent ✓';
+  btn.textContent = 'Message sent';
   btn.style.background = 'var(--accent2)';
   setTimeout(() => {
-    btn.textContent = 'Send message →';
+    btn.textContent = 'Send message';
     btn.style.background = '';
     e.target.reset();
   }, 3000);
@@ -1183,3 +1414,7 @@ function handleSubmit(e) {
 </script>
 </body>
 </html>
+
+
+
+

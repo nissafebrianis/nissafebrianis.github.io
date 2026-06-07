@@ -6,7 +6,7 @@
 <title>Efficient Budgeting: Nissa Febriani</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2,family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink:     #0d1b2e;
@@ -60,10 +60,10 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
 /* CONTENT */
 .cs-content { max-width: 960px; margin: 0 auto; padding: 4rem 5vw; }
 .cs-section { margin-bottom: 4.5rem; }
-.cs-section-label { font-size: .68rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .75rem; }
-.cs-section-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--accent); }
-.cs-section h2 { font-family: var(--serif); font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.2; letter-spacing: -.02em; margin-bottom: 1rem; }
-.cs-body-text { font-size: .95rem; color: var(--muted); line-height: 1.85; max-width: 680px; }
+.cs-section-label { font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem; }
+.cs-section-label::before { content: ''; display: block; width: 18px; height: 2px; background: var(--accent); opacity: .8; }
+.cs-section h2 { font-family: var(--serif); font-size: clamp(1.55rem, 2.4vw, 2.05rem); line-height: 1.18; letter-spacing: -.02em; margin-bottom: 1rem; max-width: 14ch; }
+.cs-body-text { font-size: .95rem; color: rgba(13,27,46,.76); line-height: 1.8; max-width: 72ch; }
 .cs-body-text + .cs-body-text { margin-top: .85rem; }
 
 /* LEARNING LOOP DIAGRAM */
@@ -215,7 +215,7 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
 .lei-num {
   font-family: var(--serif);
   font-size: 1.5rem; font-style: italic;
-  color: var(--cream); line-height: 1; margin-bottom: .4rem;
+  color: rgba(13,27,46,.22); line-height: 1; margin-bottom: .4rem;
 }
 .lei-title { font-size: .85rem; font-weight: 600; color: var(--ink); margin-bottom: .3rem; }
 .lei-text { font-size: .78rem; color: var(--muted); line-height: 1.65; }
@@ -232,7 +232,7 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
   padding: 1.5rem;
   border-top: 3px solid var(--accent2);
 }
-.benefit-num { font-family: var(--serif); font-size: 2rem; font-style: italic; color: var(--cream); line-height: 1; margin-bottom: .6rem; }
+.benefit-num { font-family: var(--serif); font-size: 2rem; font-style: italic; color: rgba(13,27,46,.22); line-height: 1; margin-bottom: .6rem; }
 .benefit-card h4 { font-size: .9rem; font-weight: 600; color: var(--ink); margin-bottom: .5rem; }
 .benefit-card p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
 
@@ -273,7 +273,7 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
 }
 .sorter-pool {
   background: var(--paper);
-  border-radius: .75rem;
+  border-radius: .85rem;
   padding: 1rem;
   min-height: 80px;
 }
@@ -287,8 +287,8 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
   gap: 1rem; margin-bottom: 1.25rem;
 }
 .sorter-col {
-  border: 2px dashed rgba(0,0,0,.12);
-  border-radius: .75rem;
+  border: 2px dashed rgba(13,27,46,.12);
+  border-radius: .85rem;
   padding: 1rem;
   min-height: 140px;
   transition: border-color .2s, background .2s;
@@ -305,9 +305,9 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
 .col-want .sorter-col-label { color: var(--accent); }
 .sorter-item {
   display: inline-block;
-  background: var(--card-bg);
-  border: 1px solid rgba(0,0,0,.1);
-  border-radius: .5rem;
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9));
+  border: 1px solid rgba(13,27,46,.08);
+  border-radius: .6rem;
   padding: .4rem .75rem;
   font-size: .8rem; font-weight: 500;
   margin: .25rem;
@@ -315,7 +315,7 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
   user-select: none;
   transition: box-shadow .15s, transform .15s;
 }
-.sorter-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,.1); transform: translateY(-1px); }
+.sorter-item:hover { box-shadow: 0 8px 18px rgba(12,18,28,.08); transform: translateY(-1px); }
 .sorter-item:active { cursor: grabbing; }
 .sorter-item.correct { background: var(--green-bg); border-color: rgba(26,92,46,.3); color: var(--green); }
 .sorter-item.incorrect { background: var(--red-bg); border-color: rgba(123,31,46,.3); color: var(--red); }
@@ -438,7 +438,7 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
   font-size: .85rem; color: var(--ink); outline: none;
 }
 .zbb-input:focus { border-color: var(--accent2); }
-.zbb-total-row td { font-weight: 600; background: var(--cream) !important; }
+.zbb-total-row td { font-weight: 600; background: rgba(13,27,46,.22) !important; }
 .zbb-remaining {
   background: var(--ink); color: #fff;
   border-radius: .75rem; padding: 1rem 1.25rem;
@@ -463,6 +463,7 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
   background: var(--ink);
   border-radius: 1rem; overflow: hidden;
   margin-top: 1.75rem;
+  box-shadow: 0 16px 40px rgba(12,18,28,.08);
 }
 .quiz-progress-bar-wrap {
   height: 3px; background: rgba(255,255,255,.08);
@@ -562,19 +563,19 @@ nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rg
 .quiz-result-msg { font-size: .95rem; color: rgba(255,255,255,.75); line-height: 1.7; max-width: 480px; margin: 0 auto 1.5rem; }
 
 /* REFLECTION */
-.reflection-box { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-left: 3px solid var(--accent2); border-radius: 0 var(--r) var(--r) 0; padding: 1.75rem 2rem; margin-top: 1.75rem; }
-.reflection-box p { font-size: .95rem; color: var(--muted); line-height: 1.85; font-style: italic; }
+.reflection-box { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-left: 3px solid var(--accent2); border-radius: 0 1rem 1rem 0; padding: 1.75rem 2rem; margin-top: 1.75rem; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
+.reflection-box p { font-size: .95rem; color: rgba(13,27,46,.72); line-height: 1.85; font-style: italic; }
 .reflection-box p + p { margin-top: .85rem; }
 
 /* OTHER PROJECTS */
 .other-projects { padding: 3rem 5vw; max-width: 960px; margin: 0 auto; }
 .other-projects h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 1.25rem; }
-.other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-.other-card { background: var(--card-bg); border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); padding: 1.25rem 1.4rem; transition: transform .2s, box-shadow .2s; }
-.other-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,.08); }
-.other-type { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
-.other-card h4 { font-size: .9rem; font-weight: 500; margin-bottom: .4rem; line-height: 1.3; }
-.other-card p { font-size: .78rem; color: var(--muted); line-height: 1.6; }
+.other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
+.other-card { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; padding: 1.3rem 1.45rem 1.35rem; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
+.other-card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(12,18,28,.07); border-color: rgba(13,27,46,.12); }
+.other-type { font-size: .62rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent2); margin-bottom: .55rem; }
+.other-card h4 { font-size: .92rem; font-weight: 600; margin-bottom: .4rem; line-height: 1.35; color: var(--ink); }
+.other-card p { font-size: .79rem; color: rgba(13,27,46,.72); line-height: 1.7; }
 
 footer { background: var(--ink); color: rgba(255,255,255,.4); padding: 1.5rem 5vw; display: flex; align-items: center; justify-content: space-between; font-size: .8rem; }
 footer a { color: rgba(255,255,255,.6); transition: color .2s; }
@@ -590,23 +591,104 @@ footer a:hover { color: #fff; }
   .cs-meta-row { gap: 1.5rem; }
 }
 
-/* mindful loop refresh */
-.mindful-flow{display:grid;grid-template-columns:auto 26px auto 26px auto 26px auto;align-items:center;gap:.4rem;margin-bottom:1rem}
-.mf-step{padding:.65rem .9rem;border-radius:.7rem;font-size:.92rem;font-weight:700;line-height:1.2;text-align:center}
-.mf-start{background:#c592d1;color:#251734;border-radius:999px}
-.mf-core{background:#5b9bd5;color:#fff}
-.mf-assess{background:#ffc000;color:#2f2500}
-.mf-decision{background:#9dc3e6;color:#12314f;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);padding:.95rem 1rem}
-.mf-arrow{color:var(--muted);font-size:1.1rem;text-align:center}
-.mindful-branch{display:flex;gap:1rem;justify-content:flex-end;margin-bottom:1rem;flex-wrap:wrap}
-.mf-branch-item{display:flex;align-items:center;gap:.45rem}
-.mf-branch-label{font-size:.78rem;color:var(--muted)}
-.mf-branch-box{padding:.5rem .8rem;border-radius:.6rem;color:#fff;font-size:.82rem;font-weight:700}
-.mf-review{background:#ff7070}
-.mf-next{background:#70ad47}
-.loop-explain-item{border-top:3px solid #1a3a5c}
-.lei-num{color:#d2d6de}
-@media (max-width: 980px){.mindful-flow{grid-template-columns:1fr;gap:.55rem}.mf-arrow{display:none}.mf-decision{clip-path:none;border-radius:.7rem}.mindful-branch{justify-content:flex-start}}
+/* refined learning loop */
+.loop-stepper {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.loop-stepper::before {
+  content: '';
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 2.95rem;
+  height: 1px;
+  background: rgba(26,58,92,.16);
+}
+.loop-step {
+  position: relative;
+  z-index: 1;
+  background: var(--paper);
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: .95rem;
+  padding: 1rem 1rem 1.1rem;
+  box-shadow: 0 8px 22px rgba(12,18,28,.04);
+}
+.loop-step-num {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1;
+  color: rgba(26,58,92,.24);
+  margin-bottom: .45rem;
+}
+.loop-step-title {
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+  margin-bottom: .25rem;
+}
+.loop-step-copy {
+  font-size: .78rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.loop-branch {
+  display: flex;
+  justify-content: flex-start;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin: .2rem 0 1rem;
+}
+.loop-branch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .58rem .85rem;
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--ink);
+  background: rgba(255,255,255,.9);
+  border: 1px solid rgba(26,58,92,.12);
+}
+.loop-branch-pill.primary {
+  background: #70ad47;
+  color: #fff;
+  border-color: #3a7a1a;
+}
+.loop-branch-pill.secondary {
+  background: #ff7070;
+  color: #fff;
+  border-color: transparent;
+}
+.loop-explain-item {
+  position: relative;
+  background: var(--paper);
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: .85rem;
+  padding: 1.15rem 1.25rem 1.3rem;
+}
+.lei-num {
+  color: rgba(26,58,92,.18);
+}
+.loop-note {
+  margin-top: .35rem;
+  font-size: .92rem;
+  color: var(--muted);
+  line-height: 1.75;
+  max-width: 72ch;
+}
+@media (max-width: 980px){
+  .loop-stepper { grid-template-columns: 1fr; }
+  .loop-stepper::before { display: none; }
+  .loop-branch { justify-content: flex-start; }
+}
 </style>
 </head>
 <body>
@@ -631,7 +713,7 @@ footer a:hover { color: #fff; }
     </div>
     <div class="cs-type">Case Study</div>
     <h1>Efficient <em>Budgeting</em></h1>
-    <p class="cs-hero-sub">An interactive e-learning module I designed to help people actually change how they manage money and build habits that hold up in daily life.</p>
+    <p class="cs-hero-sub">An interactive e-learning module I designed to help people build money habits that hold up in daily life.</p>
     <div class="cs-meta-row">
       <div class="cs-meta-item">
         <div class="cs-meta-label">Format</div>
@@ -658,77 +740,67 @@ footer a:hover { color: #fff; }
   <!-- CONTEXT -->
   <div class="cs-section reveal">
     <div class="cs-section-label">The context</div>
-    <h2>Most people know they should budget. Few actually stick to it.</h2>
-    <p class="cs-body-text">The brief for this module wasn't just to explain what budgeting is. Plenty of articles already do that. The goal was to design a learning experience where people walked away with a method they could actually use, and the confidence to apply it when their spending got messy.</p>
-    <p class="cs-body-text">I built this around three things: understanding why budgeting matters, practising the skill through interactive activities, and checking comprehension through scenario-based questions. The learning loop structure below is what holds it all together.</p>
+    <h2>Most people know they should budget. Few keep it up.</h2>
+    <p class="cs-body-text">The brief was not just to explain budgeting. Plenty of articles already do that. The challenge was to design something people could use when their spending got messy, and to make the method feel realistic instead of abstract.</p>
+    <p class="cs-body-text">I built this around three parts: why budgeting matters, how to practise it, and how to check understanding. The loop is what ties the whole thing together.</p>
   </div>
 
   <!-- LEARNING LOOP -->
   <div class="cs-section reveal">
     <div class="cs-section-label">Learning design</div>
-    <h2>The loop that drives the whole module</h2>
-    <p class="cs-body-text">Every section of this module follows the same cycle. A learner reads the core theory, completes a micro-assessment, and either moves forward or returns to review depending on how they do. This scaffolded loop means nobody gets pushed ahead before they're ready.</p>
-
-        <div class="loop-diagram">
-      <div class="mindful-flow">
-        <div class="mf-step mf-start">Mulai Bagian</div>
-        <div class="mf-arrow">&rarr;</div>
-        <div class="mf-step mf-core">Core Theory: Bagian X</div>
-        <div class="mf-arrow">&rarr;</div>
-        <div class="mf-step mf-assess">Asesmen Mikro: Scaffolding</div>
-        <div class="mf-arrow">&rarr;</div>
-        <div class="mf-step mf-decision">Lulus?</div>
-      </div>
-      <div class="mindful-branch">
-        <div class="mf-branch-item"><span class="mf-branch-label">Tidak</span><span class="mf-branch-box mf-review">Review Materi</span></div>
-        <div class="mf-branch-item"><span class="mf-branch-label">Ya</span><span class="mf-branch-box mf-next">Lanjut ke Bagian Berikutnya</span></div>
-      </div>
-
-      <div class="loop-explain">
-        <div class="loop-explain-item">
-          <div class="lei-num">01</div>
-          <div class="lei-title">Start each section</div>
-          <div class="lei-text">Every topic begins fresh with a clear entry point, so learners always know where they are.</div>
+    <h2>How the learning loop works</h2>
+    <p class="cs-body-text">Every section follows the same pattern: read the core idea, complete a short check, then either continue or review. That structure keeps learners from moving ahead before they're ready.</p>
+    <div class="loop-diagram">
+      <div class="loop-stepper">
+        <div class="loop-step">
+          <span class="loop-step-num">01</span>
+          <div class="loop-step-title">Start the section</div>
+          <div class="loop-step-copy">Every topic opens with a clear starting point.</div>
         </div>
-        <div class="loop-explain-item">
-          <div class="lei-num">02</div>
-          <div class="lei-title">Core theory first</div>
-          <div class="lei-text">The concept is introduced with examples and real-life scenarios before anything is tested.</div>
+        <div class="loop-step">
+          <span class="loop-step-num">02</span>
+          <div class="loop-step-title">Read the core theory</div>
+          <div class="loop-step-copy">The idea comes before the exercise.</div>
         </div>
-        <div class="loop-explain-item">
-          <div class="lei-num">03</div>
-          <div class="lei-title">Micro-assessment</div>
-          <div class="lei-text">A short scaffolded check confirms understanding before the learner moves on.</div>
+        <div class="loop-step">
+          <span class="loop-step-num">03</span>
+          <div class="loop-step-title">Complete the micro-check</div>
+          <div class="loop-step-copy">A short check confirms understanding.</div>
         </div>
-        <div class="loop-explain-item">
-          <div class="lei-num">04</div>
-          <div class="lei-title">Pass or review</div>
-          <div class="lei-text">If they pass, they advance. If not, they return to the material for another look, not to a penalty.</div>
+        <div class="loop-step">
+          <span class="loop-step-num">04</span>
+          <div class="loop-step-title">Pass or review</div>
+          <div class="loop-step-copy">Continue if ready, or review before moving on.</div>
         </div>
       </div>
+      <div class="loop-branch">
+        <div class="loop-branch-pill secondary">If not yet clear, review the material</div>
+        <div class="loop-branch-pill primary">If clear, continue to the next section</div>
+      </div>
+      <p class="loop-note">Read it left to right: the lesson introduces the idea, the check confirms understanding, and the branch decides whether the learner moves forward or revisits the material.</p>
     </div>
   </div>
 
   <!-- THEORY: BENEFITS -->
   <div class="cs-section reveal">
     <div class="cs-section-label">Core theory</div>
-    <h2>Three reasons budgeting actually changes behaviour</h2>
-    <p class="cs-body-text">The first module covers the why, because learners who understand the value of budgeting are far more likely to follow through. These three benefits came directly from the e-learning script and are the foundation of the whole course.</p>
+    <h2>Three reasons budgeting changes behaviour</h2>
+    <p class="cs-body-text">The first module focuses on the why, because learners are more likely to follow through when the value is clear. These three benefits came directly from the script and shaped the course.</p>
     <div class="benefit-grid">
       <div class="benefit-card">
         <div class="benefit-num">01</div>
-        <h4>It shows you where your money actually goes</h4>
+        <h4>It makes your spending visible</h4>
         <p>Writing everything down, whether in a notebook, app, or tracker, creates a visual record that makes spending patterns visible. Categories that feel small in the moment start to look different when you see them monthly.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-num">02</div>
-        <h4>It surfaces habits you didn't know you had</h4>
+        <h4>It reveals habits you do not notice day to day</h4>
         <p>When spending is laid out by category, the patterns become hard to ignore. Budgeting gives you the evidence to make real adjustments, rather than just guessing where the money went.</p>
       </div>
       <div class="benefit-card">
         <div class="benefit-num">03</div>
-        <h4>It makes the difference between wants and needs concrete</h4>
-        <p>A budget forces a real question: given my current situation, do I actually need this? That question, asked consistently, changes how people make financial decisions.</p>
+        <h4>It makes wants and needs easier to separate</h4>
+        <p>A budget forces a real question: given my current situation, do I need this? That question, asked consistently, changes how people make financial decisions.</p>
       </div>
     </div>
   </div>
@@ -737,7 +809,7 @@ footer a:hover { color: #fff; }
   <div class="cs-section reveal">
     <div class="cs-section-label">Interactive activity 1</div>
     <h2>Try it: sort your wants from your needs</h2>
-    <p class="cs-body-text">One of the activities I designed asks learners to physically sort a set of expenses by dragging each one into either "Need" or "Want." It's a simple mechanic, but the act of deciding forces a real thought process that reading a definition never quite does.</p>
+    <p class="cs-body-text">One of the activities asks learners to sort a set of expenses by dragging each item into either "Need" or "Want." The mechanic is simple, but the act of deciding forces a real thought process that reading a definition never quite does.</p>
 
     <div class="activity-block">
       <div class="activity-header">
@@ -784,7 +856,7 @@ footer a:hover { color: #fff; }
   <div class="cs-section reveal">
     <div class="cs-section-label">Interactive activity 2</div>
     <h2>Try it: build your own monthly budget</h2>
-    <p class="cs-body-text">Rather than showing a completed budget as an example, I designed this activity so learners fill one in themselves. Entering real numbers, or close approximations, makes the exercise feel personal rather than theoretical. The summary updates live as you type.</p>
+    <p class="cs-body-text">Rather than showing a completed budget as an example, I designed this activity so learners fill one in themselves. Entering real numbers, or close approximations, makes the exercise feel personal rather than theoretical. The summary updates live as they type.</p>
 
     <div class="activity-block">
       <div class="activity-header">
@@ -845,7 +917,7 @@ footer a:hover { color: #fff; }
   <div class="cs-section reveal">
     <div class="cs-section-label">Interactive activity 3</div>
     <h2>Try it: zero-based budgeting</h2>
-    <p class="cs-body-text">Zero-based budgeting means every rupiah of income gets assigned a job: spending, saving, or investing. The goal is a balance of exactly zero at the end: not because you've spent everything, but because nothing is unaccounted for. This activity walks learners through the method.</p>
+    <p class="cs-body-text">Zero-based budgeting means every rupiah of income gets assigned a job: spending, saving, or investing. The goal is a balance of exactly zero at the end, not because you've spent everything, but because nothing is left unaccounted for. This activity walks learners through the method.</p>
 
     <div class="activity-block">
       <div class="activity-header">
@@ -882,7 +954,7 @@ footer a:hover { color: #fff; }
         <div class="zbb-remaining">
           <span class="zbb-remaining-label">Remaining (target: 0)</span>
           <div>
-            <span class="zbb-remaining-val" id="zbb-remaining">—</span>
+            <span class="zbb-remaining-val" id="zbb-remaining">-</span>
             <div class="zbb-tip" id="zbb-tip">Enter your income to begin.</div>
           </div>
         </div>
@@ -894,7 +966,7 @@ footer a:hover { color: #fff; }
   <div class="cs-section reveal">
     <div class="cs-section-label">Knowledge assessment</div>
     <h2>Check your understanding</h2>
-    <p class="cs-body-text">The module closes with a scenario-based assessment. Each question puts the learner in a real-life situation and asks them to apply what they've learned. This is the same format I used in the actual module: scenario-based application, not recall.</p>
+    <p class="cs-body-text">The module closes with a scenario-based assessment. Each question puts the learner in a real situation and asks them to apply what they've learned. The format is the same one I used in the module itself: application, not recall.</p>
 
     <div class="quiz-wrap" id="quiz">
       <div class="quiz-progress-bar-wrap">
@@ -927,8 +999,8 @@ footer a:hover { color: #fff; }
     <div class="cs-section-label">What I took away from this</div>
     <h2>Designing for behaviour change, not just comprehension</h2>
     <div class="reflection-box">
-      <p>The most interesting design decision in this module was the learning loop. It was tempting to just sequence content linearly: read this, then that, then answer questions. But the scaffolded loop, where learners can return to content before moving on, changes the relationship with failure. Getting something wrong stops being a dead end and becomes a reason to look again.</p>
-      <p>The wants vs needs activity also taught me something. The first version was a multiple-choice question asking "which of the following is a want?" It worked fine. The drag-and-drop version, same items and same categories, produced noticeably better conversations when I tested it. The act of physically moving the item made people pause and actually decide, rather than just scanning for the obvious answer.</p>
+      <p>The learning loop was the most important design decision in this module. It would have been easy to sequence everything linearly, but the scaffolded loop changes the role of mistakes. A wrong answer does not end the process; it tells the learner to look again.</p>
+      <p>The wants versus needs activity also taught me something. The first version was a multiple-choice question asking "which of the following is a want," It worked fine, but the drag-and-drop version produced better conversations when I tested it. Moving the item made people pause and decide instead of scanning for the obvious answer.</p>
     </div>
   </div>
 
@@ -1064,7 +1136,7 @@ function updateZBB() {
   const tipEl = document.getElementById('zbb-tip');
   remEl.classList.remove('zero','positive','negative');
 
-  if (income === 0) { remEl.textContent = '—'; tipEl.textContent = 'Enter your income to begin.'; return; }
+  if (income === 0) { remEl.textContent = '-'; tipEl.textContent = 'Enter your income to begin.'; return; }
   remEl.textContent = 'Rp ' + Math.round(remaining).toLocaleString('id-ID');
   if (remaining === 0) { remEl.classList.add('zero'); tipEl.textContent = 'Every rupiah has a job. '; }
   else if (remaining > 0) { remEl.classList.add('positive'); tipEl.textContent = remaining.toLocaleString('id-ID') + ' left to assign. Consider adding it to savings or a goal.'; }
@@ -1075,35 +1147,35 @@ function updateZBB() {
 const questions = [
   {
     topic: 'Before Budgeting',
-    q: 'What is the first step you should take before creating a budget to ensure efficiency in managing your finances?',
+    q: 'What is the first step you should take before creating a budget to ensure efficiency in managing your finances,',
     options: ['Assess your current financial spending habits.','Categorize all monthly expenses into major areas.','Calculate how much money is left after paying essential bills.','Allocate percentages of your income to essential, savings, and discretionary expenses.'],
     answer: 0,
     feedback: 'The first step is examining your financial spending by reviewing statements and identifying all necessary and discretionary transactions. This lays the foundation for an accurate budget.'
   },
   {
     topic: 'Before Budgeting',
-    q: 'Basil has fluctuating income and seasonal expenses like higher heating bills in winter and vacation costs in summer. What is the best approach for him to build an effective budget?',
+    q: 'Basil has fluctuating income and seasonal expenses like higher heating bills in winter and vacation costs in summer. What is the best approach for him to build an effective budget,',
     options: ['Make a daily budget to track expenses consistently.','Set a yearly budget but skip including irregular expenses.','Focus only on budgeting for months with higher expenses.','Create a monthly budget and account for seasonal expenses.'],
     answer: 3,
     feedback: 'A monthly budget provides a practical time frame for tracking income and expenses while accounting for fluctuations and seasonal costs.'
   },
   {
     topic: 'Before Budgeting',
-    q: 'Beth wants to save for a new laptop while still enjoying regular meals out with friends. With a limited monthly budget, what should she prioritise?',
+    q: 'Beth wants to save for a new laptop while still enjoying regular meals out with friends. With a limited monthly budget, what should she prioritise,',
     options: ['Allocate equal amounts to saving and leisure activities to maintain balance.','Prioritise saving for the laptop and limit meals out.','Eliminate dining expenses entirely to save for her laptop.','Focus only on saving for her laptop.'],
     answer: 1,
     feedback: 'Prioritising saving for the laptop while limiting dining out (not eliminating it) balances essential and discretionary spending, making the budget sustainable long-term.'
   },
   {
     topic: 'During Budgeting',
-    q: 'Javier\'s monthly expenses exceed his income. He spends Rp 20,000 a week on coffee from his favourite café. What action would be most effective in helping him stay on budget?',
+    q: 'Javier\'s monthly expenses exceed his income. He spends Rp 20,000 a week on coffee from his favourite café. What action would be most effective in helping him stay on budget,',
     options: ['Stop buying coffee altogether and put the money into savings.','Move to a smaller apartment to cut rent costs.','Brew coffee at home to save money.','Use coupons for coffee purchases to reduce the expense.'],
     answer: 2,
     feedback: 'Brewing coffee at home is a practical and sustainable way to reduce discretionary spending without sacrificing the habit entirely, which makes it far more likely to stick.'
   },
   {
     topic: 'Budget Review',
-    q: 'What is the most effective approach when preparing a budget for an upcoming month?',
+    q: 'What is the most effective approach when preparing a budget for an upcoming month,',
     options: ['Transfer the previous month\'s budget and adjust for upcoming changes.','Allocate funds for unexpected expenses first, then budget for planned expenses.','Prioritise savings goals above all other monthly expenses.','Create a budget based only on the current month\'s financial situation.'],
     answer: 0,
     feedback: 'Carrying over the previous budget and adjusting for changes is the most efficient approach. It ensures continuity and accounts for seasonal or irregular expenses without starting from scratch.'
