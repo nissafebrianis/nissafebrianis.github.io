@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
@@ -34,7 +34,7 @@ body {
 a { color: inherit; text-decoration: none; }
 img { max-width: 100%; display: block; }
 
-/* â”€â”€ PROGRESS BAR (learning journey tracker) â”€â”€ */
+/* ── PROGRESS BAR (learning journey tracker) ── */
 #journey-progress {
   position: fixed;
   top: 0; left: 0;
@@ -45,7 +45,7 @@ img { max-width: 100%; display: block; }
   transition: width 0.1s linear;
 }
 
-/* â”€â”€ NAV â”€â”€ */
+/* ── NAV ── */
 nav {
   position: fixed; top: 3px; left: 0; right: 0; z-index: 100;
   background: rgba(240,242,245,.94);
@@ -84,7 +84,7 @@ nav {
 }
 .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
 
-/* â”€â”€ CHAPTER LABEL (floats left on scroll) â”€â”€ */
+/* ── CHAPTER LABEL (floats left on scroll) ── */
 #chapter-label {
   position: fixed;
   left: 2rem; top: 50%;
@@ -103,7 +103,7 @@ nav {
 }
 #chapter-label.visible { opacity: 1; }
 
-/* â”€â”€ HERO (Module 0: Introduction) â”€â”€ */
+/* ── HERO (Module 0: Introduction) ── */
 .hero {
   min-height: 100vh;
   display: grid;
@@ -210,7 +210,8 @@ h1 em { color: var(--accent); font-style: italic; }
 
 
 .hero-profile {
-  aspect-ratio: 4/5; max-width: 58%;
+  width: min(100%, 420px);
+  min-height: 620px;
   margin-left: auto;
   padding: 1.2rem;
   border-radius: 2rem 2rem 6.5rem 2rem;
@@ -280,7 +281,8 @@ h1 em { color: var(--accent); font-style: italic; }
 
 
 .hero-profile {
-  aspect-ratio: 4/5; max-width: 58%;
+  width: min(100%, 420px);
+  min-height: 620px;
   margin-left: auto;
   padding: 1.2rem;
   border-radius: 2rem 2rem 6.5rem 2rem;
@@ -411,7 +413,7 @@ h1 em { color: var(--accent); font-style: italic; }
   font-weight: 500;
 }
 
-/* â”€â”€ SECTION COMMONS â”€â”€ */
+/* ── SECTION COMMONS ── */
 section { padding: 6rem 5vw; position: relative; }
 section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec 44%, #cbd4de 100%); }
 
@@ -434,7 +436,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 .section-intro h2 em { color: var(--accent); font-style: italic; }
 .section-intro p { color: var(--muted); font-size: .95rem; line-height: 1.8; }
 
-/* â”€â”€ CHAPTER DIVIDERS (the learning journey feel) â”€â”€ */
+/* ── CHAPTER DIVIDERS (the learning journey feel) ── */
 .chapter-divider {
   display: flex; align-items: center; gap: 1.5rem;
   padding: 1.25rem 5vw;
@@ -456,7 +458,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
   display: flex; align-items: center; justify-content: center;
 }
 
-/* â”€â”€ ABOUT / MY PROCESS (Module 1) â”€â”€ */
+/* ── ABOUT / MY PROCESS (Module 1) ── */
 .about-grid {
   display: grid; grid-template-columns: 1.2fr 1fr;
   gap: 5rem; align-items: start;
@@ -557,7 +559,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
   color: var(--accent); margin-bottom: .3rem;
 }
 
-/* â”€â”€ PORTFOLIO (Module 2) â”€â”€ */
+/* ── PORTFOLIO (Module 2) ── */
 /* Featured case study  -  hero card */
 .featured-case {
   background: var(--ink);
@@ -716,7 +718,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 .btn-view:hover { background: var(--accent); }
 .btn-view svg { width: 13px; height: 13px; }
 
-/* â”€â”€ REFLECTION / PHILOSOPHY (Module 3) â”€â”€ */
+/* ── REFLECTION / PHILOSOPHY (Module 3) ── */
 .philosophy-section {
   background: var(--ink); color: #fff;
 }
@@ -749,7 +751,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 .principle-card h4 { font-family: var(--serif); font-size: 1.05rem; color: #ffffff; margin-bottom: .5rem; font-weight: 400; }
 .principle-card p { font-size: .83rem; color: rgba(255,255,255,.58); line-height: 1.7; }
 
-/* â”€â”€ CONTACT (Module 4  -  Final assessment ðŸ˜„) â”€â”€ */
+/* ── CONTACT (Module 4  -  Final assessment 😄) ── */
 .contact-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 5rem; align-items: start;
@@ -796,7 +798,7 @@ section.alt { background: radial-gradient(circle at 24% 22%, #f7f8fa 0%, #dfe5ec
 }
 .contact-submit:hover { background: var(--accent); transform: translateY(-2px); }
 
-/* â”€â”€ FOOTER â”€â”€ */
+/* ── FOOTER ── */
 footer {
   background: var(--ink); color: rgba(255,255,255,.4);
   padding: 2rem 5vw;
@@ -806,7 +808,7 @@ footer {
 footer a { color: rgba(255,255,255,.6); transition: color .2s; }
 footer a:hover { color: #fff; }
 
-/* â”€â”€ SCROLL ANIMATIONS â”€â”€ */
+/* ── SCROLL ANIMATIONS ── */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -820,7 +822,7 @@ footer a:hover { color: #fff; }
 .reveal-delay-3 { transition-delay: .3s; }
 .reveal-delay-4 { transition-delay: .4s; }
 
-/* â”€â”€ HERO ENTRANCE ANIMATION â”€â”€ */
+/* ── HERO ENTRANCE ANIMATION ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -835,16 +837,17 @@ h1             { animation-delay: .15s; }
 .hero-cta      { animation-delay: .34s; }
 .hero-stats    { animation-delay: .44s; }
 .hero-right    { animation: fadeUp .9s .2s ease both; }
+.hero-right { display: flex; justify-content: flex-end; align-items: flex-start; }
 
-/* â”€â”€ RESPONSIVE â”€â”€ */
+/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   nav { padding: 0 1.5rem; }
   .nav-links { display: none; }
   .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; gap: 2rem; }
   .hero::after { display: none; }
   .hero::before { display: none; }
-  .hero-right { order: -1; }
-  .hero-photo { max-width: 65%; margin: 0 auto; }
+  .hero-right { order: -1; justify-content: center; }
+  .hero-profile { width: 100%; min-height: 0; max-width: 100%; }
   .about-grid { grid-template-columns: 1fr; gap: 3rem; }
   .skills-grid { grid-template-columns: 1fr; }
   .featured-case { grid-template-columns: 1fr; }
@@ -858,7 +861,7 @@ h1             { animation-delay: .15s; }
 @media (min-width: 1400px) {
   .portfolio-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
-/* â”€â”€ FULL CASE STUDY â”€â”€ */
+/* ── FULL CASE STUDY ── */
 .case-study-full {
   background: var(--card-bg);
   border: 1px solid rgba(0,0,0,.08);
@@ -930,9 +933,9 @@ h1             { animation-delay: .15s; }
   <a href="mailto:nissafebriani@gmail.com" class="nav-cta">Get in touch</a>
 </nav>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════════════
      MODULE 0  -  INTRODUCTION
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════════════ -->
 <section class="hero" id="home" data-chapter="Introduction">
   <div class="hero-left">
 <div class="module-num">Module 00 / Welcome</div>
@@ -992,9 +995,9 @@ h1             { animation-delay: .15s; }
   </div>
 </section>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════════════
      MODULE 1  -  ABOUT & PROCESS
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════════════ -->
 <div class="chapter-divider reveal">
   <div class="ch-line"></div>
   <div class="ch-label"><div class="ch-num">01</div> Module 01 / About Me and My Process</div>
@@ -1073,9 +1076,9 @@ h1             { animation-delay: .15s; }
   </div>
 </section>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════════════
      MODULE 2  -  PORTFOLIO
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════════════ -->
 <div class="chapter-divider reveal">
   <div class="ch-line"></div>
   <div class="ch-label"><div class="ch-num">02</div> Module 02 / Selected Work</div>
@@ -1265,9 +1268,9 @@ h1             { animation-delay: .15s; }
   </div>
 </section>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+<!-- ════════════════════════════════════════════
      MODULE 3  -  PHILOSOPHY
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+════════════════════════════════════════════ -->
 <div class="chapter-divider reveal">
   <div class="ch-line"></div>
   <div class="ch-label"><div class="ch-num">03</div> Module 03 / Design Philosophy</div>
@@ -1315,9 +1318,9 @@ h1             { animation-delay: .15s; }
   </div>
 </section>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     MODULE 4  -  CONTACT (Final Assignment ðŸ˜„)
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ════════════════════════════════════════════
+     MODULE 4  -  CONTACT (Final Assignment 😄)
+════════════════════════════════════════════ -->
 <div class="chapter-divider reveal">
   <div class="ch-line"></div>
   <div class="ch-label"><div class="ch-num">04</div> Module 04 / Let's Work Together</div>
@@ -1365,7 +1368,7 @@ h1             { animation-delay: .15s; }
 </footer>
 
 <script>
-// â”€â”€ SCROLL PROGRESS BAR â”€â”€
+// ── SCROLL PROGRESS BAR ──
 const progressBar = document.getElementById('journey-progress');
 window.addEventListener('scroll', () => {
   const doc = document.documentElement;
@@ -1374,7 +1377,7 @@ window.addEventListener('scroll', () => {
   progressBar.style.width = (scrolled / total * 100) + '%';
 });
 
-// â”€â”€ CHAPTER LABEL â”€â”€
+// ── CHAPTER LABEL ──
 const chapterLabel = document.getElementById('chapter-label');
 const sections = document.querySelectorAll('section[data-chapter]');
 const observer = new IntersectionObserver((entries) => {
@@ -1387,7 +1390,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.3 });
 sections.forEach(s => observer.observe(s));
 
-// â”€â”€ SCROLL REVEAL â”€â”€
+// ── SCROLL REVEAL ──
 const revealEls = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -1399,7 +1402,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => revealObserver.observe(el));
 
-// â”€â”€ CONTACT FORM â”€â”€
+// ── CONTACT FORM ──
 function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('.contact-submit');
