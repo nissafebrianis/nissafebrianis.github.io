@@ -1,896 +1,361 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sleep Productivity - Nissa Febriani</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleep Productivity : Nissa Febriani</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2,family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink:     #0d1b2e;
   --paper:   #f0f2f5;
-  --cream:   #e2e6ec;
   --accent:  #7b1f2e;
   --accent2: #1a3a5c;
   --muted:   #5a6578;
-  --card-bg: #ffffff;
-  --serif:   'DM Serif Display', Georgia, serif;
-  --sans:    'DM Sans', sans-serif;
-  --r:       12px;
-  --green:   #1a5c2e;
-  --green-bg:#d4ead9;
-  --red-bg:  #ead9d9;
-  --red:     #7b1f1f;
+  --card:    #ffffff;
+  --serif:   'DM Serif Display', 'Georgia', serif;
+  --sans:    'DM Sans', -apple-system, 'Segoe UI', system-ui, sans-serif;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.7; font-size: 16px; overflow-x: hidden; }
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--sans); background: var(--paper); color: var(--ink);
+  line-height: 1.7; font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
 a { color: inherit; text-decoration: none; }
-button { font-family: var(--sans); cursor: pointer; }
-
-#progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--accent2), var(--accent)); z-index: 200; transition: width .1s linear; }
-
-nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rgba(240,242,245,.94); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,.07); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 60px; }
-.nav-logo { font-family: var(--serif); font-size: 1.1rem; letter-spacing: -.01em; }
-.nav-logo span { color: var(--accent); font-style: italic; }
-.nav-back { display: inline-flex; align-items: center; gap: .5rem; font-size: .82rem; font-weight: 500; color: var(--muted); transition: color .2s; }
-.nav-back:hover { color: var(--accent); }
-.nav-back svg { width: 14px; height: 14px; }
-.nav-cta { font-size: .82rem; font-weight: 500; background: var(--ink); color: var(--paper); padding: .5rem 1.25rem; border-radius: 100px; transition: background .2s; }
-.nav-cta:hover { background: var(--accent); }
-
-/* HERO */
-.cs-hero { background: var(--ink); padding: 9rem 5vw 5rem; position: relative; overflow: hidden; }
-.cs-hero::before { content: 'SLEEP'; position: absolute; right: -1rem; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: var(--serif); font-size: 14rem; font-style: italic; color: rgba(255,255,255,.03); white-space: nowrap; pointer-events: none; letter-spacing: -.04em; }
-.cs-hero-inner { max-width: 860px; }
-.cs-breadcrumb { display: flex; align-items: center; gap: .6rem; font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 1.5rem; }
-.cs-breadcrumb a { color: rgba(255,255,255,.4); transition: color .2s; }
-.cs-breadcrumb a:hover { color: rgba(255,255,255,.8); }
-.cs-breadcrumb span { color: rgba(255,255,255,.2); }
-.cs-type { display: inline-block; font-size: .7rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.15); border-radius: 100px; padding: .3rem .9rem; margin-bottom: 1.25rem; }
-.cs-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 1.25rem; }
-.cs-hero h1 em { font-style: italic; color: #c9a4a4; }
-.cs-hero-sub { font-size: 1rem; color: rgba(255,255,255,.6); max-width: 600px; line-height: 1.8; margin-bottom: 2rem; }
-.cs-meta-row { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.08); }
-.cs-meta-label { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .3rem; }
-.cs-meta-val { font-size: .9rem; font-weight: 500; color: #fff; }
-
-/* CONTENT */
-.cs-content { max-width: 960px; margin: 0 auto; padding: 4rem 5vw; }
-.cs-section { margin-bottom: 4.5rem; }
-.cs-section-label { font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem; }
-.cs-section-label::before { content: ''; display: block; width: 18px; height: 2px; background: var(--accent); opacity: .8; }
-.cs-section h2 { font-family: var(--serif); font-size: clamp(1.55rem, 2.4vw, 2.05rem); line-height: 1.18; letter-spacing: -.02em; margin-bottom: 1rem; max-width: 14ch; }
-.cs-body-text { font-size: .95rem; color: rgba(13,27,46,.76); line-height: 1.8; max-width: 72ch; }
-.cs-body-text + .cs-body-text { margin-top: .85rem; }
-
-/* CHALLENGE CARDS */
-.challenge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.75rem; }
-.challenge-card { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
-.challenge-top { padding: 1.5rem; border-bottom: 1px solid rgba(0,0,0,.06); }
-.challenge-num { font-family: var(--serif); font-size: 2rem; font-style: italic; color: rgba(13,27,46,.22); line-height: 1; margin-bottom: .5rem; }
-.challenge-card h4 { font-size: .92rem; font-weight: 600; color: var(--ink); margin-bottom: .4rem; line-height: 1.35; }
-.challenge-card p { font-size: .82rem; color: rgba(13,27,46,.72); line-height: 1.7; }
-.challenge-tip { padding: 1rem 1.5rem; background: var(--paper); }
-.challenge-tip-label { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent2); margin-bottom: .3rem; }
-.challenge-tip p { font-size: .8rem; color: var(--muted); line-height: 1.65; }
-
-/* HABIT LOOP */
-.habit-loop { margin-top: 1.75rem; display: flex; flex-direction: column; gap: 0; }
-.habit-item { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: start; padding: 1.25rem 0; border-bottom: 1px solid rgba(13,27,46,.07); }
-.habit-item:last-child { border-bottom: none; }
-.habit-area { font-family: var(--serif); font-size: .95rem; font-style: italic; color: var(--accent2); padding-top: .1rem; }
-.habit-phase { font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
-.habit-item h4 { font-size: .92rem; font-weight: 600; color: var(--ink); margin-bottom: .35rem; }
-.habit-item p { font-size: .82rem; color: rgba(13,27,46,.72); line-height: 1.7; }
-.habit-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
-.habit-tag { font-size: .7rem; padding: .22rem .65rem; background: var(--paper); border: 1px solid rgba(0,0,0,.08); border-radius: 100px; color: var(--muted); }
-
-/* LEARNING LOOP */
-.loop-diagram { margin-top: 2rem; background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; padding: 2.25rem 1.75rem 2rem; overflow-x: auto; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
-.loop-flow { display: flex; align-items: center; min-width: 720px; position: relative; margin-bottom: .5rem; }
-.loop-node { display: flex; flex-direction: column; align-items: center; gap: .75rem; flex-shrink: 0; }
-.loop-shape { display: flex; align-items: center; justify-content: center; text-align: center; font-size: .78rem; font-weight: 600; line-height: 1.3; padding: .7rem 1rem; }
-.shape-circle { width: 72px; height: 72px; border-radius: 50%; background: #d4a0d4; color: #4a1f4a; }
-.shape-box-blue { background: #5b9bd5; color: #fff; border-radius: .5rem; width: 116px; min-height: 48px; }
-.shape-box-yellow { background: #ffc000; color: #4a3000; border-radius: .5rem; width: 128px; min-height: 48px; }
-.shape-diamond-wrap { position: relative; width: 78px; height: 78px; flex-shrink: 0; }
-.shape-diamond { position: absolute; inset: 0; background: #9dc3e6; transform: rotate(45deg); border-radius: 6px; }
-.shape-diamond-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: .78rem; font-weight: 600; color: #1a3a5c; text-align: center; z-index: 1; }
-.loop-arrow { width: 34px; height: 2px; background: var(--muted); position: relative; flex-shrink: 0; }
-.loop-arrow::after { content: ''; position: absolute; right: -1px; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 7px solid var(--muted); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
-.loop-branch { display: flex; flex-direction: column; gap: .6rem; flex-shrink: 0; margin-left: .5rem; }
-.branch-item { display: flex; align-items: center; gap: .4rem; }
-.branch-label { font-size: .68rem; color: var(--muted); }
-.shape-box-red { background: #ff7070; color: #fff; border-radius: .5rem; padding: .5rem .75rem; font-size: .78rem; font-weight: 600; white-space: nowrap; }
-.shape-box-green { background: #70ad47; color: #fff; border-radius: .5rem; padding: .5rem .75rem; font-size: .78rem; font-weight: 600; white-space: nowrap; border: 2px solid #3a7a1a; }
-.loop-node-label { font-size: .68rem; color: var(--muted); text-align: center; max-width: 118px; line-height: 1.4; }
-.loop-explain { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 2rem; }
-.loop-explain-item { background: var(--paper); border-radius: .85rem; padding: 1.25rem 1.4rem; border: 1px solid rgba(13,27,46,.06); }
-.lei-num { font-family: var(--serif); font-size: 1.5rem; font-style: italic; color: rgba(26,58,92,.18); line-height: 1; margin-bottom: .4rem; }
-.lei-title { font-size: .85rem; font-weight: 600; color: var(--ink); margin-bottom: .3rem; }
-.lei-text { font-size: .78rem; color: var(--muted); line-height: 1.65; }
-
-/* SCRIPT PREVIEW */
-.script-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.75rem; }
-.script-card { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
-.script-card-header { background: var(--ink); padding: .9rem 1.25rem; display: flex; align-items: center; justify-content: space-between; }
-.script-card-header h4 { font-size: .88rem; font-weight: 600; color: #fff; }
-.script-card-header span { font-size: .7rem; color: rgba(255,255,255,.4); }
-.script-card-body { padding: 1.1rem 1.25rem; }
-.script-vo { font-size: .8rem; color: rgba(13,27,46,.72); line-height: 1.7; font-style: italic; margin-bottom: .85rem; padding-bottom: .85rem; border-bottom: 1px solid rgba(13,27,46,.07); }
-.script-vo-label { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent2); margin-bottom: .3rem; }
-.script-slide-label { font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: .3rem; }
-.script-slide { font-size: .8rem; color: var(--ink); line-height: 1.65; }
-
-/* INTERACTIVE: SLEEP HABITS CHECKER */
-.habit-checker { margin-top: 1.75rem; background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
-.hc-header { background: var(--ink); padding: 1.25rem 1.75rem; display: flex; align-items: center; justify-content: space-between; }
-.hc-header-left .hc-tag { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: .2rem; }
-.hc-header h3 { font-family: var(--serif); font-size: 1.1rem; color: #fff; }
-.hc-badge { font-size: .72rem; font-weight: 500; padding: .3rem .8rem; border-radius: 100px; background: rgba(255,255,255,.1); color: rgba(255,255,255,.6); }
-.hc-body { padding: 1.75rem; }
-.hc-intro { font-size: .88rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
-.hc-items { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.5rem; }
-.hc-item { display: flex; align-items: flex-start; gap: 1rem; padding: 1rem 1.25rem; background: var(--paper); border: 1.5px solid transparent; border-radius: .75rem; cursor: pointer; transition: all .2s; }
-.hc-item:hover { border-color: rgba(26,58,92,.2); }
-.hc-item.checked { background: rgba(26,58,92,.06); border-color: var(--accent2); }
-.hc-checkbox { width: 20px; height: 20px; border-radius: 4px; border: 2px solid rgba(0,0,0,.15); flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: .15rem; transition: all .2s; }
-.hc-item.checked .hc-checkbox { background: var(--accent2); border-color: var(--accent2); }
-.hc-checkmark { display: none; color: #fff; font-size: 12px; font-weight: 700; }
-.hc-item.checked .hc-checkmark { display: block; }
-.hc-item-text h5 { font-size: .88rem; font-weight: 500; color: var(--ink); margin-bottom: .15rem; }
-.hc-item-text p { font-size: .78rem; color: var(--muted); line-height: 1.55; }
-.hc-result { background: var(--ink); border-radius: .75rem; padding: 1.25rem 1.5rem; display: none; }
-.hc-result.show { display: block; }
-.hc-result-score { font-family: var(--serif); font-size: 2rem; color: #fff; margin-bottom: .3rem; }
-.hc-result-label { font-size: .8rem; color: rgba(255,255,255,.5); margin-bottom: .75rem; }
-.hc-result-bar-wrap { height: 6px; background: rgba(255,255,255,.1); border-radius: 100px; margin-bottom: 1rem; }
-.hc-result-bar { height: 100%; border-radius: 100px; background: linear-gradient(90deg, var(--accent2), #70d47e); transition: width .6s ease; }
-.hc-result-msg { font-size: .85rem; color: rgba(255,255,255,.65); line-height: 1.7; }
-.hc-btn-wrap { display: flex; gap: .75rem; margin-top: .75rem; }
-.btn-hc { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.15); border-radius: 100px; padding: .6rem 1.4rem; font-size: .83rem; font-weight: 500; transition: background .2s; }
-.btn-hc:hover { background: rgba(255,255,255,.18); }
-.btn-hc.primary { background: var(--accent2); border-color: transparent; }
-
-/* SLEEP SCHEDULE BUILDER */
-.schedule-block { margin-top: 1.75rem; background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; overflow: hidden; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
-.sb-header { background: var(--ink); padding: 1.25rem 1.75rem; display: flex; align-items: center; justify-content: space-between; }
-.sb-header-left .sb-tag { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: .2rem; }
-.sb-header h3 { font-family: var(--serif); font-size: 1.1rem; color: #fff; }
-.sb-badge { font-size: .72rem; font-weight: 500; padding: .3rem .8rem; border-radius: 100px; background: rgba(255,255,255,.1); color: rgba(255,255,255,.6); }
-.sb-body { padding: 1.75rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.sb-left {}
-.sb-label { font-size: .78rem; font-weight: 600; color: var(--ink); margin-bottom: .35rem; display: block; }
-.sb-sublabel { font-size: .72rem; color: var(--muted); margin-bottom: .75rem; display: block; }
-.sb-input { width: 100%; padding: .7rem 1rem; background: var(--paper); border: 1px solid rgba(0,0,0,.1); border-radius: .6rem; font-family: var(--sans); font-size: .95rem; color: var(--ink); outline: none; transition: border-color .2s; margin-bottom: 1.25rem; }
-.sb-input:focus { border-color: var(--accent2); }
-.sb-options { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.25rem; }
-.sb-option { display: flex; align-items: center; gap: .75rem; padding: .7rem 1rem; background: var(--paper); border: 1.5px solid transparent; border-radius: .65rem; cursor: pointer; font-size: .85rem; color: var(--muted); transition: all .2s; }
-.sb-option:hover { border-color: rgba(26,58,92,.2); color: var(--ink); }
-.sb-option.selected { background: rgba(26,58,92,.07); border-color: var(--accent2); color: var(--ink); font-weight: 500; }
-.sb-option-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(0,0,0,.15); flex-shrink: 0; transition: all .2s; }
-.sb-option.selected .sb-option-dot { background: var(--accent2); border-color: var(--accent2); }
-.sb-right { display: flex; flex-direction: column; gap: 1rem; }
-.sb-summary { background: var(--ink); border-radius: 1rem; padding: 1.5rem; }
-.sb-summary-title { font-family: var(--serif); font-size: 1rem; color: #fff; margin-bottom: 1.1rem; }
-.sb-row { display: flex; justify-content: space-between; align-items: center; padding: .55rem 0; border-bottom: 1px solid rgba(255,255,255,.07); font-size: .85rem; }
-.sb-row:last-of-type { border-bottom: none; }
-.sb-row-label { color: rgba(255,255,255,.5); }
-.sb-row-val { color: #fff; font-weight: 500; }
-.sb-tip { background: var(--paper); border-radius: .75rem; padding: 1rem 1.25rem; font-size: .8rem; color: var(--muted); line-height: 1.65; border-left: 3px solid var(--accent2); }
-.sb-tip strong { color: var(--ink); display: block; margin-bottom: .25rem; font-size: .78rem; }
-
-/* ASSESSMENT */
-.quiz-wrap { background: var(--ink); border-radius: 1rem; overflow: hidden; margin-top: 1.75rem; }
-.quiz-progress-bar-wrap { height: 3px; background: rgba(255,255,255,.08); }
-.quiz-progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); transition: width .4s ease; }
-.quiz-header { padding: 1.25rem 1.75rem; border-bottom: 1px solid rgba(255,255,255,.07); display: flex; align-items: center; justify-content: space-between; }
-.quiz-q-counter { font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); }
-.quiz-topic { font-size: .72rem; font-weight: 500; color: rgba(255,255,255,.35); background: rgba(255,255,255,.07); padding: .25rem .7rem; border-radius: 100px; }
-.quiz-body { padding: 1.75rem; }
-.quiz-question { font-size: .95rem; color: #fff; line-height: 1.7; margin-bottom: 1.5rem; min-height: 3.5em; }
-.quiz-options { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.5rem; }
-.quiz-option { display: flex; align-items: flex-start; gap: .75rem; padding: .85rem 1rem; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: .65rem; cursor: pointer; transition: background .15s, border-color .15s; text-align: left; width: 100%; color: rgba(255,255,255,.75); font-size: .875rem; line-height: 1.55; }
-.quiz-option:hover:not(:disabled) { background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.2); }
-.quiz-option:disabled { cursor: default; }
-.quiz-option.selected { background: rgba(26,58,92,.5); border-color: rgba(100,160,220,.5); color: #fff; }
-.quiz-option.correct { background: rgba(26,92,46,.35); border-color: rgba(70,180,100,.4); color: #fff; }
-.quiz-option.incorrect { background: rgba(123,31,31,.35); border-color: rgba(200,80,80,.4); color: #fff; }
-.quiz-opt-key { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: .72rem; font-weight: 600; color: rgba(255,255,255,.5); margin-top: .05rem; transition: all .15s; }
-.quiz-option.selected .quiz-opt-key { border-color: rgba(100,160,220,.6); color: rgba(160,210,255,.9); }
-.quiz-option.correct .quiz-opt-key { background: rgba(70,180,100,.3); border-color: rgba(70,180,100,.5); color: #a0eab0; }
-.quiz-option.incorrect .quiz-opt-key { background: rgba(200,80,80,.3); border-color: rgba(200,80,80,.5); color: #eaa0a0; }
-.quiz-feedback { padding: .85rem 1.1rem; border-radius: .65rem; font-size: .83rem; line-height: 1.65; margin-bottom: 1.25rem; display: none; }
-.quiz-feedback.show { display: block; }
-.quiz-feedback.correct { background: rgba(26,92,46,.25); color: #a0eab0; border: 1px solid rgba(70,180,100,.3); }
-.quiz-feedback.incorrect { background: rgba(123,31,31,.25); color: #eaa0a0; border: 1px solid rgba(200,80,80,.3); }
-.quiz-actions { display: flex; gap: .75rem; align-items: center; }
-.btn-quiz { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(255,255,255,.15); border-radius: 100px; padding: .65rem 1.5rem; font-size: .85rem; font-weight: 500; transition: background .2s, border-color .2s; }
-.btn-quiz:hover { background: rgba(255,255,255,.16); }
-.btn-quiz.primary { background: var(--accent); border-color: transparent; }
-.btn-quiz.primary:hover { opacity: .85; }
-.btn-quiz:disabled { opacity: .3; cursor: default; }
-.quiz-result { text-align: center; padding: 2.5rem 1.75rem; display: none; }
-.quiz-result.show { display: block; }
-.quiz-result-score { font-family: var(--serif); font-size: 4rem; color: #fff; line-height: 1; margin-bottom: .5rem; }
-.quiz-result-label { font-size: .9rem; color: rgba(255,255,255,.5); margin-bottom: 1.5rem; }
-.quiz-result-msg { font-size: .95rem; color: rgba(255,255,255,.75); line-height: 1.7; max-width: 480px; margin: 0 auto 1.5rem; }
-
-/* REFLECTION */
-.reflection-box { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-left: 3px solid var(--accent2); border-radius: 0 1rem 1rem 0; padding: 1.75rem 2rem; margin-top: 1.75rem; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
-.reflection-box p { font-size: .95rem; color: rgba(13,27,46,.72); line-height: 1.85; font-style: italic; }
-.reflection-box p + p { margin-top: .85rem; }
-
-/* OTHER */
-.other-projects { padding: 3rem 5vw; max-width: 960px; margin: 0 auto; }
-.other-projects h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 1.25rem; letter-spacing: -.01em; }
-.other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
-.other-card { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; padding: 1.3rem 1.45rem 1.35rem; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
-.other-card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(12,18,28,.07); border-color: rgba(13,27,46,.12); }
-.other-type { font-size: .62rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent2); margin-bottom: .55rem; }
-.other-card h4 { font-size: .92rem; font-weight: 600; margin-bottom: .4rem; line-height: 1.35; color: var(--ink); }
-.other-card p { font-size: .79rem; color: rgba(13,27,46,.72); line-height: 1.7; }
-
-footer { background: var(--ink); color: rgba(255,255,255,.4); padding: 1.5rem 5vw; display: flex; align-items: center; justify-content: space-between; font-size: .8rem; }
-footer a { color: rgba(255,255,255,.6); transition: color .2s; }
-footer a:hover { color: #fff; }
-
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-@media (max-width: 760px) {
-  .challenge-grid, .script-grid, .other-grid { grid-template-columns: 1fr; }
-  .loop-explain, .sb-body { grid-template-columns: 1fr; }
-  .habit-item { grid-template-columns: 1fr; gap: .3rem; }
-  .cs-meta-row { gap: 1.5rem; }
+::selection { background: var(--accent); color: #fff; }
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(240,242,245,.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(13,27,46,.07);
+  padding: 0 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
 }
-
-/* refined learning loop */
-.loop-stepper {
+.nav-logo { font-family: var(--serif); font-size: 1rem; font-style: italic; }
+.nav-logo span { color: var(--accent); }
+.nav-back { font-size: .8rem; font-weight: 500; color: var(--muted); display: flex; align-items: center; gap: .4rem; transition: color .2s; }
+.nav-back:hover { color: var(--ink); }
+.nav-back svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 1.8; fill: none; }
+.page { max-width: 1200px; margin: 0 auto; padding: 5rem 5vw 3rem; }
+.case-hero {
+  width: 100%; height: 340px;
+  background: var(--accent2);
+  border-radius: 1.5rem 1.5rem 0 0;
+  overflow: hidden;
   position: relative;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+}
+.case-hero img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.case-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13,27,46,.7), transparent 50%);
+  pointer-events: none;
+}
+.case-intro {
+  background: var(--ink);
+  color: #fff;
+  padding: 2.5rem 3rem;
+  border-radius: 0 0 1.5rem 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.case-breadcrumb {
+  font-size: .7rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: .75rem;
+}
+.case-breadcrumb a { color: rgba(255,255,255,.5); transition: color .2s; }
+.case-breadcrumb a:hover { color: #fff; }
+.case-tag {
+  font-size: .65rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .5rem;
+  display: flex; align-items: center; gap: .6rem;
+}
+.case-tag::before { content: ''; width: 16px; height: 2px; background: var(--accent); }
+.case-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  margin-bottom: .75rem;
+}
+.case-subtitle {
+  font-size: .92rem;
+  color: rgba(255,255,255,.6);
+  line-height: 1.75;
+  max-width: 600px;
   margin-bottom: 1rem;
 }
-.loop-stepper::before {
-  content: '';
-  position: absolute;
-  left: 6%;
-  right: 6%;
-  top: 2.95rem;
-  height: 1px;
-  background: rgba(26,58,92,.16);
+.case-tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+.case-tags span {
+  font-size: .68rem; font-weight: 500;
+  padding: .25rem .65rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.65);
 }
-.loop-step {
-  position: relative;
-  z-index: 1;
-  background: var(--paper);
-  border: 1px solid rgba(0,0,0,.08);
-  border-radius: .95rem;
-  padding: 1rem 1rem 1.1rem;
-  box-shadow: 0 8px 22px rgba(12,18,28,.04);
+.case-meta-bar {
+  display: flex; gap: 2rem; margin-top: 1.25rem; padding-top: 1.25rem;
+  border-top: 1px solid rgba(255,255,255,.1);
 }
-.loop-step-num {
-  display: block;
-  font-family: var(--serif);
-  font-size: 1.25rem;
-  font-style: italic;
-  line-height: 1;
-  color: rgba(26,58,92,.24);
-  margin-bottom: .45rem;
+.case-meta-item { text-align: left; }
+.case-meta-num { font-family: var(--serif); font-size: 1.3rem; line-height: 1; margin-bottom: .15rem; }
+.case-meta-label { font-size: .6rem; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .06em; font-weight: 500; }
+
+.activity-calc {
+  background: var(--card);
+  border: 1px solid rgba(13,27,46,.06);
+  border-radius: 1.2rem;
+  padding: 2rem;
+  margin: 1.75rem 0;
+  max-width: 400px;
 }
-.loop-step-title {
-  font-size: .9rem;
-  font-weight: 700;
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 0;
+}
+.calc-label {
+  font-size: .82rem;
   color: var(--ink);
-  line-height: 1.35;
-  margin-bottom: .25rem;
 }
-.loop-step-copy {
+.calc-val {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--accent2);
+  font-weight: 600;
+}
+input[type="range"] {
+  width: 100%;
+  margin: .3rem 0;
+  accent-color: var(--accent);
+  height: 4px;
+  background: var(--paper);
+  border-radius: 100px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--card);
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+.calc-result {
+  text-align: center;
+  padding: 1rem 0 .5rem;
+  border-top: 1px solid rgba(13,27,46,.06);
+  margin-top: .5rem;
+}
+.calc-score {
+  font-family: var(--serif);
+  font-size: 2rem;
+  color: var(--accent);
+  line-height: 1.2;
+}
+.calc-desc {
   font-size: .78rem;
   color: var(--muted);
-  line-height: 1.65;
+  margin-top: .25rem;
 }
-.loop-branch {
-  display: flex;
-  justify-content: flex-start;
-  gap: .75rem;
-  flex-wrap: wrap;
-  margin: .2rem 0 1rem;
-}
-.loop-branch-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: .45rem;
-  padding: .58rem .85rem;
-  border-radius: 999px;
-  font-size: .8rem;
-  font-weight: 700;
-  color: var(--ink);
-  background: rgba(255,255,255,.9);
-  border: 1px solid rgba(26,58,92,.12);
-}
-.loop-branch-pill.primary {
-  background: #70ad47;
+.calc-btn {
+  display: block;
+  margin: .75rem auto 0;
+  font-family: var(--sans);
+  font-size: .75rem; font-weight: 500;
+  letter-spacing: .04em;
+  padding: .35rem 1.2rem;
+  background: var(--accent2);
   color: #fff;
-  border-color: #3a7a1a;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background .2s;
 }
-.loop-branch-pill.secondary {
-  background: #ff7070;
-  color: #fff;
-  border-color: transparent;
+.calc-btn:hover { background: #1f4a75; }
+
+.case-body { display: grid; grid-template-columns: 1fr 320px; gap: 3rem; align-items: start; }
+.case-body-main h2 { font-family: var(--serif); font-size: clamp(1.2rem, 2vw, 1.5rem); letter-spacing: -.02em; line-height: 1.2; margin-bottom: .75rem; margin-top: 2.5rem; }
+.case-body-main h2:first-child { margin-top: 0; }
+.case-body-main p { font-size: .92rem; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+.case-body-main strong { color: var(--ink); font-weight: 600; }
+
+.highlight-box {
+  background: rgba(123,31,46,.04);
+  border-top: 3px solid var(--accent);
+  border-radius: 0 0 .7rem .7rem;
+  padding: 1.25rem 1.35rem;
+  margin: 1.75rem 0;
 }
-.loop-explain-item {
-  position: relative;
-  background: var(--paper);
-  border: 1px solid rgba(0,0,0,.06);
-  border-radius: .85rem;
-  padding: 1.15rem 1.25rem 1.3rem;
+.highlight-box-label {
+  font-size: .6rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .35rem;
 }
-.lei-num {
-  color: rgba(26,58,92,.18);
+.highlight-box p {
+  font-size: .85rem; color: var(--ink);
+  line-height: 1.7; margin: 0;
 }
-.loop-note {
-  margin-top: .35rem;
-  font-size: .92rem;
-  color: var(--muted);
-  line-height: 1.75;
-  max-width: 72ch;
-}
-@media (max-width: 980px){
-  .loop-stepper { grid-template-columns: 1fr; }
-  .loop-stepper::before { display: none; }
-  .loop-branch { justify-content: flex-start; }
+.case-sidebar { background: var(--card); border: 1px solid rgba(13,27,46,.06); border-radius: 1.2rem; padding: 1.5rem; position: sticky; top: 5rem; }
+.sidebar-section { margin-bottom: 1.5rem; }
+.sidebar-section:last-child { margin-bottom: 0; }
+.sidebar-label { font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .5rem; }
+.sidebar-value { font-size: .82rem; color: var(--ink); line-height: 1.6; }
+.reflection { background: var(--card); border: 1px solid rgba(13,27,46,.06); border-radius: 1.2rem; padding: 2rem 2.5rem; }
+.reflection-label { font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
+.reflection p { font-size: .9rem; color: var(--muted); line-height: 1.8; font-style: italic; }
+footer { text-align: center; padding: 2rem 5vw 3rem; font-size: .78rem; color: var(--muted); }
+footer a { color: var(--accent); }
+@media (max-width: 800px) {
+  .case-hero { height: 200px; }
+  .case-intro { padding: 1.5rem; }
+  .case-meta-bar { gap: 1rem; flex-wrap: wrap; }
+  .case-body { grid-template-columns: 1fr; }
+  .case-sidebar { position: static; }
+  .reflection { padding: 1.5rem; }
+  .activity-calc { padding: 1.25rem; }
 }
 </style>
 </head>
 <body>
-
-<div id="progress"></div>
-
 <nav>
-  <a href="index.html" class="nav-logo">Nissa <span>Febriani</span></a>
-  <a href="index.html#portfolio" class="nav-back">
-    <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Back to portfolio
-  </a>
-  <a href="index.html#contact" class="nav-cta">Get in touch</a>
+  <a href="index.html" class="nav-back"><svg viewBox="0 0 16 16"><path d="M13 8H3M7 4l-4 4 4 4" stroke-linecap="round" stroke-linejoin="round"/></svg> Back</a>
+  <div class="nav-logo"><span>N</span>issa Febriani</div>
+  <div style="width:50px;"></div>
 </nav>
-
-<div class="cs-hero">
-  <div class="cs-hero-inner">
-    <div class="cs-breadcrumb">
-      <a href="index.html">Portfolio</a>
-      <span>/</span>
-      E-Learning Design
+<div class="page">
+  <div class="case-hero">
+    <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=1200&q=80" alt="Sleep Productivity case study visual">
+    <div class="case-hero-overlay"></div>
+  </div>
+  <div class="case-intro">
+    <div class="case-breadcrumb">
+      <a href="index.html#portfolio">Work</a> / Sleep &amp; Productivity
     </div>
-    <div class="cs-type">Case Study</div>
-    <h1>Sleep <em>Productivity</em></h1>
-    <p class="cs-hero-sub">An e-learning module designed to help people build healthier sleep habits by working through the real obstacles that get in the way and giving them practical steps for each one.</p>
-    <div class="cs-meta-row">
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Format</div>
-        <div class="cs-meta-val">E-Learning Module</div>
+    <div class="case-tag">Micro-simulation · Game-Based Learning</div>
+    <h1 class="case-title">Sleep Productivity</h1>
+    <p class="case-subtitle">A micro-simulation that teaches the compounding effect of sleep deprivation on cognitive performance. It exposes the hidden trade-off between short-term productivity and long-term cognitive performance.</p>
+    <div class="case-tags">
+      <span>English</span>
+      <span>Micro-simulation</span>
+      <span>Game-Based Learning</span>
+      <span>Proyek Pribadi</span>
+    </div>
+    <div class="case-meta-bar">
+      <div class="case-meta-item">
+        <div class="case-meta-num">3</div>
+        <div class="case-meta-label">Days</div>
       </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Learners</div>
-        <div class="cs-meta-val">General adult audience</div>
+      <div class="case-meta-item">
+        <div class="case-meta-num">EN</div>
+        <div class="case-meta-label">Language</div>
       </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Includes</div>
-        <div class="cs-meta-val">Script, Activities, Assessment</div>
+      <div class="case-meta-item">
+        <div class="case-meta-num">1</div>
+        <div class="case-meta-label">Session</div>
       </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Topic focus</div>
-        <div class="cs-meta-val">Habits, Productivity, Well-being</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">My role</div>
-        <div class="cs-meta-val">Instructional Designer</div>
-      </div>
+    </div>
+  </div>
+
+  <div class="case-body">
+    <div class="case-body-main">
+        <h2>The context</h2>
+        <p>Sleep is the foundation of cognitive performance, yet it's the first thing people sacrifice when they feel busy. This module was designed for professionals who <strong>know</strong> sleep matters but struggle to protect it against daily demands.</p>
+
+        <h2>The problem</h2>
+        <p>The challenge isn't awareness: everyone knows they should sleep more. The challenge is <strong>competing priorities</strong>: work deadlines, social pressure, entertainment, and stress all pull against good sleep habits. Most sleep content is either too clinical (sleep hygiene checklists) or too vague ("prioritise rest"). Neither addresses the real daily friction.</p>
+        <div class="highlight-box">
+          <div class="highlight-box-label">What stood out</div>
+          <p>The notification audit worksheet was the most effective tool: people were genuinely surprised by how many times they checked their phone in the hour before bed.</p>
+        </div>
+
+        <h2>Calculate your sleep score</h2>
+        <p>Adjust the sliders to reflect your typical night. See how your habits affect your rest.</p>
+        <div class="activity-calc" id="sleep-calc">
+          <div class="calc-row"><span class="calc-label">Hours asleep</span><span class="calc-val" id="s-hours">7</span></div>
+          <input type="range" id="range-hours" min="4" max="10" value="7" step="0.5">
+          <div class="calc-row"><span class="calc-label">Screen time before bed (min)</span><span class="calc-val" id="s-screen">30</span></div>
+          <input type="range" id="range-screen" min="0" max="120" value="30" step="5">
+          <div class="calc-row"><span class="calc-label">Caffeine after 4pm (cups)</span><span class="calc-val" id="s-caff">1</span></div>
+          <input type="range" id="range-caff" min="0" max="5" value="1" step="1">
+          <button class="calc-btn" id="calc-btn">Calculate score</button>
+          <div class="calc-result" id="calc-result">
+            <div class="calc-score" id="calc-score">--</div>
+            <div class="calc-desc" id="calc-desc">Adjust your inputs and click calculate</div>
+          </div>
+        </div>
+
+        <h2>My approach</h2>
+        <p>The module tackles three specific barriers: screen time, stress, and lifestyle, each as its own section with practical tools:</p>
+        <p><strong>Screen time</strong> covers blue light, notification habits, and the "just five more minutes" loop. Tools include a wind-down routine builder and a notification audit worksheet.</p>
+        <p><strong>Stress</strong> covers the cortisol-sleep loop, racing thoughts at bedtime, and how to build a transition ritual. Tools include a brain-dump template and a breathing exercise guide.</p>
+        <p><strong>Lifestyle</strong> covers caffeine timing, meal timing, exercise, and consistency. Tools include a personal sleep schedule calculator and a habit tracker template.</p>
+        <h2>Design decisions</h2>
+        <p><strong>One barrier at a time.</strong> Each section is self-contained: users pick their biggest problem and start there. <strong>Tools over theory.</strong> Every section ends with a downloadable/printable tool. <strong>No perfectionism.</strong> The module explicitly tells users that "perfect sleep" isn't the goal: better sleep on your own terms is.</p>
+
+        <div class="reflection">
+          <div class="reflection-label">What I learned</div>
+          <p>"The notification audit worksheet was the most effective tool: people were genuinely surprised by how many times they checked their phone in the hour before bed. It's one thing to know screens are a problem, another to see the actual count."</p>
+        </div>
+    </div>
+    <div class="case-sidebar">
+      <div class="sidebar-section"><div class="sidebar-label">Type</div><div class="sidebar-value">E-learning module</div></div>
+      <div class="sidebar-section"><div class="sidebar-label">Duration</div><div class="sidebar-value">30–40 min</div></div>
+      <div class="sidebar-section"><div class="sidebar-label">Audience</div><div class="sidebar-value">Busy professionals</div></div>
+      <div class="sidebar-section"><div class="sidebar-label">Skills used</div><div class="sidebar-value">E-Learning · Content Design · Well-being</div></div>
     </div>
   </div>
 </div>
-
-<div class="cs-content">
-
-  <!-- CONTEXT -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">The context</div>
-    <h2>Most people know they should sleep better. Very few change how they do it.</h2>
-    <p class="cs-body-text">The brief was not to explain what sleep is. People already know that. The harder part is protecting sleep when work, screens, stress, and daily routines keep pulling in the other direction.</p>
-    <p class="cs-body-text">I designed the module around three barriers that show up again and again: screen time, stress, and lifestyle choices. Each section moves from problem to practice. The loop keeps the module honest.</p>
-  </div>
-
-  <!-- LEARNING LOOP -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Learning design</div>
-    <h2>How the learning loop works</h2>
-    <p class="cs-body-text">Each challenge follows the same pattern: learn the core idea, complete a short check, and either move forward or review the material. Nobody advances until the understanding is there.</p>
-    <div class="loop-diagram">
-      <div class="loop-stepper">
-        <div class="loop-step">
-          <span class="loop-step-num">01</span>
-          <div class="loop-step-title">Start the section</div>
-          <div class="loop-step-copy">Every challenge begins with a clear starting point.</div>
-        </div>
-        <div class="loop-step">
-          <span class="loop-step-num">02</span>
-          <div class="loop-step-title">Read the core theory</div>
-          <div class="loop-step-copy">The science and practical advice come first.</div>
-        </div>
-        <div class="loop-step">
-          <span class="loop-step-num">03</span>
-          <div class="loop-step-title">Complete the micro-check</div>
-          <div class="loop-step-copy">A short check confirms comprehension.</div>
-        </div>
-        <div class="loop-step">
-          <span class="loop-step-num">04</span>
-          <div class="loop-step-title">Pass or review</div>
-          <div class="loop-step-copy">Advance if ready, or review the material again.</div>
-        </div>
-      </div>
-      <div class="loop-branch">
-        <div class="loop-branch-pill secondary">If not yet clear, review the material</div>
-        <div class="loop-branch-pill primary">If clear, continue to the next section</div>
-      </div>
-      <p class="loop-note">Read it left to right: the lesson introduces the idea, the check confirms understanding, and the branch decides whether the learner moves forward or revisits the material.</p>
-    </div>
-
-  <!-- THREE CHALLENGES -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Core content</div>
-    <h2>Three challenges, each with a practical path forward</h2>
-    <p class="cs-body-text">The module is built around three real barriers to healthy sleep. Each one is grounded in research, explained through the audio-visual script, and followed by actions learners can try. Below is a summary of each challenge and the design approach behind it.</p>
-    <div class="challenge-grid">
-      <div class="challenge-card">
-        <div class="challenge-top">
-          <div class="challenge-num">01</div>
-          <h4>Screen time before bed</h4>
-          <p>Blue light from phones and laptops mimics morning sunlight, signalling the brain to stay awake. Binge-watching is linked to lower sleep quality and more symptoms of insomnia. App design also makes it easy to keep scrolling, which is what makes this habit hard to break.</p>
-        </div>
-        <div class="challenge-tip">
-          <div class="challenge-tip-label">Practical guidance in the module</div>
-          <p>The National Sleep Foundation recommends stopping screen use at least one hour before bed. Night mode, keeping devices out of reach, and replacing scrolling with reading are the specific habits covered.</p>
-        </div>
-      </div>
-      <div class="challenge-card">
-        <div class="challenge-top">
-          <div class="challenge-num">02</div>
-          <h4>Stress and a busy lifestyle</h4>
-          <p>When the body stays alert, deep sleep gets reduced. Night work and social commitments add to the strain, and stress can interrupt sleep rather than just delay it.</p>
-        </div>
-        <div class="challenge-tip">
-          <div class="challenge-tip-label">Practical guidance in the module</div>
-          <p>The content walks learners through setting boundaries with work, focusing on what is within their control, and building consistency in eating, sleeping, and physical activity patterns.</p>
-        </div>
-      </div>
-      <div class="challenge-card">
-        <div class="challenge-top">
-          <div class="challenge-num">03</div>
-          <h4>Unhealthy lifestyle choices</h4>
-          <p>Junk food can disrupt sleep through refined sugars and excess calories. The brain's dopamine response to these foods makes sudden elimination unsustainable, so the module addresses the habit directly instead of pretending willpower alone is enough.</p>
-        </div>
-        <div class="challenge-tip">
-          <div class="challenge-tip-label">Practical guidance in the module</div>
-          <p>Gradual reduction rather than cold turkey, drinking more water, eating higher protein, and making junk food less accessible are the six specific approaches covered, each tied to the behaviour science behind the habit.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SCRIPT SAMPLES -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Script sample</div>
-    <h2>How the audio-visual script was written</h2>
-    <p class="cs-body-text">Each slide in the module has a voice-over script and a corresponding on-screen text element. The two do different jobs: the voice-over carries the explanation while the slide text keeps the key point visible. Here are two samples from the script.</p>
-    <div class="script-grid">
-      <div class="script-card">
-        <div class="script-card-header">
-          <h4>Challenge 1, Slide 2</h4>
-          <span>Electronic devices</span>
-        </div>
-        <div class="script-card-body">
-          <div class="script-vo-label">Voice-over</div>
-          <div class="script-vo">"Over the last decades, the use of electronic devices has expanded. The amount of time spent on them is increasing during the day and before bedtime. This can be a challenge to our sleep. Exposure to blue-enriched, short-length light from cell phones or tablets is similar to exposure to morning sunlight."</div>
-          <div class="script-slide-label">On-screen text</div>
-          <div class="script-slide">Exposure to blue-enriched, short-length light from electronic devices is similar to exposure to morning sunlight.</div>
-        </div>
-      </div>
-      <div class="script-card">
-        <div class="script-card-header">
-          <h4>Challenge 2, Slide 9</h4>
-          <span>Stress and sleep</span>
-        </div>
-        <div class="script-card-body">
-          <div class="script-vo-label">Voice-over</div>
-          <div class="script-vo">"When stress stays high, the body stays alert. Deep sleep becomes harder to reach because the brain is still treating the situation like a threat."</div>
-          <div class="script-slide-label">On-screen text</div>
-          <div class="script-slide">When stress stays high, the body stays alert, which makes deep sleep harder to reach.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ACTIVITY 1: SLEEP HABITS CHECKER -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Interactive activity 1</div>
-    <h2>Try it: how healthy are your sleep habits right now?</h2>
-    <p class="cs-body-text">One of the activities asks learners to assess their current habits before receiving any recommendations. The point is to start with an honest baseline. Select the habits you currently practice.</p>
-    <div class="habit-checker">
-      <div class="hc-header">
-        <div class="hc-header-left">
-          <div class="hc-tag">Activity 1 · Self-assessment</div>
-          <h3>Your Sleep Habits Checklist</h3>
-        </div>
-        <span class="hc-badge">Check all that apply</span>
-      </div>
-      <div class="hc-body">
-        <p class="hc-intro">Be honest with yourself. Select every habit you consistently practice right now, not what you plan to do or occasionally manage.</p>
-        <div class="hc-items" id="hc-items">
-          <div class="hc-item" onclick="toggleHC(this)">
-            <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
-            <div class="hc-item-text"><h5>I stop using screens at least one hour before bed</h5><p>Phone, laptop, and TV are off or away one hour before you plan to sleep.</p></div>
-          </div>
-          <div class="hc-item" onclick="toggleHC(this)">
-            <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
-            <div class="hc-item-text"><h5>I go to bed and wake up at roughly the same time every day</h5><p>Including weekends, because consistency is what trains your body clock.</p></div>
-          </div>
-          <div class="hc-item" onclick="toggleHC(this)">
-            <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
-            <div class="hc-item-text"><h5>My bedroom is dark, quiet, and a comfortable temperature</h5><p>Your sleep environment has a measurable effect on sleep quality.</p></div>
-          </div>
-          <div class="hc-item" onclick="toggleHC(this)">
-            <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
-            <div class="hc-item-text"><h5>I avoid caffeine in the afternoon and evening</h5><p>Caffeine has a half-life of about five to six hours in the body.</p></div>
-          </div>
-          <div class="hc-item" onclick="toggleHC(this)">
-            <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
-            <div class="hc-item-text"><h5>I have a wind-down routine before bed</h5><p>Something consistent such as reading, light stretching, or herbal tea that signals sleep is coming.</p></div>
-          </div>
-          <div class="hc-item" onclick="toggleHC(this)">
-            <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
-            <div class="hc-item-text"><h5>I get 7 to 9 hours of sleep most nights</h5><p>The recommended range for most adults to support optimal productivity.</p></div>
-          </div>
-          <div class="hc-item" onclick="toggleHC(this)">
-            <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
-            <div class="hc-item-text"><h5>I avoid heavy meals or junk food close to bedtime</h5><p>What you eat in the hours before sleep directly affects sleep quality.</p></div>
-          </div>
-          <div class="hc-item" onclick="toggleHC(this)">
-            <div class="hc-checkbox"><span class="hc-checkmark">✓</span></div>
-            <div class="hc-item-text"><h5>I do some form of physical activity during the day</h5><p>Regular movement improves sleep quality, though intense exercise right before bed can have the opposite effect.</p></div>
-          </div>
-        </div>
-        <div class="hc-btn-wrap">
-          <button class="btn-hc primary" onclick="checkHabits()">See my results</button>
-          <button class="btn-hc" onclick="resetHabits()">Reset</button>
-        </div>
-        <div class="hc-result" id="hc-result">
-          <div class="hc-result-score" id="hc-score"></div>
-          <div class="hc-result-label">habits currently in place</div>
-          <div class="hc-result-bar-wrap"><div class="hc-result-bar" id="hc-bar"></div></div>
-          <div class="hc-result-msg" id="hc-msg"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ACTIVITY 2: SLEEP SCHEDULE BUILDER -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Interactive activity 2</div>
-    <h2>Try it: build your sleep schedule</h2>
-    <p class="cs-body-text">One of the most evidence-backed habits for sleep quality is consistency. This activity helps learners build a sleep schedule that fits their life and shows them the bedtime they need to hit to get enough sleep for their wake-up time.</p>
-    <div class="schedule-block">
-      <div class="sb-header">
-        <div class="sb-header-left">
-          <div class="sb-tag">Activity 2 · Schedule builder</div>
-          <h3>Your Sleep Schedule</h3>
-        </div>
-        <span class="sb-badge">Live calculator</span>
-      </div>
-      <div class="sb-body">
-        <div class="sb-left">
-          <label class="sb-label">What time do you need to wake up,</label>
-          <span class="sb-sublabel">Set a consistent wake time, even on weekends.</span>
-          <input class="sb-input" type="time" id="wake-time" value="07:00" oninput="updateSchedule()">
-
-          <label class="sb-label">How much sleep do you want to aim for,</label>
-          <span class="sb-sublabel">Most adults need 7 to 9 hours. Pick a realistic target.</span>
-          <div class="sb-options" id="sb-options">
-            <div class="sb-option selected" onclick="selectHours(this, 7)" data-hours="7">
-              <div class="sb-option-dot"></div>7 hours (minimum recommended)
-            </div>
-            <div class="sb-option" onclick="selectHours(this, 8)" data-hours="8">
-              <div class="sb-option-dot"></div>8 hours (optimal for most adults)
-            </div>
-            <div class="sb-option" onclick="selectHours(this, 9)" data-hours="9">
-              <div class="sb-option-dot"></div>9 hours (if you need more recovery)
-            </div>
-          </div>
-        </div>
-        <div class="sb-right">
-          <div class="sb-summary">
-            <div class="sb-summary-title">Your sleep schedule</div>
-            <div class="sb-row"><span class="sb-row-label">Wake up at</span><span class="sb-row-val" id="sb-wake">07:00</span></div>
-            <div class="sb-row"><span class="sb-row-label">Target sleep</span><span class="sb-row-val" id="sb-target">8 hours</span></div>
-            <div class="sb-row"><span class="sb-row-label">Go to bed by</span><span class="sb-row-val" id="sb-bedtime">23:00</span></div>
-            <div class="sb-row"><span class="sb-row-label">Stop screens by</span><span class="sb-row-val" id="sb-screens">22:00</span></div>
-            <div class="sb-row"><span class="sb-row-label">Wind-down starts</span><span class="sb-row-val" id="sb-wind">22:30</span></div>
-          </div>
-          <div class="sb-tip" id="sb-tip">
-            <strong>Why this matters</strong>
-            A consistent bed and wake time trains your circadian rhythm so falling asleep and waking up become easier over time, even without an alarm.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ASSESSMENT -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Knowledge assessment</div>
-    <h2>Check your understanding</h2>
-    <p class="cs-body-text">The module closes with scenario-based questions drawn from the knowledge evaluation I designed. Each question puts learners in a real situation and asks them to apply what they've learned, not just recall definitions.</p>
-    <div class="quiz-wrap" id="quiz">
-      <div class="quiz-progress-bar-wrap">
-        <div class="quiz-progress-bar" id="quiz-progress-bar" style="width:0%"></div>
-      </div>
-      <div class="quiz-header">
-        <span class="quiz-q-counter" id="quiz-counter">Question 1 of 5</span>
-        <span class="quiz-topic" id="quiz-topic">Adequate Sleep</span>
-      </div>
-      <div class="quiz-body" id="quiz-body">
-        <div class="quiz-question" id="quiz-question"></div>
-        <div class="quiz-options" id="quiz-options"></div>
-        <div class="quiz-feedback" id="quiz-feedback"></div>
-        <div class="quiz-actions">
-          <button class="btn-quiz primary" id="quiz-btn-check" onclick="checkAnswer()" disabled>Check answer</button>
-          <button class="btn-quiz" id="quiz-btn-next" onclick="nextQuestion()" style="display:none">Next question</button>
-        </div>
-      </div>
-      <div class="quiz-result" id="quiz-result">
-        <div class="quiz-result-score" id="quiz-result-score"></div>
-        <div class="quiz-result-label">questions answered correctly</div>
-        <div class="quiz-result-msg" id="quiz-result-msg"></div>
-        <button class="btn-quiz primary" onclick="restartQuiz()">Try again</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- REFLECTION -->
-  <div class="cs-section reveal">
-    <div class="cs-section-label">What I took away from this</div>
-    <h2>Writing about habits without being preachy</h2>
-    <div class="reflection-box">
-      <p>The hardest part was not the research. It was writing it in a way that did not feel lecturing. Sleep advice can sound like a list of things people are doing wrong, so I wanted the script to feel more like a guide than a lecture.</p>
-      <p>The decision to address the science behind each challenge first was intentional. People are more likely to change a behaviour when they understand why it works the way it does, rather than just being told what to stop doing.</p>
-      <p>The scaffolded loop also pushed me to be precise about what each section was testing. You cannot write a meaningful micro-assessment unless you know exactly what the learning objective is. That clarity improved the content itself, not just the assessment.</p>
-    </div>
-  </div>
-
-</div>
-
-<!-- OTHER PROJECTS -->
-<div class="other-projects">
-  <h3>Other projects</h3>
-  <div class="other-grid">
-    <a href="case-budgeting.html" class="other-card">
-      <div class="other-type">E-Learning Design</div>
-      <h4>Efficient Budgeting</h4>
-      <p>An interactive module with drag-and-drop activities, a live budget calculator, and a scenario-based assessment.</p>
-    </a>
-    <a href="case-crypto.html" class="other-card">
-      <div class="other-type">Curriculum Design</div>
-      <h4>Blockchain and Cryptocurrency for Undergraduates</h4>
-      <p>A full 16-session curriculum I led the design of for undergraduate students.</p>
-    </a>
-    <a href="case-detective.html" class="other-card">
-      <div class="other-type">Game-Based Learning</div>
-      <h4>Detective Mystery: Collaborative Online Game</h4>
-      <p>A mystery game designed to help a new remote team communicate under pressure.</p>
-    </a>
-  </div>
-</div>
-
-<footer>
-  <span>© 2025 Nissa Febriani · Bandung, Indonesia</span>
-  <div style="display:flex;gap:1.5rem;">
-    <a href="mailto:nissafebriani@gmail.com">Email</a>
-    <a href="https://linkedin.com/in/nissafebriani" target="_blank">LinkedIn</a>
-  </div>
-</footer>
+<footer><a href="index.html">← Back to portfolio</a> · Nissa Febriani</footer>
 
 <script>
-// PROGRESS BAR
-const bar = document.getElementById('progress');
-window.addEventListener('scroll', () => {
-  const d = document.documentElement;
-  bar.style.width = (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
-});
+(function(){
+  var h = document.getElementById('range-hours');
+  var s = document.getElementById('range-screen');
+  var c = document.getElementById('range-caff');
+  var hV = document.getElementById('s-hours');
+  var sV = document.getElementById('s-screen');
+  var cV = document.getElementById('s-caff');
+  var btn = document.getElementById('calc-btn');
+  var scoreE = document.getElementById('calc-score');
+  var descE = document.getElementById('calc-desc');
 
-// SCROLL REVEAL
-const revealEls = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => obs.observe(el));
+  h.addEventListener('input', function(){ hV.textContent = h.value; });
+  s.addEventListener('input', function(){ sV.textContent = s.value; });
+  c.addEventListener('input', function(){ cV.textContent = c.value; });
 
-// HABIT CHECKER
-function toggleHC(el) {
-  el.classList.toggle('checked');
-}
-function checkHabits() {
-  const checked = document.querySelectorAll('.hc-item.checked').length;
-  const total = document.querySelectorAll('.hc-item').length;
-  const pct = (checked / total) * 100;
-  const result = document.getElementById('hc-result');
-  document.getElementById('hc-score').textContent = checked + ' / ' + total;
-  document.getElementById('hc-bar').style.width = pct + '%';
-  let msg = '';
-  if (checked <= 2) msg = 'You have a few good habits in place, but there is real room to build on them. The module covers each of these areas in detail, so start with whichever feels most achievable to add first.';
-  else if (checked <= 5) msg = 'You are doing reasonably well with some habits. The ones you are not yet practicing consistently are worth focusing on, because small changes in sleep consistency and screen time tend to have the biggest impact.';
-  else msg = 'You already have most of the key habits in place. The module will help you understand why they work and fill in any remaining gaps. Keep going.';
-  document.getElementById('hc-msg').textContent = msg;
-  result.classList.add('show');
-}
-function resetHabits() {
-  document.querySelectorAll('.hc-item').forEach(i => i.classList.remove('checked'));
-  document.getElementById('hc-result').classList.remove('show');
-}
-
-// SLEEP SCHEDULE BUILDER
-let selectedHours = 7;
-function selectHours(el, hours) {
-  document.querySelectorAll('.sb-option').forEach(o => o.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedHours = hours;
-  updateSchedule();
-}
-function updateSchedule() {
-  const wakeInput = document.getElementById('wake-time').value || '07:00';
-  const [wh, wm] = wakeInput.split(':').map(Number);
-  const wakeMins = wh * 60 + wm;
-  const bedMins = ((wakeMins - selectedHours * 60) + 1440) % 1440;
-  const screenMins = ((bedMins - 60) + 1440) % 1440;
-  const windMins = ((bedMins - 30) + 1440) % 1440;
-  const fmt = m => { const h = Math.floor(m / 60) % 24; const min = m % 60; return (h < 10 ? '0' : '') + h + ':' + (min < 10 ? '0' : '') + min; };
-  document.getElementById('sb-wake').textContent = fmt(wakeMins);
-  document.getElementById('sb-target').textContent = selectedHours + ' hours';
-  document.getElementById('sb-bedtime').textContent = fmt(bedMins);
-  document.getElementById('sb-screens').textContent = fmt(screenMins);
-  document.getElementById('sb-wind').textContent = fmt(windMins);
-  const tips = {
-    7: 'Seven hours is the minimum recommended for most adults. If you often feel tired during the day, consider bumping this to 8.',
-    8: 'Eight hours is where most adults feel and perform best. This is a solid target to build your routine around.',
-    9: 'Nine hours works well during recovery periods or high-stress times. If you consistently need this much, it is worth checking in with a healthcare professional.'
-  };
-  document.getElementById('sb-tip').innerHTML = '<strong>About your target</strong>' + tips[selectedHours];
-}
-updateSchedule();
-
-// ASSESSMENT
-const questions = [
-  {
-    topic: 'Adequate Sleep',
-    q: 'How many hours of sleep should an adult aim for to support optimal productivity,',
-    options: ['6 to 7 hours per night', '7 to 9 hours per night', '8 to 10 hours per night', '9 to 11 hours per night'],
-    answer: 1,
-    feedback: 'Most adults need around 7 to 9 hours per night to achieve sufficient sleep and support optimal productivity. Going below or above this range is associated with reduced performance and health risks.'
-  },
-  {
-    topic: 'Sleep Environment',
-    q: 'You are redesigning your bedroom to improve sleep quality. Which approach gives you the best results,',
-    options: ['Ensuring your mattress, pillows, and bedding are comfortable and supportive.', 'Painting the walls in bright, stimulating colours to enhance your mood.', 'Leaving your TV and phone on to help you fall asleep faster.', 'Keeping the room well-lit to avoid feeling sleepy before bedtime.'],
-    answer: 0,
-    feedback: 'Comfortable and supportive bedding is one of the most consistent factors in sleep quality. Bright colours, screens, and lights all work against the relaxation your body needs to transition into sleep.'
-  },
-  {
-    topic: 'Excessive Sleepiness',
-    q: 'You are often excessively sleepy during the day despite getting enough sleep at night. This is affecting your work and concentration. What should you do,',
-    options: ['Ignore the symptoms and continue with your daily routine', 'Increase your caffeine intake to stay awake', 'Consult with a healthcare professional to determine the underlying cause', 'Start taking over-the-counter sleep aids to regulate your sleep patterns'],
-    answer: 2,
-    feedback: 'Excessive daytime sleepiness despite adequate night sleep is a signal that something else may be going on. A healthcare professional can identify the underlying cause and recommend appropriate treatment. Caffeine and sleep aids mask the symptom without addressing what is causing it.'
-  },
-  {
-    topic: 'Evening Routine',
-    q: 'Which strategy can you incorporate into an evening routine to improve sleep quality,',
-    options: ['Drink a cup of warm relaxing herbal tea', 'Engage in mentally intensive activities until you feel tired', 'Go to bed and wake up at different times each day to vary the routine', 'Nap during the day to make sure you get enough sleep'],
-    answer: 0,
-    feedback: 'A warm herbal tea is a simple, evidence-backed part of a wind-down routine. Mentally intensive activities stimulate the brain, inconsistent schedules disrupt your body clock, and daytime napping can interfere with your ability to fall asleep at night.'
-  },
-  {
-    topic: 'Sleep Disorders',
-    q: 'Which sleep disorder is characterised by difficulty breathing comfortably, loud snoring, and frequent coughing during sleep,',
-    options: ['Insomnia', 'Narcolepsy', 'Restless Legs Syndrome', 'Sleep apnea'],
-    answer: 3,
-    feedback: 'Sleep apnea involves interrupted breathing during sleep, which causes the airway to become blocked or narrowed. This leads to loud snoring, coughing, and frequent micro-awakenings that significantly reduce sleep quality even when the person does not remember waking.'
-  }
-];
-
-let currentQ = 0, selectedOption = null, answered = false, score = 0;
-
-function renderQuestion() {
-  const q = questions[currentQ];
-  document.getElementById('quiz-counter').textContent = 'Question ' + (currentQ + 1) + ' of ' + questions.length;
-  document.getElementById('quiz-topic').textContent = q.topic;
-  document.getElementById('quiz-progress-bar').style.width = (currentQ / questions.length * 100) + '%';
-  document.getElementById('quiz-question').textContent = q.q;
-  const opts = document.getElementById('quiz-options');
-  opts.innerHTML = '';
-  q.options.forEach((opt, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'quiz-option';
-    btn.innerHTML = '<span class="quiz-opt-key">' + String.fromCharCode(65 + i) + '</span>' + opt;
-    btn.onclick = () => selectOption(i, btn);
-    opts.appendChild(btn);
+  btn.addEventListener('click', function(){
+    var hours = parseFloat(h.value);
+    var screen = parseInt(s.value);
+    var caff = parseInt(c.value);
+    var score = 100;
+    // hours: ideal 7-9
+    if (hours < 7) score -= (7 - hours) * 10;
+    if (hours > 9) score -= (hours - 9) * 8;
+    // screen: ideal <15min
+    if (screen > 15) score -= (screen - 15) * 0.25;
+    // caffeine
+    score -= caff * 6;
+    score = Math.max(0, Math.min(100, Math.round(score)));
+    scoreE.textContent = score + '/100';
+    if (score >= 80) descE.textContent = 'Great sleep hygiene! Keep it up.';
+    else if (score >= 60) descE.textContent = 'Not bad. Try reducing screen time or caffeine.';
+    else if (score >= 40) descE.textContent = 'Your sleep could use some attention. Check the module tips.';
+    else descE.textContent = 'Your sleep health needs serious improvement. The module can help.';
   });
-  const fb = document.getElementById('quiz-feedback');
-  fb.className = 'quiz-feedback'; fb.textContent = '';
-  document.getElementById('quiz-btn-check').disabled = true;
-  document.getElementById('quiz-btn-next').style.display = 'none';
-  document.getElementById('quiz-btn-check').style.display = 'block';
-  selectedOption = null; answered = false;
-}
-
-function selectOption(idx, btn) {
-  if (answered) return;
-  document.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  selectedOption = idx;
-  document.getElementById('quiz-btn-check').disabled = false;
-}
-
-function checkAnswer() {
-  if (selectedOption === null || answered) return;
-  answered = true;
-  const q = questions[currentQ];
-  const opts = document.querySelectorAll('.quiz-option');
-  opts.forEach((btn, i) => {
-    btn.disabled = true;
-    if (i === q.answer) btn.classList.add('correct');
-    else if (i === selectedOption) btn.classList.add('incorrect');
-  });
-  if (selectedOption === q.answer) score++;
-  const fb = document.getElementById('quiz-feedback');
-  fb.textContent = q.feedback;
-  fb.className = 'quiz-feedback show ' + (selectedOption === q.answer ? 'correct' : 'incorrect');
-  document.getElementById('quiz-btn-check').style.display = 'none';
-  document.getElementById('quiz-btn-next').style.display = 'block';
-  document.getElementById('quiz-btn-next').textContent = currentQ < questions.length - 1 ? 'Next question' : 'See results';
-}
-
-function nextQuestion() {
-  currentQ++;
-  if (currentQ < questions.length) renderQuestion();
-  else showResult();
-}
-
-function showResult() {
-  document.getElementById('quiz-progress-bar').style.width = '100%';
-  document.getElementById('quiz-body').style.display = 'none';
-  const res = document.getElementById('quiz-result');
-  res.className = 'quiz-result show';
-  document.getElementById('quiz-result-score').textContent = score + '/' + questions.length;
-  const pct = score / questions.length;
-  let msg = '';
-  if (pct === 1) msg = 'Full marks. You have a solid understanding of the science and the practical strategies behind healthy sleep.';
-  else if (pct >= 0.6) msg = 'Good work. You got ' + score + ' out of ' + questions.length + ' right. The feedback on each question explains the reasoning behind the correct answers.';
-  else msg = 'You got ' + score + ' out of ' + questions.length + '. It is worth going back through the core content and trying again. The feedback on each question will help.';
-  document.getElementById('quiz-result-msg').textContent = msg;
-}
-
-function restartQuiz() {
-  currentQ = 0; score = 0; selectedOption = null; answered = false;
-  document.getElementById('quiz-body').style.display = 'block';
-  document.getElementById('quiz-result').className = 'quiz-result';
-  renderQuestion();
-}
-
-renderQuestion();
+})();
 </script>
 </body>
 </html>

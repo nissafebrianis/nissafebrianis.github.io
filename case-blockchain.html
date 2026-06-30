@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="id">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Dasar-Dasar Blockchain - Nissa Febriani</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dasar-Dasar Blockchain : Nissa Febriani</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2,family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
   --ink:     #0d1b2e;
@@ -15,408 +15,409 @@
   --accent:  #7b1f2e;
   --accent2: #1a3a5c;
   --muted:   #5a6578;
-  --card-bg: #ffffff;
-  --serif:   'DM Serif Display', Georgia, serif;
-  --sans:    'DM Sans', sans-serif;
+  --card:    #ffffff;
+  --serif:   'DM Serif Display', 'Georgia', serif;
+  --sans:    'DM Sans', -apple-system, 'Segoe UI', system-ui, sans-serif;
   --r:       12px;
 }
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.7; font-size: 16px; overflow-x: hidden; }
-a { color: inherit; text-decoration: none; }
-
-#progress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: linear-gradient(90deg, var(--accent2), var(--accent)); z-index: 200; transition: width .1s linear; }
-
-nav { position: fixed; top: 3px; left: 0; right: 0; z-index: 100; background: rgba(240,242,245,.94); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,.07); padding: 0 5vw; display: flex; align-items: center; justify-content: space-between; height: 60px; }
-.nav-logo { font-family: var(--serif); font-size: 1.1rem; letter-spacing: -.01em; }
-.nav-logo span { color: var(--accent); font-style: italic; }
-.nav-back { display: inline-flex; align-items: center; gap: .5rem; font-size: .82rem; font-weight: 500; color: var(--muted); transition: color .2s; }
-.nav-back:hover { color: var(--accent); }
-.nav-back svg { width: 14px; height: 14px; }
-.nav-cta { font-size: .82rem; font-weight: 500; background: var(--ink); color: var(--paper); padding: .5rem 1.25rem; border-radius: 100px; transition: background .2s; }
-.nav-cta:hover { background: var(--accent); }
-
-.cs-hero { background: var(--ink); padding: 9rem 5vw 5rem; position: relative; overflow: hidden; }
-.cs-hero::before { content: 'BLOCKCHAIN'; position: absolute; right: -1rem; top: 50%; transform: translateY(-50%) rotate(90deg); font-family: var(--serif); font-size: 12rem; font-style: italic; color: rgba(255,255,255,.03); white-space: nowrap; pointer-events: none; letter-spacing: -.04em; }
-.cs-hero-inner { max-width: 860px; }
-.cs-breadcrumb { display: flex; align-items: center; gap: .6rem; font-size: .72rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 1.5rem; }
-.cs-breadcrumb a { color: rgba(255,255,255,.4); transition: color .2s; }
-.cs-breadcrumb a:hover { color: rgba(255,255,255,.8); }
-.cs-breadcrumb span { color: rgba(255,255,255,.2); }
-.cs-type { display: inline-block; font-size: .7rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.15); border-radius: 100px; padding: .3rem .9rem; margin-bottom: 1.25rem; }
-.cs-personal-badge { display: inline-block; font-size: .7rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: #c9a4a4; border: 1px solid rgba(201,164,164,.3); border-radius: 100px; padding: .3rem .9rem; margin-bottom: 1.25rem; margin-left: .5rem; }
-.cs-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); color: #fff; line-height: 1.1; letter-spacing: -.02em; margin-bottom: 1.25rem; }
-.cs-hero h1 em { font-style: italic; color: #c9a4a4; }
-.cs-hero-sub { font-size: 1rem; color: rgba(255,255,255,.6); max-width: 600px; line-height: 1.8; margin-bottom: 2rem; }
-.cs-meta-row { display: flex; gap: 2.5rem; flex-wrap: wrap; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.08); }
-.cs-meta-label { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.35); margin-bottom: .3rem; }
-.cs-meta-val { font-size: .9rem; font-weight: 500; color: #fff; }
-
-.lang-notice { background: var(--accent2); color: rgba(255,255,255,.85); text-align: center; padding: .65rem 5vw; font-size: .82rem; }
-.lang-notice strong { font-weight: 600; color: #fff; }
-
-.cs-content { max-width: 960px; margin: 0 auto; padding: 4rem 5vw; }
-.cs-section { margin-bottom: 4.5rem; }
-.cs-section-label { font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem; }
-.cs-section-label::before { content: ''; display: block; width: 18px; height: 2px; background: var(--accent); opacity: .8; }
-.cs-section h2 { font-family: var(--serif); font-size: clamp(1.55rem, 2.4vw, 2.05rem); line-height: 1.18; letter-spacing: -.02em; margin-bottom: 1rem; max-width: 14ch; }
-.cs-body-text { font-size: .95rem; color: rgba(13,27,46,.76); line-height: 1.8; max-width: 72ch; }
-.cs-body-text + .cs-body-text { margin-top: .85rem; }
-
-.outcome-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.75rem; }
-.outcome-card { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; padding: 1.4rem 1.5rem; display: flex; gap: 1rem; align-items: flex-start; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
-.outcome-num { font-family: var(--serif); font-size: 1.6rem; font-style: italic; color: rgba(13,27,46,.22); line-height: 1; flex-shrink: 0; width: 32px; text-align: center; }
-.outcome-card h4 { font-size: .9rem; font-weight: 600; color: var(--ink); margin-bottom: .3rem; line-height: 1.35; }
-.outcome-card p { font-size: .8rem; color: rgba(13,27,46,.72); line-height: 1.7; }
-
-.session-arc { margin-top: 1.75rem; }
-.arc-item { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: start; padding: 1.25rem 0; border-bottom: 1px solid rgba(0,0,0,.07); }
-.arc-item:last-child { border-bottom: none; }
-.arc-sessions { font-family: var(--serif); font-size: 1rem; font-style: italic; color: var(--accent2); padding-top: .1rem; }
-.arc-phase { font-size: .65rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .3rem; }
-.arc-item h4 { font-size: .92rem; font-weight: 500; color: var(--ink); margin-bottom: .4rem; }
-.arc-item p { font-size: .82rem; color: var(--muted); line-height: 1.7; }
-.arc-topics { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
-.arc-topic { font-size: .7rem; padding: .22rem .65rem; background: var(--paper); border: 1px solid rgba(0,0,0,.08); border-radius: 100px; color: var(--muted); }
-
-.assessment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.75rem; }
-.assess-card { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-radius: 1rem; padding: 1.4rem 1.5rem; position: relative; overflow: hidden; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
-.assess-card::before { content: attr(data-icon); position: absolute; right: 1rem; top: .6rem; font-size: 3rem; line-height: 1; opacity: .07; }
-.assess-pct { font-family: var(--serif); font-size: 1.4rem; color: var(--accent2); margin-bottom: .5rem; }
-.assess-card h4 { font-size: .92rem; font-weight: 600; margin-bottom: .5rem; line-height: 1.35; color: var(--ink); }
-.assess-card p { font-size: .82rem; color: rgba(13,27,46,.72); line-height: 1.7; }
-.assess-insight { margin-top: 1rem; padding: .75rem 1rem; background: var(--paper); border-radius: .5rem; font-size: .78rem; color: var(--ink); font-weight: 500; }
-
-.compare-table { margin-top: 1.75rem; border: 1px solid rgba(0,0,0,.08); border-radius: var(--r); overflow: hidden; }
-.compare-header { display: grid; grid-template-columns: 150px 1fr 1fr; background: var(--ink); color: #fff; }
-.compare-header div { padding: .9rem 1.25rem; font-size: .78rem; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
-.compare-header div:first-child { color: rgba(255,255,255,.4); }
-.compare-row { display: grid; grid-template-columns: 150px 1fr 1fr; border-bottom: 1px solid rgba(0,0,0,.06); }
-.compare-row:last-child { border-bottom: none; }
-.compare-row:nth-child(even) { background: rgba(0,0,0,.02); }
-.compare-row div { padding: 1rem 1.25rem; font-size: .83rem; line-height: 1.6; }
-.compare-row div:first-child { font-weight: 500; color: var(--ink); }
-.compare-row div:nth-child(2), .compare-row div:nth-child(3) { color: var(--muted); }
-.tag-good { display: inline-block; font-size: .7rem; font-weight: 600; color: #1a5c2e; background: #d4ead9; padding: .15rem .55rem; border-radius: 100px; margin-right: .3rem; }
-.tag-limited { display: inline-block; font-size: .7rem; font-weight: 600; color: #5c3a1a; background: #ead9c4; padding: .15rem .55rem; border-radius: 100px; margin-right: .3rem; }
-
-.reflection-box { background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9)); border: 1px solid rgba(13,27,46,.07); border-left: 3px solid var(--accent2); border-radius: 0 1rem 1rem 0; padding: 1.75rem 2rem; margin-top: 1.75rem; box-shadow: 0 8px 24px rgba(12,18,28,.04); }
-.reflection-box p { font-size: .95rem; color: rgba(13,27,46,.72); line-height: 1.85; font-style: italic; }
-.reflection-box p + p { margin-top: .85rem; }
-
-.other-projects { padding: 3rem 5vw; max-width: 960px; margin: 0 auto; }
-.other-projects h3 { font-family: var(--serif); font-size: 1.2rem; margin-bottom: 1.25rem; letter-spacing: -.01em; }
-.other-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; }
-.other-card {
-  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,255,255,.9));
-  border: 1px solid rgba(13,27,46,.07);
-  border-radius: 1rem;
-  padding: 1.3rem 1.45rem 1.35rem;
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-  box-shadow: 0 8px 24px rgba(12,18,28,.04);
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-.other-card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(12,18,28,.07); border-color: rgba(13,27,46,.12); }
-.other-type { font-size: .62rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent2); margin-bottom: .55rem; }
-.other-card h4 { font-size: .92rem; font-weight: 600; margin-bottom: .4rem; line-height: 1.35; color: var(--ink); }
-.other-card p { font-size: .79rem; color: rgba(13,27,46,.72); line-height: 1.7; }
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--accent); color: #fff; }
 
-footer { background: var(--ink); color: rgba(255,255,255,.4); padding: 1.5rem 5vw; display: flex; align-items: center; justify-content: space-between; font-size: .8rem; }
-footer a { color: rgba(255,255,255,.6); transition: color .2s; }
-footer a:hover { color: #fff; }
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(240,242,245,.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(13,27,46,.07);
+  padding: 0 5vw;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: -.01em;
+}
+.nav-logo span { color: var(--accent); }
+.nav-back {
+  font-size: .8rem; font-weight: 500;
+  color: var(--muted);
+  display: flex; align-items: center; gap: .4rem;
+  transition: color .2s;
+}
+.nav-back:hover { color: var(--ink); }
+.nav-back svg { width: 14px; height: 14px; stroke: currentColor; stroke-width: 1.8; fill: none; }
 
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: .1s; }
-.reveal-delay-2 { transition-delay: .2s; }
-.reveal-delay-3 { transition-delay: .3s; }
+.page { max-width: 1200px; margin: 0 auto; padding: 5rem 5vw 3rem; }
 
-@media (max-width: 760px) {
-  .outcome-grid, .assessment-grid, .other-grid { grid-template-columns: 1fr; }
-  .arc-item { grid-template-columns: 1fr; gap: .3rem; }
-  .cs-meta-row { gap: 1.5rem; }
-  .compare-header, .compare-row { grid-template-columns: 110px 1fr 1fr; }
+.case-hero {
+  width: 100%; height: 340px;
+  background: var(--accent2);
+  border-radius: 1.5rem 1.5rem 0 0;
+  overflow: hidden;
+  position: relative;
+}
+.case-hero img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.case-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13,27,46,.7), transparent 50%);
+  pointer-events: none;
+}
+.case-intro {
+  background: var(--ink);
+  color: #fff;
+  padding: 2.5rem 3rem;
+  border-radius: 0 0 1.5rem 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.case-breadcrumb {
+  font-size: .7rem; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: .75rem;
+}
+.case-breadcrumb a { color: rgba(255,255,255,.5); transition: color .2s; }
+.case-breadcrumb a:hover { color: #fff; }
+.case-tag {
+  font-size: .65rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .5rem;
+  display: flex; align-items: center; gap: .6rem;
+}
+.case-tag::before { content: ''; width: 16px; height: 2px; background: var(--accent); }
+.case-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  margin-bottom: .75rem;
+}
+.case-subtitle {
+  font-size: .92rem;
+  color: rgba(255,255,255,.6);
+  line-height: 1.75;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+.case-tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+.case-tags span {
+  font-size: .68rem; font-weight: 500;
+  padding: .25rem .65rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255,255,255,.15);
+  color: rgba(255,255,255,.65);
+}
+.case-meta-bar {
+  display: flex; gap: 2rem; margin-top: 1.25rem; padding-top: 1.25rem;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+.case-meta-item { text-align: left; }
+.case-meta-num { font-family: var(--serif); font-size: 1.3rem; line-height: 1; margin-bottom: .15rem; }
+.case-meta-label { font-size: .6rem; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .06em; font-weight: 500; }
+
+.activity-check {
+  background: var(--card);
+  border: 1px solid rgba(13,27,46,.06);
+  border-radius: 1.2rem;
+  padding: 1.5rem 2rem;
+  margin: 1.75rem 0;
+}
+.check-item {
+  border-bottom: 1px solid rgba(13,27,46,.06);
+  padding: .85rem 0;
+}
+.check-item:last-child { border-bottom: none; }
+.check-q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--ink);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.check-q::after {
+  content: '+';
+  font-size: 1.1rem;
+  color: var(--accent);
+  font-weight: 400;
+  transition: transform .2s;
+}
+.check-item.open .check-q::after {
+  content: '–';
+}
+.check-a {
+  display: none;
+  font-size: .8rem;
+  color: var(--muted);
+  line-height: 1.7;
+  padding-top: .6rem;
+}
+.check-item.open .check-a { display: block; }
+
+.case-body {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+  align-items: start;
+}
+.case-body-main h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  margin-bottom: .75rem;
+  margin-top: 2.5rem;
+}
+.case-body-main h2:first-child { margin-top: 0; }
+.case-body-main p {
+  font-size: .92rem;
+  color: var(--muted);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+.case-body-main strong { color: var(--ink); font-weight: 600; }
+
+
+.highlight-box {
+  background: rgba(123,31,46,.04);
+  border-top: 3px solid var(--accent);
+  border-radius: 0 0 .7rem .7rem;
+  padding: 1.25rem 1.35rem;
+  margin: 1.75rem 0;
+}
+.highlight-box-label {
+  font-size: .6rem; font-weight: 600;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .35rem;
+}
+.highlight-box p {
+  font-size: .85rem; color: var(--ink);
+  line-height: 1.7; margin: 0;
+}
+
+.case-sidebar {
+  background: var(--card);
+  border: 1px solid rgba(13,27,46,.06);
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  position: sticky; top: 5rem;
+}
+.sidebar-section { margin-bottom: 1.5rem; }
+.sidebar-section:last-child { margin-bottom: 0; }
+.sidebar-label { font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .5rem; }
+.sidebar-value { font-size: .82rem; color: var(--ink); line-height: 1.6; }
+
+.arc { display: flex; flex-direction: column; gap: .75rem; }
+.arc-step { display: flex; gap: .75rem; }
+.arc-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: .4rem; }
+.arc-step-content strong { display: block; font-size: .82rem; font-weight: 600; margin-bottom: .1rem; }
+.arc-step-content span { font-size: .76rem; color: var(--muted); line-height: 1.5; }
+
+.reflection {
+  background: var(--card);
+  border: 1px solid rgba(13,27,46,.06);
+  border-radius: 1.2rem;
+  padding: 2rem 2.5rem;
+}
+.reflection-label { font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: .5rem; }
+.reflection p { font-size: .9rem; color: var(--muted); line-height: 1.8; font-style: italic; }
+
+footer { text-align: center; padding: 2rem 5vw 3rem; font-size: .78rem; color: var(--muted); }
+footer a { color: var(--accent); }
+
+@media (max-width: 800px) {
+  .case-hero { height: 200px; }
+  .case-intro { padding: 1.5rem; }
+  .case-meta-bar { gap: 1rem; flex-wrap: wrap; }
+  .case-body { grid-template-columns: 1fr; }
+  .case-sidebar { position: static; }
+  .reflection { padding: 1.5rem; }
+
 }
 </style>
 </head>
 <body>
 
-<div id="progress"></div>
-
 <nav>
-  <a href="index.html" class="nav-logo">Nissa <span>Febriani</span></a>
-  <a href="index.html#portfolio" class="nav-back">
-    <svg viewBox="0 0 16 16" fill="none"><path d="M13 8H3M3 8l4-4M3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Kembali ke portofolio
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 16 16"><path d="M13 8H3M7 4l-4 4 4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back
   </a>
-  <a href="index.html#contact" class="nav-cta">Get in touch</a>
+  <div class="nav-logo"><span>N</span>issa Febriani</div>
+  <div style="width:50px;"></div>
 </nav>
 
-<div class="cs-hero">
-  <div class="cs-hero-inner">
-    <div class="cs-breadcrumb">
-      <a href="index.html">Portfolio</a>
-      <span>/</span>
-      E-Learning Design
-    </div>
-    <div class="cs-type">Case Study</div>
-    <div class="cs-personal-badge">Proyek Pribadi</div>
-    <h1>Dasar-Dasar <em>Blockchain</em></h1>
-    <p class="cs-hero-sub">Modul belajar mandiri yang saya rancang untuk membantu masyarakat Indonesia memahami cryptocurrency dan blockchain dengan bahasa yang mudah diikuti, dari konsep dasar sampai penerapannya di dunia nyata.</p>
-    <div class="cs-meta-row">
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Jenis proyek</div>
-        <div class="cs-meta-val">Proyek Pribadi</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Sasaran peserta</div>
-        <div class="cs-meta-val">Pemula, Masyarakat Umum Indonesia</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Format</div>
-        <div class="cs-meta-val">Modul Interaktif, Self-paced</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Bahasa</div>
-        <div class="cs-meta-val">Bahasa Indonesia</div>
-      </div>
-      <div class="cs-meta-item">
-        <div class="cs-meta-label">Peran saya</div>
-        <div class="cs-meta-val">Instructional Designer</div>
-      </div>
-    </div>
+<div class="page">
+  <div class="case-hero">
+    <img src="https://images.unsplash.com/photo-1516245834210-c4c142787335?w=1200&q=80" alt="Dasar-Dasar Blockchain case study visual">
+    <div class="case-hero-overlay"></div>
   </div>
-</div>
-
-<div class="lang-notice">
-  <strong>Halaman ini ditulis dalam Bahasa Indonesia</strong> karena proyek ini memang dirancang khusus untuk audiens Indonesia.
-</div>
-
-<div class="cs-content">
-
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Latar belakang</div>
-    <h2>Minatnya tinggi, tapi pemahamannya masih sering tertinggal</h2>
-    <p class="cs-body-text">Dalam beberapa tahun terakhir, investasi crypto di Indonesia tumbuh pesat. Tapi yang sering saya temui, banyak orang sudah masuk pasar tanpa benar-benar mengerti teknologi di baliknya. Mereka tahu harga Bitcoin naik-turun, tapi tidak tahu apa itu blockchain, bagaimana cara kerjanya, atau kenapa teknologi ini punya nilai.</p>
-    <p class="cs-body-text">Dari situ saya ingin membuat sesuatu yang bisa membantu. Bukan kursus formal, bukan juga artikel teknis yang susah dicerna, tetapi modul belajar mandiri yang bisa diakses siapa saja dengan bahasa yang terasa dekat dan relevan dengan keseharian orang Indonesia.</p>
-  </div>
-
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Struktur modul</div>
-    <h2>Lima topik yang saya susun agar saling membangun</h2>
-    <p class="cs-body-text">Tujuannya supaya setiap bagian memberi landasan untuk topik berikutnya. Kalau peserta belum paham apa itu ledger, blockchain akan terasa terlalu abstrak. Kalau mereka belum paham desentralisasi, perbandingan dengan sistem tradisional tidak akan terasa bermakna.</p>
-    <div class="outcome-grid">
-      <div class="outcome-card">
-        <div class="outcome-num">01</div>
-        <div>
-          <h4>Konsep Dasar Ledger</h4>
-          <p>Titik awal yang sering dilewatkan. Sebelum bicara blockchain, peserta perlu tahu dulu apa itu buku besar dan kenapa pencatatan transaksi yang akurat itu penting.</p>
-        </div>
+  <div class="case-intro">
+    <div class="case-breadcrumb">
+      <a href="index.html#portfolio">Work</a> / Dasar-Dasar Blockchain
+    </div>
+    <div class="case-tag">E-Learning · Proyek Pribadi</div>
+    <h1 class="case-title">Dasar-Dasar Blockchain</h1>
+    <p class="case-subtitle">A self-paced module designed for the general Indonesian public to understand blockchain in plain language : starting with ledger basics and moving into everyday use.</p>
+    <div class="case-tags">
+      <span>Bahasa Indonesia</span>
+      <span>Self-paced</span>
+      <span>E-Learning</span>
+      <span>Proyek Pribadi</span>
+    </div>
+    <div class="case-meta-bar">
+      <div class="case-meta-item">
+        <div class="case-meta-num">5</div>
+        <div class="case-meta-label">Modules</div>
       </div>
-      <div class="outcome-card">
-        <div class="outcome-num">02</div>
-        <div>
-          <h4>Definisi dan Karakteristik Blockchain</h4>
-          <p>Apa itu blockchain, apa yang membuatnya berbeda, dan mengapa sifatnya yang tidak bisa diubah itu justru menjadi kekuatan utamanya.</p>
-        </div>
+      <div class="case-meta-item">
+        <div class="case-meta-num">ID</div>
+        <div class="case-meta-label">Language</div>
       </div>
-      <div class="outcome-card">
-        <div class="outcome-num">03</div>
-        <div>
-          <h4>Mekanisme Kerja Blockchain</h4>
-          <p>Bagaimana blok dan rantai bekerja, apa itu node, dan bagaimana jaringan ini menjaga data tetap aman tanpa butuh otoritas pusat.</p>
-        </div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-num">04</div>
-        <div>
-          <h4>Perbandingan dengan Sistem Tradisional</h4>
-          <p>Meletakkan blockchain di sebelah sistem konvensional supaya perbedaannya terasa nyata, bukan sekadar teoritis.</p>
-        </div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-num">05</div>
-        <div>
-          <h4>Aplikasi di Berbagai Industri</h4>
-          <p>Blockchain jauh melampaui cryptocurrency. Bagian ini membuka wawasan bahwa teknologi ini sudah dipakai di kesehatan, logistik, dan sistem pemungutan suara.</p>
-        </div>
-      </div>
-      <div class="outcome-card" style="background:var(--ink);">
-        <div class="outcome-num" style="color:rgba(255,255,255,.12);">06</div>
-        <div>
-          <h4 style="color:#fff;">Refleksi dan Diskusi</h4>
-          <p style="color:rgba(255,255,255,.55);">Modul ditutup dengan pertanyaan terbuka yang mengajak peserta berpikir tentang potensi blockchain di sektor yang mereka kenal sendiri.</p>
-        </div>
+      <div class="case-meta-item">
+        <div class="case-meta-num">Self</div>
+        <div class="case-meta-label">Paced</div>
       </div>
     </div>
   </div>
 
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Konsep yang diajarkan</div>
-    <h2>Menentukan kedalaman teknis yang pas</h2>
-    <p class="cs-body-text">Salah satu keputusan desain terbesar di proyek ini adalah menentukan kedalaman materi. Terlalu dangkal dan peserta tidak benar-benar paham. Terlalu dalam dan mereka bisa hilang di tengah jalan. Ini konsep utama yang saya masukkan dan cara saya menyajikannya.</p>
-    <div class="session-arc">
-      <div class="arc-item">
-        <div class="arc-sessions">Ledger</div>
-        <div>
-          <div class="arc-phase">Fondasi</div>
-          <h4>Buku besar sebagai titik awal</h4>
-          <p>Ledger mencatat seluruh riwayat transaksi secara kronologis. Saya mulai dari sini karena blockchain pada dasarnya adalah evolusi dari konsep ini, dan peserta perlu titik pijak yang familiar sebelum masuk ke hal yang baru.</p>
-          <div class="arc-topics">
-            <span class="arc-topic">Pencatatan kronologis</span>
-            <span class="arc-topic">Akurasi finansial</span>
-            <span class="arc-topic">Verifikasi data</span>
+
+
+  <div class="case-body">
+    <div class="case-body-main">
+      <h2>The context</h2>
+      <p>Blockchain and cryptocurrency have generated enormous interest among the Indonesian public, but <strong>quality educational resources in Bahasa Indonesia</strong> are scarce. Most content is either too technical (English-language whitepapers) or too promotional (social media influencers).</p>
+      <p>I designed this self-paced module as a personal project to bridge that gap. The goal was to produce a resource that explains blockchain in plain Indonesian, starting from what a ledger is, all the way to how people use blockchain in everyday contexts.</p>
+
+      <div class="highlight-box">
+        <div class="highlight-box-label">What stood out</div>
+        <p>The gotong royong analogy for consensus was what readers responded to most: it made an abstract systems concept feel like something they already understood intuitively.</p>
+      </div>
+
+      <h2>The problem</h2>
+      <p>Two barriers. First, <strong>language</strong>: high-quality blockchain education is mostly in English, which excludes a large segment of the Indonesian audience. Second, <strong>prior knowledge</strong>: readers come from wildly different backgrounds. Some have never heard of Bitcoin, others have dabbled in trading but don't understand the technology.</p>
+      <p>The module needed to serve both groups without boring either. That meant layered explanations, analogies grounded in local contexts, and a structure that lets readers skip sections they already know.</p>
+
+      <h2>Test your knowledge</h2>
+      <p>Click each question to reveal the answer. These are questions real readers asked.</p>
+      <div class="activity-check">
+        <div class="check-item">
+          <div class="check-q" onclick="this.parentElement.classList.toggle('open')">Apa bedanya blockchain dengan database biasa?</div>
+          <div class="check-a">Blockchain adalah database terdistribusi di mana data dicatat dalam blok yang saling terhubung secara kriptografis. Tidak ada satu entitas pun yang mengontrol seluruh data, dan perubahan pada blok sebelumnya akan terdeteksi oleh seluruh jaringan.</div>
+        </div>
+        <div class="check-item">
+          <div class="check-q" onclick="this.parentElement.classList.toggle('open')">Apa itu consensus mechanism?</div>
+          <div class="check-a">Mekanisme konsensus adalah cara semua pihak dalam jaringan blockchain setuju tentang state data yang benar. Analogi gotong royong: semua warga harus sepakat tentang aturan bersama sebelum membangun. Dalam blockchain, mekanismenya termasuk Proof of Work dan Proof of Stake.</div>
+        </div>
+        <div class="check-item">
+          <div class="check-q" onclick="this.parentElement.classList.toggle('open')">Apakah blockchain selalu lebih aman?</div>
+          <div class="check-a">Tidak selalu. Keamanan blockchain tergantung pada implementasi, konsensus mechanism, dan ukuran jaringan. Blockchain publik besar seperti Bitcoin relatif aman karena biaya serangan sangat tinggi, tapi blockchain kecil atau private bisa rentan. Teknologi bukan jaminan mutlak.</div>
+        </div>
+      </div>
+
+      <h2>My approach</h2>
+      <p>I structured the module into five parts:</p>
+      <p><strong>1. Dari Buku ke Blockchain.</strong> Starts with a physical ledger (buku catatan) and introduces the concept of a distributed ledger before ever mentioning cryptocurrency.</p>
+      <p><strong>2. Cara Kerja.</strong> Covers how blockchain actually works: hashing, consensus mechanisms, mining, using analogies from Indonesian daily life (gotong royong for consensus, for example).</p>
+      <p><strong>3. Mata Uang Digital.</strong> Introduces Bitcoin, Ethereum, and the idea of digital scarcity. Focuses on understanding the trade-offs between different cryptocurrencies rather than investment advice.</p>
+      <p><strong>4. Penggunaan Sehari-hari.</strong> Covers real applications: remittances, supply chain tracking, digital identity, and DeFi, with Indonesian case studies where available.</p>
+      <p><strong>5. Resiko dan Masa Depan.</strong> A balanced look at risks (volatility, regulation, scams) and what the future might hold, designed to leave readers informed rather than sold.</p>
+      <p>Every module uses <strong>perbandingan</strong> (comparison tables), analogi (analogies with local references), and ringkasan (one-page summaries at the end).</p>
+
+      <h2>Design decisions</h2>
+      <p><strong>Bahasa Indonesia throughout.</strong> Every word is in Indonesian. Technical terms are introduced in English with Indonesian explanations, then consistently referred to in Indonesian.</p>
+      <p><strong>Local analogies.</strong> Blockchain consensus is explained through gotong royong (mutual cooperation). Mining difficulty is compared to finding the right "kunci" (key) in a traditional lock. These cultural references make abstract concepts feel concrete.</p>
+      <p><strong>Modular, skip-friendly.</strong> Each module works as a standalone read. A "sudah tahu?" (already know?) box at the start of each section lets advanced readers skip ahead.</p>
+      <p><strong>No investment advice.</strong> The module explicitly avoids price discussion, trading strategies, or "how to get rich" framing. The goal is understanding, not speculation.</p>
+
+      <div class="reflection">
+        <div class="reflection-label">What I learned</div>
+        <p>"Designing in Bahasa Indonesia forced me to think harder about clarity. When you can't rely on English technical vocabulary, every concept has to earn its explanation. The local analogies, especially gotong royong for consensus, were the thing readers responded to most. It reminded me that the best explanation is the one that uses what the learner already knows."</p>
+      </div>
+    </div>
+
+    <div class="case-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Type</div>
+        <div class="sidebar-value">Self-paced e-learning module</div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Language</div>
+        <div class="sidebar-value">Bahasa Indonesia</div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Audience</div>
+        <div class="sidebar-value">General Indonesian public, all education levels</div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Structure</div>
+        <div class="sidebar-value">5 modules · 20–30 min each</div>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Design arc</div>
+        <div class="arc">
+          <div class="arc-step">
+            <div class="arc-dot" style="background:var(--accent2);"></div>
+            <div class="arc-step-content">
+              <strong>Discover</strong>
+              <span>Identified gap in Indonesian-language blockchain resources</span>
+            </div>
+          </div>
+          <div class="arc-step">
+            <div class="arc-dot" style="background:var(--accent);"></div>
+            <div class="arc-step-content">
+              <strong>Design</strong>
+              <span>Five-module arc with local analogies</span>
+            </div>
+          </div>
+          <div class="arc-step">
+            <div class="arc-dot" style="background:var(--accent2);"></div>
+            <div class="arc-step-content">
+              <strong>Develop</strong>
+              <span>Written content, illustrations, interactive checks</span>
+            </div>
+          </div>
+          <div class="arc-step">
+            <div class="arc-dot" style="background:var(--accent);"></div>
+            <div class="arc-step-content">
+              <strong>Iterate</strong>
+              <span>Reader feedback and content refinements</span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="arc-item">
-        <div class="arc-sessions">Desentralisasi</div>
-        <div>
-          <div class="arc-phase">Konsep kunci</div>
-          <h4>Dua lapisan yang perlu dibedakan</h4>
-          <p>Desentralisasi punya dua sisi yang sering dicampur aduk: sifat terdistribusi (data tersebar ke banyak node) dan sifat terdesentralisasi (tidak ada otoritas tunggal yang mengambil keputusan). Saya menjelaskan keduanya lewat analogi yang berbeda karena memang konsepnya berbeda.</p>
-          <div class="arc-topics">
-            <span class="arc-topic">Distributed nodes</span>
-            <span class="arc-topic">Algoritma konsensus</span>
-            <span class="arc-topic">No single point of failure</span>
-          </div>
-        </div>
-      </div>
-      <div class="arc-item">
-        <div class="arc-sessions">Blok dan Rantai</div>
-        <div>
-          <div class="arc-phase">Mekanisme</div>
-          <h4>Kenapa data tidak bisa diubah diam-diam</h4>
-          <p>Setiap blok berisi data transaksi, hash kriptografis, dan referensi ke blok sebelumnya. Kalau satu blok diutak-atik, seluruh rantai setelahnya ikut rusak, itulah yang membuat blockchain berbeda dari database biasa.</p>
-          <div class="arc-topics">
-            <span class="arc-topic">Hash kriptografis</span>
-            <span class="arc-topic">Timestamp</span>
-            <span class="arc-topic">Imutabilitas</span>
-          </div>
-        </div>
-      </div>
-      <div class="arc-item">
-        <div class="arc-sessions">Trustless System</div>
-        <div>
-          <div class="arc-phase">Konsep lanjutan</div>
-          <h4>Kepercayaan tanpa pihak ketiga</h4>
-          <p>Kepercayaan dibangun melalui kode dan algoritma konsensus, bukan pada institusi atau individu. Saya meletakkan konsep ini di akhir karena perlu fondasi dari semua konsep sebelumnya supaya bisa dipahami dengan baik.</p>
-          <div class="arc-topics">
-            <span class="arc-topic">Konsensus</span>
-            <span class="arc-topic">Kriptografi</span>
-            <span class="arc-topic">Tanpa otoritas pusat</span>
-          </div>
-        </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Skills used</div>
+        <div class="sidebar-value">E-Learning Design · Scripting · Bahasa Indonesia · Needs Analysis</div>
       </div>
     </div>
   </div>
 
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Pendekatan desain</div>
-    <h2>Dua analogi untuk menjelaskan sifat blockchain</h2>
-    <p class="cs-body-text">Audiens modul ini bukan orang teknis, jadi saya menggunakan analogi sebagai alat utama. Dua analogi di bawah ini saya pilih karena terasa dekat dengan pengalaman sehari-hari, bukan perbandingan klise yang sudah terlalu sering muncul di artikel crypto.</p>
-    <div class="assessment-grid">
-      <div class="assess-card" data-icon="1">
-        <div class="assess-pct">Taman Komunitas</div>
-        <h4>Untuk menjelaskan sifat terdistribusi</h4>
-        <p>Bayangkan taman komunitas yang dikelola bersama tanpa satu pemimpin. Setiap anggota punya salinan catatan yang sama tentang siapa menanam apa dan di mana. Kalau ada yang mencoba mengubah catatan diam-diam, anggota lain langsung tahu karena catatan mereka tidak cocok.</p>
-        <div class="assess-insight">Poin utama: tidak ada server pusat. Setiap node punya salinan lengkap, itulah yang membuatnya susah dimanipulasi.</div>
-      </div>
-      <div class="assess-card" data-icon="2">
-        <div class="assess-pct">Sekolah Mandiri</div>
-        <h4>Untuk menjelaskan sifat terdesentralisasi</h4>
-        <p>Sekolah di mana setiap kelas punya guru dan muridnya sendiri, beroperasi secara mandiri. Meski begitu, semua kelas mengikuti aturan dan kurikulum yang sama. Kalau satu kelas bermasalah, kelas lain tetap berjalan normal.</p>
-        <div class="assess-insight">Poin utama: keputusan diambil lewat algoritma konsensus, bukan oleh satu pihak yang berkuasa.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Konten modul</div>
-    <h2>Tabel perbandingan yang saya buat untuk peserta</h2>
-    <p class="cs-body-text">Cara yang efektif untuk membuat konsep baru terasa nyata adalah membandingkannya langsung dengan sesuatu yang sudah dikenal. Tabel ini saya rancang sebagai referensi visual yang bisa dibaca sekilas dan langsung menunjukkan perbedaannya.</p>
-    <div class="compare-table">
-      <div class="compare-header">
-        <div>Fitur</div>
-        <div>Blockchain</div>
-        <div>Ledger Tradisional</div>
-      </div>
-      <div class="compare-row">
-        <div>Struktur</div>
-        <div><span class="tag-good">Terdesentralisasi</span> Tidak ada titik kontrol pusat; kendali tersebar di seluruh jaringan.</div>
-        <div><span class="tag-limited">Terpusat</span> Satu otoritas seperti bank mengendalikan seluruh data.</div>
-      </div>
-      <div class="compare-row">
-        <div>Transparansi</div>
-        <div><span class="tag-good">Tinggi</span> Setiap node punya salinan data yang sama dan bisa memverifikasi transaksi.</div>
-        <div><span class="tag-limited">Terbatas</span> Transparansi hanya sejauh akses yang diberikan otoritas pusat.</div>
-      </div>
-      <div class="compare-row">
-        <div>Imutabilitas</div>
-        <div><span class="tag-good">Permanen</span> Data tidak bisa dihapus atau diubah setelah tercatat dalam rantai.</div>
-        <div><span class="tag-limited">Bisa diubah</span> Data bisa dimodifikasi oleh pihak yang berwenang.</div>
-      </div>
-      <div class="compare-row">
-        <div>Kepercayaan</div>
-        <div><span class="tag-good">Trustless</span> Kepercayaan dibangun melalui kode dan algoritma konsensus.</div>
-        <div><span class="tag-limited">Berbasis otoritas</span> Bergantung sepenuhnya pada integritas pihak ketiga.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="cs-section reveal">
-    <div class="cs-section-label">Refleksi saya</div>
-    <h2>Yang saya pelajari dari membuat modul ini</h2>
-    <div class="reflection-box">
-      <p>Proyek ini berbeda dari pekerjaan instruksional saya yang lain karena saya punya kendali penuh atas semuanya, dari memilih topik, menentukan urutan, sampai memutuskan analogi mana yang dipakai. Itu menyenangkan sekaligus menantang.</p>
-      <p>Yang paling sulit ternyata bukan bagian teknisnya, tapi memutuskan seberapa dalam masuk ke konsep tertentu. Saya beberapa kali menulis ulang bagian tentang desentralisasi karena kata-katanya terlalu teknis atau justru terlalu sederhana sampai kehilangan substansinya.</p>
-      <p>Dua analogi yang ada di modul ini juga tidak datang dalam sekali duduk. Saya mencoba beberapa versi sebelum akhirnya yakin bahwa analogi taman dan sekolah bisa sampai ke orang yang belum pernah dengar blockchain sebelumnya.</p>
-    </div>
-  </div>
-
-</div>
-
-<div class="other-projects">
-  <h3>Other projects</h3>
-  <div class="other-grid">
-    <a href="case-crypto.html" class="other-card">
-      <div class="other-type">Curriculum Design</div>
-      <h4>Blockchain and Cryptocurrency for Undergraduates</h4>
-      <p>A full 16-session curriculum I led the design of, built for undergraduate students with no prior knowledge of crypto.</p>
-    </a>
-    <a href="https://drive.google.com/drive/folders/18fUKNeJJhSpKTUCCz4vcymf6E9YKpOLD" target="_blank" class="other-card">
-      <div class="other-type">E-Learning Script</div>
-      <h4>Efficient Budgeting: Script and Assignment</h4>
-      <p>Audio-visual script and assignments for a personal finance e-learning course.</p>
-    </a>
-    <a href="https://drive.google.com/drive/folders/1erweNzoG93nkA7mg2JeE-DH3dyIKlElE" target="_blank" class="other-card">
-      <div class="other-type">Game-Based Learning</div>
-      <h4>Detective Mystery: Collaborative Online Game</h4>
-      <p>A group mystery game for remote team building and collaboration skills.</p>
-    </a>
-  </div>
 </div>
 
 <footer>
-  <span>© 2025 Nissa Febriani · Bandung, Indonesia</span>
-  <div style="display:flex;gap:1.5rem;">
-    <a href="mailto:nissafebriani@gmail.com">Email</a>
-    <a href="https://linkedin.com/in/nissafebriani" target="_blank">LinkedIn</a>
-  </div>
+  <a href="index.html">← Back to portfolio</a> · Nissa Febriani
 </footer>
 
-<script>
-const bar = document.getElementById('progress');
-window.addEventListener('scroll', () => {
-  const d = document.documentElement;
-  bar.style.width = (d.scrollTop / (d.scrollHeight - d.clientHeight) * 100) + '%';
-});
-const revealEls = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-revealEls.forEach(el => obs.observe(el));
-</script>
+
+
 </body>
 </html>
